@@ -1,5 +1,9 @@
+import { LoginForm } from './LoginForm/LoginForm';
+import React from 'react';
 export const App = () => {
   return (
-    <div>Hello</div>
+    <div>
+      <LoginForm />
+    </div>
   );
 };
