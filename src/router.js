@@ -22,18 +22,16 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 
-const routes = () => {
+const UserRoutes = () => {
     return (
       <>
         <SharedLayout />
         <Suspense>
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
-            {/* <Route path="/news" element={<NewsPage />} /> */}
             <Route path="/notices" element={<NoticesPage />}>
-              {/* <Route path=":categoryName" element={<NoticesCategoriesList />} /> */}
             </Route>
-            {/* <Route path="/friends" element={<OurFriendsPage />} /> */}
+        
   
             {/* <Route element={<Public />}> */}
               <Route path="/register" element={<RegisterPage />} />
@@ -51,4 +49,4 @@ const routes = () => {
     );
   };
   
-  export default routes;
+  export default UserRoutes;
