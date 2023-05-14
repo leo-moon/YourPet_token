@@ -1,14 +1,13 @@
-import { LoginForm } from './LoginForm/LoginForm';
-import SharedLayout from './SharedLayout/SharedLayout';
-// import UserRoutes  from '../router';
+import { BrowserRouter } from 'react-router-dom';
+// import { LoginForm } from './LoginForm/LoginForm';
+import UserRoutes  from '../router';
 
 import React from 'react';
 export const App = () => {
   return (
-    <>
-      <SharedLayout />
-      {/* <UserRoutes /> */}
-      <LoginForm />
-    </>
+    <BrowserRouter>
+      <UserRoutes />
+      {/* <LoginForm /> */}
+    </BrowserRouter>
   );
 };
