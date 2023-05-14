@@ -1,7 +1,7 @@
 const NoticesPage = () => {
     
-    return (
-     <p>Notices Page</p>
+  return (
+       <p>Notices Page</p>
     );
   };
   
