@@ -3,8 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { login } from './authOperations';
-
-const isUserLogin = ({ auth }) => auth.isLogin;
+import { isUserLogin } from './authSelectors';
 
 const LoginPage = () => {
   const isLogin = useSelector(isUserLogin);
