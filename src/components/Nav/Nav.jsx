@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <>
+    <div className={css.div}>
       <NavLink to="/"></NavLink>
-      <div>
+      <div className={css.div}>
         <NavLink className={css.item} to="/news">
           News
         </NavLink>
@@ -21,7 +21,7 @@ const Nav = () => {
 
       <AuthNav />
       <UserNav />
-    </>
+    </div>
   );
 };
 
