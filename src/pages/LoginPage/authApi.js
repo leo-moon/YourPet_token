@@ -10,9 +10,24 @@ const setToken = token => {
   }
   instance.defaults.headers.authorization = '';
 };
+export const signup = async userData => {
+  const { data } = await instance.post('/users/signup', userData);
+  setToken(data.token);
+  return data;
+};
 
 export const login = async userData => {
   const { data } = await instance.post('/users/login/', userData);
   setToken(data.token);
   return data;
+};
+export const getCurrent = async token => {
+  try {
+    setToken(token);
+    const { data } = await instance.get('/users/current');
+    return data;
+  } catch (error) {
+    setToken();
+    throw error;
+  }
 };
