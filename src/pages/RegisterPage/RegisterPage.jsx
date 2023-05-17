@@ -1,12 +1,3 @@
-const RegisterPage = () => {
-    
-    return (
-     <p>Register Page</p>
-    );
-  };
-  
-  export default RegisterPage;
-
 // import { useDispatch } from 'react-redux';
 
 // import { register } from '../../redux/auth/auth-operations';
