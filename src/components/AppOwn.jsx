@@ -1,14 +1,19 @@
 import { BrowserRouter } from 'react-router-dom';
-import UserRoutes from '../router';
+// import UserRoutes from '../router';
 import css from './App.module.css';
 
-import React from 'react';
+import { lazy } from 'react';
+
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+
 export const App = () => {
   return (
     <BrowserRouter>
       <div className={css.container}>
-        <UserRoutes />
+        <RegisterPage />
       </div>
     </BrowserRouter>
   );
 };
+
+// import { App } from 'components/AppOwn';

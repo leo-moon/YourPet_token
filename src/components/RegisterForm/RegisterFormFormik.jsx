@@ -21,7 +21,6 @@ const onSubmit = async (values, submitProps) => {
 
 const RegisterForm = () => {
   return (
-    // <div className={styles.form}>
     <div className={styles.formik}>
       <Formik
         initialValues={initialState}
@@ -32,7 +31,6 @@ const RegisterForm = () => {
           <h2 className={styles.title}>Registration</h2>
 
           <div className={styles.wrapper}>
-            {/* <Field name="name" type="text" /> */}
             <Field name="email" {...fields.email} className={styles.field} />
             <Field
               name="password"

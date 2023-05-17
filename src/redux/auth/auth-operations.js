@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as api from '../../shared/api/auth';
+import * as api from '../../pages/RegisterPage/shared/api/auth';
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -42,7 +42,7 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       if (!auth.token) {
         return false;
-      };
+      }
     },
   }
 );
