@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { rootReducer } from '../pages/LoginPage/root-reducer';
+import authReducer from '../pages/LoginPage/authSlice';
+// import { rootReducer } from '../pages/LoginPage/root-reducer';
 
 import {
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,8 +14,18 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+import storage from 'redux-persist/lib/storage';
+
+const authPersistConfig = {
+  key: 'token',
+  storage,
+  whitelist: ['token'],
+};
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
