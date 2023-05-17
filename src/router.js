@@ -23,32 +23,34 @@ const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const FriendsPage = lazy(() => import('./pages/FriendsPage/FriendsPage'));
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
 const UserRoutes = () => {
-    return (
-      <>
-        <SharedLayout />
-        <Suspense>
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/news" element={<NewsPage />}></Route>
-            <Route path="/notices" element={<NoticesPage />}></Route>
-            <Route path="/friends" element={<FriendsPage />}></Route>
-  
-            {/* <Route element={<Public />}> */}
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
-            {/* </Route> */}
-  
-            {/* <Route element={<Private />}> */}
-              <Route path="/user" element={<UserPage />} />
-            {/* </Route> */}
-  
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
-          </Routes>
-        </Suspense>
-      </>
-    );
-  };
-  
-  export default UserRoutes;
+  return (
+    <>
+      <SharedLayout />
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/news" element={<NewsPage />}></Route>
+          <Route path="/notices" element={<NoticesPage />}></Route>
+          <Route path="/friends" element={<FriendsPage />}></Route>
+
+          {/* <Route element={<Public />}> */}
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          {/* </Route> */}
+
+          {/* <Route element={<Private />}> */}
+          <Route path="/user" element={<UserPage />} />
+          <Route path="/add-pet" element={<AddPetPage />} />
+          {/* </Route> */}
+
+          {/* <Route path="*" element={<NotFoundPage />} /> */}
+        </Routes>
+      </Suspense>
+    </>
+  );
+};
+
+export default UserRoutes;
