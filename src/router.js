@@ -30,7 +30,8 @@ const UserRoutes = () => {
       <SharedLayout />
       <Suspense>
         <Routes>
-          <Route path="/YourPet" element={<HomePage />}></Route>
+        {/* YourPet */}
+          <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
           <Route path="/notices" element={<NoticesPage />}></Route>
           <Route path="/friends" element={<FriendsPage />}></Route>
