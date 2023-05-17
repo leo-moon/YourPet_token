@@ -60,4 +60,3 @@ const RegisterForm = () => {
 
 export default RegisterForm;
 
-// ReactDOM.render(<App />, document.getElementById('root'));
