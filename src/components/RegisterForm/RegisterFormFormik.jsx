@@ -7,7 +7,6 @@ import initialState from './initialState';
 
 import styles from './register-form.module.scss';
 
-
 const onSubmit = async (values, submitProps) => {
   let { email, confirmPassword, password } = values;
   console.log(password, confirmPassword);
@@ -59,5 +58,3 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
-
-// ReactDOM.render(<App />, document.getElementById('root'));
