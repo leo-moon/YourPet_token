@@ -1,0 +1,6 @@
+.div {
+  display: grid;
+  justify-content: center;
+  margin-top: 40px;
+  background-image: url('../../images/bg.jpg ');
+}
