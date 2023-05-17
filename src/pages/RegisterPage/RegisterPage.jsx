@@ -7,10 +7,10 @@ const RegisterPage = () => {
   
   export default RegisterPage;
 
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // import { register } from '../../redux/auth/auth-operations';
-import { signup } from '../../redux/auth/auth-operations';
+// import { signup } from '../../redux/auth/auth-operations';
 
 
 // import RegisterForm from 'Modules/RegisterForm/RegisterForm';
