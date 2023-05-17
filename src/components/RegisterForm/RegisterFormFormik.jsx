@@ -1,22 +1,32 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
 import fields from './fields';
+import initialState from './initialState';
 
 import styles from './register-form.module.scss';
 
-// function App() {
+
+const onSubmit = async (values, submitProps) => {
+  let { email, confirmPassword, password } = values;
+  console.log(password, confirmPassword);
+  if (password !== confirmPassword)
+    return alert('confirmPassword must be same like password');
+  await new Promise(resolve => setTimeout(resolve, 500));
+  alert(JSON.stringify({ email, password }, null, 2));
+  submitProps.setSubmitting(false);
+  submitProps.resetForm();
+};
+
 const RegisterForm = () => {
   return (
     // <div className={styles.form}>
     <div className={styles.formik}>
       <Formik
-        // initialValues={{ name: '', email: '' }}
-        onSubmit={async values => {
-          await new Promise(resolve => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
+        initialValues={initialState}
+        onSubmit={onSubmit}
+        enableReinitialize
       >
         <Form className={styles.form}>
           <h2 className={styles.title}>Registration</h2>
@@ -40,7 +50,7 @@ const RegisterForm = () => {
           </button>
           <p className={styles.p}>
             Already have an account?{' '}
-            <a className={styles.login} href="YourPet/auth/login">
+            <a className={styles.login} href="/YourPet/auth/login">
               Login
             </a>
           </p>
