@@ -1,19 +1,18 @@
 .bg {
   position: absolute;
-  top: 60px;
+  top: 108px;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100wh;
-  padding: 48px 20px 60px 20px;
+  padding: 0px 20px 60px 20px;
   // background-color: aqua;
   background-image: url('../../images/paws_mob_1x.png');
   background-size: cover;
-  background-position: 0% 0%;
+  // background-position: 0% 0%;
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../../images/paws_mob_2x.png);
+    background-image: url('../../images/paws_mob_2x.png');
   }
 }
 .title {
@@ -22,7 +21,6 @@
   font-size: 32px;
   line-height: 1.4;
   width: 280px;
-  padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
@@ -31,17 +29,17 @@
 
 .imgPets {
   position: absolute;
-  top: 156px;
+  top: 108px;
   right: 0;
   bottom: 0;
   left: 0;
-  // background-color: blueviolet;
   background-image: url('../../images/img_mob_1x.png');
   background-repeat: no-repeat;
-  background-position: center;
-
-  width: 100%;
-  background-size: 100%;
+  background-position: 58% -54px;
+  background-size: 475px 457px;
+  // background-position: center;
+  // width: 100%;
+  // background-size: 100%;
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -51,9 +49,9 @@
 
 @media (min-width: 767px) {
   .bg {
-    margin-top: 148px;
+    height: 1045px;
+    top: 148px;
     padding: 0px 32px 0px 32px;
-    // background-color: yellow;
     background-image: url('../../images/paws_tab_1x.png');
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -71,6 +69,7 @@
 
   .imgPets {
     top: 225px;
+    min-height: 684px;
     background-image: url('../../images/img_tab_1x.png');
     background-position: 46% -112px;
     background-size: 986px 982px;
@@ -84,13 +83,13 @@
 
 @media (min-width: 1280px) {
   .bg {
-    min-height: calc(100vh - 148px);
-    // max-width: 1280px;
-    margin-top: -60px;
+    height: 684px;
+    max-width: 1280px;
+    top: 98px;
     padding: 0px 0px 0px 16px;
+    margin-top: 0;
     margin-right: auto;
     margin-left: auto;
-    // background-color: aqua;
     background-image: url('../../images/paws_desk_1x.png');
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -108,13 +107,13 @@
   }
   .imgPets {
     top: 0;
-    left: 160px;
-    min-height: 684px;
-
-    // background-color: red;
+    left: 363px;
+    margin-top: 10px;
     background-image: url('../../images/img_desk_1x.png');
-    background-position: center;
-    background-size: contain;
+    background-position: 50% -104px;
+    background-size: 954px 975px;
+    // background-position: center;
+    // background-size: contain;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
