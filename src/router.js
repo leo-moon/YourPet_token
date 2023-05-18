@@ -23,6 +23,7 @@ const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const FriendsPage = lazy(() => import('./pages/FriendsPage/FriendsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
   return (
@@ -45,7 +46,7 @@ const UserRoutes = () => {
           <Route path="/user" element={<UserPage />} />
           {/* </Route> */}
 
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </>
