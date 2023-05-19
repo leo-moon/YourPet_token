@@ -1,4 +1,4 @@
-.form {
+.formik {
   width: 608px;
   padding: 60px 75px;
   box-sizing: border-box;
@@ -77,6 +77,7 @@
 }
 
 .p {
+  margin: 0;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
@@ -93,4 +94,53 @@
 
 .login {
   color: #54adff;
+}
+
+.modal_title {
+  margin-bottom: 60px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: calc(33 / 24);
+  /* identical to box height */
+  // display: flex;
+  // align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  /* Черный */
+  color: #111111;
+}
+
+.modal_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items : center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 248px;
+  /* Голубой (ссылки) */
+  background: #54adff;
+  border: none;
+  border-radius: 40px;
+}
+
+.modal__button_text {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  /* Фоновый */
+  color: #fef9f9;
 }

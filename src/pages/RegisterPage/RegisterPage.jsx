@@ -1,27 +1,16 @@
-// import { useDispatch } from 'react-redux';
+// import React, { useState } from 'react';
 
 // import { register } from '../../redux/auth/auth-operations';
 // import { signup } from '../../redux/auth/auth-operations';
 
-
-// import RegisterForm from 'Modules/RegisterForm/RegisterForm';
-import RegisterForm from '../../components/RegisterForm/RegisterFormFormik';
-
+import RegisterForm from './RegisterForm/RegisterForm';
 
 import styles from './register-page.module.css';
 
 const RegisterPage = () => {
-  // const dispatch = useDispatch();
-
-  // const handleSignup = data => {
-  //   dispatch(signup(data));
-  // };
-
   return (
     <div className={styles.div}>
-      {/* <RegisterForm onSubmit={handleSignup} /> */}
-      <RegisterForm  />
-      {/* RegisterForm */}
+      <RegisterForm />
     </div>
   );
 };
