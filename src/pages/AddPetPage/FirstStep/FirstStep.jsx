@@ -1,38 +1,44 @@
 import { Formik, Field, Form } from 'formik';
 
-const initialValues = {
-  addPetOption: '',
-};
+import css from '../AddPage.module.css';
 
-const FirstStep = ({ setStep, setOption, step }) => {
-  if (step !== 0) return null;
-
+const FirstStep = ({ data, next }) => {
+  const handleSubmit = values => {
+    next(values);
+  };
   return (
-    <>
-      <h2>Choose option</h2>
-
-      <label>
-        your pet
-        <Field
-          type="radio"
-          name="addPetOption"
-          value="your pet"
-          checked={true}
-        />
-      </label>
-      <label>
-        sell
-        <Field type="radio" name="addPetOption" value="sell" />
-      </label>
-      <label>
-        lost/found
-        <Field type="radio" name="addPetOption" value="lost/found" />
-      </label>
-      <label>
-        in good gands
-        <Field type="radio" name="addPetOption" value="in good gands" />
-      </label>
-    </>
+    <Formik initialValues={data} onSubmit={handleSubmit}>
+      <Form className={css.form}>
+        <label>
+          your pet
+          <Field
+            type="radio"
+            name="category"
+            value="your pet"
+            // checked={true}
+          />
+        </label>
+        <label>
+          sell
+          <Field type="radio" name="category" value="sell" />
+        </label>
+        <label>
+          lost/found
+          <Field type="radio" name="category" value="lost/found" />
+        </label>
+        <label>
+          in good gands
+          <Field type="radio" name="category" value="in good gands" />
+        </label>
+        {/* <button
+          type="button"
+          // onClick={onCancelBtnCLick}
+        >
+          Cancel
+        </button> */}
+        <button type="submit">Next</button>
+      </Form>
+    </Formik>
   );
 };
 

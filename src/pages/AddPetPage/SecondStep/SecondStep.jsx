@@ -1,30 +1,43 @@
 import { Formik, Field, Form } from 'formik';
 
-const baseInitialValues = {
-  petName: '',
-  petBirthDate: '',
-  breed: '',
-};
+import css from '../AddPage.module.css';
 
-const SecondStep = ({ step }) => {
-  const onCancelBtnClick = () => {};
-  if (step !== 1) return null;
+const SecondStep = ({ data, next, prev }) => {
+  const handleSubmit = values => {
+    next(values);
+  };
 
   return (
-    <>
-      <h2>Personal details</h2>
-      <Formik initialValues={{ ...baseInitialValues }}>
-        <Form>
-          <Field name="petName" />
-          <Field name="petBirthDate" />
-          <Field name="breed" />
-          <button type="button" onClick={onCancelBtnClick}>
+    <Formik initialValues={data} onSubmit={handleSubmit}>
+      {({ values }) => (
+        <Form className={css.form}>
+          <h2>Personal details</h2>
+          {data.category !== 'your pet' && (
+            <label>
+              Title of add
+              <Field name="title" />
+            </label>
+          )}
+          <label>
+            Name pet
+            <Field name="namePet" />
+          </label>
+          <label>
+            Date of birth
+            <Field name="dateOfBirth" />
+          </label>
+          <label>
+            Breed
+            <Field name="breed" />
+          </label>
+
+          <button type="button" onClick={() => prev(values)}>
             Cancel
           </button>
-          <button type="button">Next</button>
+          <button type="submit">Next</button>
         </Form>
-      </Formik>
-    </>
+      )}
+    </Formik>
   );
 };
 
