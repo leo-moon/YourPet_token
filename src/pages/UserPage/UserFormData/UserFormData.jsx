@@ -2,15 +2,17 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import css from './UserFormData.module.css';
 
-import {
-  AddPetIcon,
-  LogoutIcon,
-  CameraIcon,
-  CheckIcon,
-  EditIcon,
-  AddPhotoIcon,
-  PetLegIcon,
-} from 'images/icons/userPageIcons';
+import { EditIcon } from 'images/icons/userPageIcons';
+
+// import {
+//   AddPetIcon,
+//   LogoutIcon,
+//   CameraIcon,
+//   CheckIcon,
+//   EditIcon,
+//   AddPhotoIcon,
+//   PetLegIcon,
+// } from 'images/icons/userPageIcons';
 
 const initialValues = {
   name: '',
