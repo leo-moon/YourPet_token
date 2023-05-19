@@ -15,6 +15,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+import PrivateRoute from 'components/Private/Private';
+import PublicRoute from 'components/Public/Public';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
@@ -37,14 +39,14 @@ const UserRoutes = () => {
           <Route path="/notices" element={<NoticesPage />}></Route>
           <Route path="/friends" element={<FriendsPage />}></Route>
 
-          {/* <Route element={<Public />}> */}
+          <Route element={<PublicRoute />}>
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          {/* </Route> */}
+          </Route>
 
-          {/* <Route element={<Private />}> */}
+          <Route element={<PrivateRoute />}>
           <Route path="/user" element={<UserPage />} />
-          {/* </Route> */}
+          </Route>
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

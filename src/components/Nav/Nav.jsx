@@ -1,15 +1,17 @@
 import css from './Nav.module.scss';
 //import { useSelector, useDispatch } from 'react-redux';
 import AuthNav from './AuthNav/AuthNav';
-//import UserNav from './UserNav/UserNav';
+import UserNav from './UserNav/UserNav';
 import { NavLink } from 'react-router-dom';
 import menuHam from 'images/menu-hamburger.svg';
+import { useAuth } from 'hooks/useAuth';
 //import { setMenuActive } from 'redux/menuSlice';
 
 const Nav = () => {
   //const isActive = useSelector(state => state.menu.menuActive);
   //const isLogin = useSelector(state => state.auth.isLogin);
   //const dispatch = useDispatch();
+  const { isUserLogin } = useAuth();
 
   return (
     <div className={css.div}>
@@ -64,7 +66,8 @@ const Nav = () => {
           Our friends
         </NavLink>
       )} */}
-      <AuthNav />
+      {/* <AuthNav /> */}
+      {isUserLogin ? <UserNav /> : <AuthNav />}   
       {/* {isLogin ? <UserNav /> : <AuthNav />} */}
       <NavLink>
         <img className={css.menuHam} src={menuHam} alt="menuHamburger" />
