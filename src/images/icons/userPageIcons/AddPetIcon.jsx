@@ -1,22 +1,24 @@
 import * as React from 'react';
 
-function PlusIcon(props) {
+function AddPetIcon(props) {
   return (
     <svg
-      width={24}
-      height={24}
+      width={12}
+      height={12}
+      viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
+        d="M6 1V11M1 6L11 6"
         stroke={props.color}
-        strokeWidth={2}
+        strokeWidth={1.5}
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
 }
 
-export default PlusIcon;
+export default AddPetIcon;

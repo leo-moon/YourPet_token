@@ -1,22 +1,24 @@
 import * as React from 'react';
 
-function PlusIcon(props) {
+function CheckIcon(props) {
   return (
     <svg
       width={24}
       height={24}
+      viewBox="0 0 18 13"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
+        d="M17.0001 1L6.0001 12L1 7"
         stroke={props.color}
-        strokeWidth={2}
         strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
       />
     </svg>
   );
 }
 
-export default PlusIcon;
+export default CheckIcon;
