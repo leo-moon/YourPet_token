@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { LoginForm } from '../../components/LoginForm/LoginForm';
+import Container from 'components/Container/Container';
 import { login } from './authOperations';
 import { isUserLogin } from './authSelectors';
 
@@ -17,9 +18,9 @@ const LoginPage = () => {
     return <Navigate to="/contacts" />;
   }
   return (
-    <div>
+    <Container>
       <LoginForm onSubmit={handleSignup} />
-    </div>
+    </Container>
   );
 };
 

@@ -4,14 +4,16 @@
 // import { signup } from '../../redux/auth/auth-operations';
 
 import RegisterForm from './RegisterForm/RegisterForm';
-
+import Container from 'components/Container/Container';
 import styles from './register-page.module.css';
 
 const RegisterPage = () => {
   return (
-    <div className={styles.div}>
-      <RegisterForm />
-    </div>
+    <Container>
+      <div className={styles.div}>
+        <RegisterForm />
+      </div>
+    </Container>
   );
 };
 
