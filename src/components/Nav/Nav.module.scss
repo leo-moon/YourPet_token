@@ -14,3 +14,15 @@
   color: #111111;
   text-decoration: none;
 }
+
+.menu {
+  @media screen and (max-width: 1279px) {
+    display: none;
+}
+}
+
+.menuHam {
+  @media screen and (min-width: 1280px) {
+    display: none;
+}
+}

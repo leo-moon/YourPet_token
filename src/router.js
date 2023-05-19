@@ -24,6 +24,7 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const FriendsPage = lazy(() => import('./pages/FriendsPage/FriendsPage'));
 const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
   return (
@@ -31,6 +32,7 @@ const UserRoutes = () => {
       <SharedLayout />
       <Suspense>
         <Routes>
+          {/* YourPet */}
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
           <Route path="/notices" element={<NoticesPage />}></Route>
@@ -47,6 +49,9 @@ const UserRoutes = () => {
           {/* </Route> */}
 
           {/* <Route path="*" element={<NotFoundPage />} /> */}
+          {/* </Route> */}
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </>
