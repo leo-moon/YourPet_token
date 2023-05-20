@@ -1,22 +1,8 @@
-// export const ROUTES = {
-//     HOME: '/',
-//     NEWS: '/news',
-//     FRIENDS: '/friends',
-//     REGISTER: '/register',
-//     LOGIN: '/login',
-//     USER: '/user',
-//     NOTICES: '/notices',
-//     NOTICES_SELL: '/notices/sell',
-//     NOTICES_FOR_FREE: '/notices/for-free',
-//     NOTICES_LOST_FOUND: '/notices/lost-found',
-//     NOTICES_FAVORITE: '/notices/favorite',
-//     NOTICES_OWN: '/notices/own',
-//   };
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
-import PrivateRoute from 'components/Private/Private';
-import PublicRoute from 'components/Public/Public';
+// import PrivateRoute from 'components/Private/Private';
+import PublicRoute from 'components/Private/Public/Public';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
@@ -33,7 +19,6 @@ const UserRoutes = () => {
       <SharedLayout />
       <Suspense>
         <Routes>
-        {/* YourPet */}
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
           <Route path="/notices" element={<NoticesPage />}></Route>
@@ -44,9 +29,9 @@ const UserRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           </Route>
 
-          <Route element={<PrivateRoute />}>
+          {/* <Route element={<PrivateRoute />}> */}
           <Route path="/user" element={<UserPage />} />
-          </Route>
+          {/* </Route> */}
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

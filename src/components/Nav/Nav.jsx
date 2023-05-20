@@ -11,6 +11,7 @@ const Nav = () => {
   //const isActive = useSelector(state => state.menu.menuActive);
   //const isLogin = useSelector(state => state.auth.isLogin);
   //const dispatch = useDispatch();
+
   const { isUserLogin } = useAuth();
 
   return (
@@ -26,49 +27,12 @@ const Nav = () => {
           Our friends
         </NavLink>
       </div>
-
-      {/* {isActive === true ? (
-        <NavLink
-          to={'news'}
-          className={css.linkMain}
-          onClick={() => dispatch(setMenuActive(!isActive))}
-        >
-          News
-        </NavLink>
-      ) : (
-        <NavLink to={'news'} className={css.linkMain}>
-          News
-        </NavLink>
-      )}
-      {isActive === true ? (
-        <NavLink
-          to={'notices/sell'}
-          className={css.linkMain}
-          onClick={() => dispatch(setMenuActive(!isActive))}
-        >
-          Find pet
-        </NavLink>
-      ) : (
-        <NavLink to={'notices/sell'} className={css.linkMain}>
-          Find pet
-        </NavLink>
-      )}
-      {isActive === true ? (
-        <NavLink
-          to={'friends'}
-          className={css.linkMain}
-          onClick={() => dispatch(setMenuActive(!isActive))}
-        >
-          Our friends
-        </NavLink>
-      ) : (
-        <NavLink to={'friends'} className={css.linkMain}>
-          Our friends
-        </NavLink>
-      )} */}
+      <div>
+        {/* <UserNav /> */}
+      </div>
       {/* <AuthNav /> */}
       {isUserLogin ? <UserNav /> : <AuthNav />}   
-      {/* {isLogin ? <UserNav /> : <AuthNav />} */}
+
       <NavLink>
         <img className={css.menuHam} src={menuHam} alt="menuHamburger" />
       </NavLink>

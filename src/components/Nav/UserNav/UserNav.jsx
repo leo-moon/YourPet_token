@@ -1,19 +1,16 @@
 import css from "./UserNav.module.css"
+import { NavLink } from 'react-router-dom';
+import userIcon from 'images/user-1.svg';
 
 const UserNav = () => {
     return (
-      <>
-        <div className={css.div}>
-         <p>SVG</p>
-         <p>NAME</p>
-        </div>
-  
-        {/* <NavLink to="/"></NavLink>
-        <div>
-          <NavLink to="/register">Registration</NavLink>
-          <NavLink to="/login">Log IN</NavLink>
-        </div> */}
-      </>
+      <div className={css.div}>
+        <NavLink className={css.user} to="/user">
+        <img className={css.icon} src={userIcon} alt="userIcon" /> 
+        {/* {name} */}
+        NAME
+        </NavLink>
+      </div>
     );
   };
   
