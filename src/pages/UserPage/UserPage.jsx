@@ -1,6 +1,7 @@
 import UserPageTitle from './UserPageTitle/UserPageTitle';
 import UserPageCard from './UserPageCard/UserPageCard';
 import UserFormData from './UserFormData/UserFormData';
+import Container from 'components/Container/Container';
 
 import css from './UserPage.module.css';
 // import PlusIcon from 'images/icons/PlusIcon';
@@ -35,8 +36,8 @@ import {
 
 const UserPage = () => {
   return (
-    <>
-      <div className={css.container}>
+    <Container>
+      <div className={css.wrapper}>
         <section className={css.userSection}>
           <UserPageTitle text={'My information:'} />
           <UserPageCard>
@@ -128,7 +129,7 @@ const UserPage = () => {
           </ul>
         </section>
       </div>
-    </>
+    </Container>
   );
 };
 
