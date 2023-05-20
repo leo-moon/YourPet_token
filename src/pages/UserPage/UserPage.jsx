@@ -4,18 +4,9 @@ import UserFormData from './UserFormData/UserFormData';
 import Container from 'components/Container/Container';
 
 import css from './UserPage.module.css';
-// import PlusIcon from 'images/icons/PlusIcon';
+
 import TrashIcon from 'images/icons/TrashIcon';
-// import MaleIcon from 'images/icons/MaleIcon';
-// import LocationIcon from 'images/icons/LocationIcon';
-// import HeartIcon from 'images/icons/HeartIcon';
-// import FemaleIcon from 'images/icons/FemaleIcon';
-// import ClockIcon from 'images/icons/ClockIcon';
-// import EditIcon from 'images/icons/userPageIcons/EditIcon';
-// import CheckIcon from 'images/icons/userPageIcons/ChekIkon';
-// import CameraIcon from 'images/icons/userPageIcons/CameraIcon';
-// import LogoutIcon from 'images/icons/userPageIcons/LogoutIcon';
-// import AddPhotoIcon from 'images/icons/userPageIcons/AddPhotoIcon';
+
 import {
   AddPetIcon,
   LogoutIcon,
@@ -31,8 +22,6 @@ import {
 //   AddPhotoIcon,
 //   PetLegIcon,
 // } from 'images/icons/userPageIcons';
-
-// import AddPetIcon from 'images/icons/userPageIcons/AddPetIcon';
 
 const UserPage = () => {
   return (
