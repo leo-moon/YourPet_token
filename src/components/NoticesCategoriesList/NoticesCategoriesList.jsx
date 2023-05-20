@@ -11,11 +11,11 @@ const NoticesCategoriesList = ({ items }) => {
   const thisYear = Number(date.getFullYear());
 
   const elements = items.map(
-    ({ _id, category, location, sex, dateOfBirth }) => (
+    ({ _id, category, location, sex, dateOfBirth, title }) => (
       <li key={_id} className={styles.item}>
         <article className={styles.article}>
           <div className={styles.articleDescription}>
-            <h4>Сute dog looking for a home</h4>
+            <h4>{title}</h4>
             <button type="button">
               Learn more <img src={pawIcon} alt="paw icon" />
             </button>

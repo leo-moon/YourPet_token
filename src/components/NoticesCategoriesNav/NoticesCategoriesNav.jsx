@@ -2,7 +2,7 @@ import styles from './noticescategories-nav.module.css';
 import filters from "../../images/icons/svg/filters.svg";
 import plus from "../../images/icons/svg/plus-small.svg";
 
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledLink = styled(NavLink)`
