@@ -24,7 +24,7 @@ export const login = async userData => {
 export const getCurrent = async token => {
   try {
     setToken(token);
-    const { data } = await instance.get('/users/current');
+    const { data } = await instance.get('/api/auth/users/current');
     return data;
   } catch (error) {
     setToken();
