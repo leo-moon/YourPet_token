@@ -35,33 +35,12 @@ button {
     cursor: pointer;
 }
 
-.container {
+.wrapper {
     position: relative;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-    padding-bottom: 120px;
-    margin-left: auto;
-    margin-right: auto;
     
-    background-color: #FEF9F9;
-
-    @media screen and (min-width: 480px) {
-        width: 480px;
-        padding-top: 60px;
-    }
-
-    @media screen and (min-width: 768px) {
-        width: 768px;
-        padding-left: 32px;
-        padding-right: 32px;
-    }
-
-    @media screen and (min-width: 1200px) {
-        width: 1200px;
-        padding-left: 16px;
-        padding-right: 16px;
+    @media screen and (min-width: 1280px) {
         display: flex;
+        padding-top: 60px;
     }
 }
 
@@ -74,7 +53,7 @@ button {
             width: 704px;         
         }
     
-        @media screen and (min-width: 1200px) {
+        @media screen and (min-width: 1280px) {
             width: 395px;
             margin-right: 32px;
             margin-left: 0px; 
@@ -89,8 +68,7 @@ button {
     width: 182px;
     height: 182px;
     background-color: #CCE4FB;
-    border-radius: 40px;
-    
+    border-radius: 40px;    
 }
 
 .editPhotoWrapper{
@@ -138,7 +116,7 @@ button {
     align-items: center;
     margin-bottom: 24px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
            display: block;
         }
     }
@@ -166,7 +144,7 @@ button {
     letter-spacing: 0.04em;
     color: #FEF9F9;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
             position: absolute;
             top: 60px;
             right: 24px;
@@ -184,7 +162,7 @@ button {
     
         }
     
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
     width: auto;
     margin-left: 0px;
     margin-right: 0px
@@ -211,7 +189,7 @@ button {
 .petItem:not(:last-child) {
     margin-bottom: 20px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
             margin-bottom: 24px;
         }
 }
@@ -240,7 +218,7 @@ button {
     width: 128px;
     height: 128px;
         }
-     @media screen and (min-width: 1200px) {
+     @media screen and (min-width: 1280px) {
          margin-right: 32px;
         width: 162px;
         height: 162px;

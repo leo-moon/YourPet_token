@@ -24,7 +24,7 @@
             border-radius: 40px;
             }
     
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
             width: 395px;
             flex-direction: column;
             padding-left: 16px;
