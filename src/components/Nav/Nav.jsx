@@ -12,7 +12,7 @@ const Nav = () => {
   //const isLogin = useSelector(state => state.auth.isLogin);
   //const dispatch = useDispatch();
 
-  const { isUserLogin } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className={css.div}>
@@ -31,7 +31,7 @@ const Nav = () => {
         {/* <UserNav /> */}
       </div>
       {/* <AuthNav /> */}
-      {isUserLogin ? <UserNav /> : <AuthNav />}   
+      {isLoggedIn ? <UserNav /> : <AuthNav />}   
 
       <NavLink className={css.menuIcon}>
         <img className={css.menuBur} src={menuHam} alt="menuBurger" />
