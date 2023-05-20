@@ -30,8 +30,12 @@
   }
 }
 
-.menuHam {
+.menuBur {
   @media screen and (min-width: 1280px) {
     display: none;
   }
+}
+
+.menuIcon {
+  margin-left: 24px;
 }
