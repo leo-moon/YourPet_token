@@ -33,8 +33,8 @@ const Nav = () => {
       {/* <AuthNav /> */}
       {isUserLogin ? <UserNav /> : <AuthNav />}   
 
-      <NavLink>
-        <img className={css.menuHam} src={menuHam} alt="menuHamburger" />
+      <NavLink className={css.menuIcon}>
+        <img className={css.menuBur} src={menuHam} alt="menuBurger" />
       </NavLink>
     </div>
   );

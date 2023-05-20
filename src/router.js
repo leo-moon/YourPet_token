@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 // import PrivateRoute from 'components/Private/Private';
-import PublicRoute from 'components/Private/Public/Public';
+import PublicRoute from 'components/Public/Public';
+// import { useDispatch } from 'react-redux';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
@@ -14,6 +15,12 @@ const FriendsPage = lazy(() => import('./pages/FriendsPage/FriendsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
+  // const dispatch = useDispatch();
+  // const { isRefreshing } = useAuth();
+  
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
   return (
     <>
       <SharedLayout />
