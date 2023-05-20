@@ -1,6 +1,7 @@
 .div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .item {
@@ -13,16 +14,24 @@
   margin-right: 40px;
   color: #111111;
   text-decoration: none;
+  &:hover,
+  &:focus {
+    color: #ffc107;
+  }
+
+  &.active {
+    color: #ffc107;
+  }
 }
 
 .menu {
   @media screen and (max-width: 1279px) {
     display: none;
-}
+  }
 }
 
 .menuHam {
   @media screen and (min-width: 1280px) {
     display: none;
-}
+  }
 }
