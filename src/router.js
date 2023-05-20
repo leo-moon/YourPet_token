@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
-// import PrivateRoute from 'components/Private/Private';
+import PrivateRoute from 'components/Private/Private';
 import PublicRoute from 'components/Public/Public';
 // import { useDispatch } from 'react-redux';
 
@@ -36,9 +36,9 @@ const UserRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           </Route>
 
-          {/* <Route element={<PrivateRoute />}> */}
+          <Route element={<PrivateRoute />}>
           <Route path="/user" element={<UserPage />} />
-          {/* </Route> */}
+          </Route>
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
