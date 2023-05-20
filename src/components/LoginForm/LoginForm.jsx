@@ -50,7 +50,7 @@ export const LoginForm = ({ onSubmit }) => {
         <p className={styles.pp}>Login</p>
       </button>
 
-      <NavLink className={styles.p} to="/RegisterPage">
+      <NavLink className={styles.p} to="/register">
         Don't have an account? Register
       </NavLink>
     </form>
