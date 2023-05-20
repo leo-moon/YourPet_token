@@ -1,5 +1,6 @@
 // import React, { useState, memo } from 'react';
 import React, { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom/dist';
 import { Formik, Form, Field } from 'formik';
 
 import UserPage from '../../UserPage/UserPage';
@@ -8,6 +9,7 @@ import fields from './fields';
 import initialState from './initialState';
 import styles from './register-form.module.scss';
 import Modal from './RegisterModal/Modal';
+// import Modal from '../../../components/Modal/Modal'
 
 // const registerNewUser = data => {};
 
@@ -31,7 +33,7 @@ const RegisterForm = () => {
     console.log(emailTrue);
     if (!emailTrue) return alert('This email in use');
 
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // await new Promise(resolve => setTimeout(resolve, 500));
     const data = { email, password };
     console.log(data);
     // alert(JSON.stringify(data, null, 2));
@@ -40,9 +42,10 @@ const RegisterForm = () => {
     setModalActive(true);
   };
 
-  console.log(modalActive);
   return (
     <div>
+      {modalActive && <Link to="/user" />}
+
       <div>
         {modalActive && <UserPage />}
         <Modal active={modalActive} setActive={setModalActive}>
