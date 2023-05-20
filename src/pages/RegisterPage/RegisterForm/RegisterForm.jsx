@@ -60,7 +60,7 @@ const RegisterForm = () => {
           <h3 className={styles.modal_title}> Youre registration is success</h3>
           <button className={styles.modal_button}>
             <div className={styles.modal_button_items}>
-              <a href="/user" className={styles.modal__button_text}>
+              <a href="/YourPet/user" className={styles.modal__button_text}>
                 Go to profile
               </a>
             </div>
@@ -101,7 +101,7 @@ const RegisterForm = () => {
             </button>
             <p className={styles.p}>
               Already have an account?{' '}
-              <a className={styles.login} href="/login">
+              <a className={styles.login} href="/YourPet/login">
                 Login
               </a>
             </p>
