@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import UserPageTitle from './UserPageTitle/UserPageTitle';
 import UserPageCard from './UserPageCard/UserPageCard';
 import UserFormData from './UserFormData/UserFormData';
@@ -24,6 +26,10 @@ import {
 // } from 'images/icons/userPageIcons';
 
 const UserPage = () => {
+  const navigate = useNavigate();
+  const handleAddPet = () => {
+    navigate('/add-pet');
+  };
   return (
     <Container>
       <div className={css.wrapper}>
@@ -53,7 +59,7 @@ const UserPage = () => {
           <div className={css.wrapperTitle}>
             <UserPageTitle text={'My pets:'} />
 
-            <button className={css.button}>
+            <button className={css.button} onClick={handleAddPet}>
               Add Pet
               <AddPetIcon color={'#FFFFFF'} />
             </button>
