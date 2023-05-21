@@ -1,6 +1,6 @@
 // import React, { useState, memo } from 'react';
 import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom/dist';
+import { Link } from 'react-router-dom/dist';
 import { Formik, Form, Field } from 'formik';
 
 import UserPage from '../../UserPage/UserPage';
@@ -9,9 +9,7 @@ import fields from './fields';
 import initialState from './initialState';
 import styles from './register-form.module.scss';
 import Modal from './RegisterModal/Modal';
-// import Modal from '../../../components/Modal/Modal'
-
-// const registerNewUser = data => {};
+import PasswordField from './PasswordField';
 
 const RegisterForm = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -20,11 +18,13 @@ const RegisterForm = () => {
 
   const onSubmit = async (values, submitProps) => {
     const { email, confirmPassword, password } = values;
-    console.log(password, confirmPassword);
 
+    // Check password and confirmPassword (boolean)
+    console.log(password, confirmPassword);
     if (password !== confirmPassword)
       return alert('confirmPassword must be same like password');
 
+    // Email in DB (boolean)
     const emailIsNew = await (email => {
       console.log(email);
       return true;
@@ -33,21 +33,29 @@ const RegisterForm = () => {
     console.log(emailTrue);
     if (!emailTrue) return alert('This email in use');
 
-    // await new Promise(resolve => setTimeout(resolve, 500));
+    // Registration success (boolean)
     const data = { email, password };
     console.log(data);
+    const regSuccess = data => {
+      return true;
+    };
+    if (regSuccess) {
+      submitProps.setSubmitting(false);
+      submitProps.resetForm();
+      setModalActive(true);
+    }
+
+    // await new Promise(resolve => setTimeout(resolve, 500));
     // alert(JSON.stringify(data, null, 2));
-    submitProps.setSubmitting(false);
-    submitProps.resetForm();
-    setModalActive(true);
   };
 
   return (
     <div>
-      {modalActive && <Link to="/user" />}
+      {/* {modalActive && <Link to="/user" />} */}
 
       <div>
         {modalActive && <UserPage />}
+
         <Modal active={modalActive} setActive={setModalActive}>
           <h2 className={styles.title}>Congrats!</h2>
           <h3 className={styles.modal_title}> Youre registration is success</h3>
@@ -59,9 +67,10 @@ const RegisterForm = () => {
             </div>
           </button>
         </Modal>
+        {/* {modalActive && document.location.replace('/user')} */}
       </div>
 
-      <div className={styles.formik}>
+      <section className={styles.formik}>
         <h2 className={styles.title}>Registration</h2>
         <Formik
           initialValues={initialState}
@@ -81,6 +90,7 @@ const RegisterForm = () => {
                 {...fields.confirmPassword}
                 className={styles.field}
               />
+                {/* <PasswordField /> */}
             </div>
             {/* <button
               className={styles.button}
@@ -100,7 +110,7 @@ const RegisterForm = () => {
             </p>
           </Form>
         </Formik>
-      </div>
+      </section>
     </div>
   );
 };
