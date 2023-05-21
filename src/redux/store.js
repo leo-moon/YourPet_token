@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import authReducer from '../pages/LoginPage/authSlice';
+import authReducer from './auth/auth-slice';
 // import { rootReducer } from '../pages/LoginPage/root-reducer';
 import newsReducer from './news/news-slice';
 

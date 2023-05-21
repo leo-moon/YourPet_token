@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-
+import { NavLink } from 'react-router-dom';
 import { initialState } from './initialState';
 import { fields } from './fields';
 
@@ -49,7 +49,10 @@ export const LoginForm = ({ onSubmit }) => {
       <button className={styles.button} type="submit">
         <p className={styles.pp}>Login</p>
       </button>
-      <p className={styles.p}>Don't have an account? Register</p>
+
+      <NavLink className={styles.p} to="/register">
+        Don't have an account? Register
+      </NavLink>
     </form>
   );
 };
