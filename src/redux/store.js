@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import authReducer from '../pages/LoginPage/authSlice';
 // import { rootReducer } from '../pages/LoginPage/root-reducer';
+import newsReducer from './news/news-slice';
 
 import {
   persistStore,
@@ -25,6 +26,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    news: newsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
