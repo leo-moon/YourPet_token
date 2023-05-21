@@ -12,7 +12,10 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const handleSignup = data => {
-    dispatch(signup(data));
+      const { email, password } = data;
+      const dataSent = { email, password };
+    dispatch(signup(dataSent));
+   console.log((data))
   };
 
   return (
