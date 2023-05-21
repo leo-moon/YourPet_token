@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import logo from "../../images/logo.svg"
+import logo from "../../images/logo.svg";
+import css from './Logo.module.css';
 
 const Logo = () => {
   return  <NavLink to="/">
-    <img src={logo} alt="YOUR PET" />
+    <img className={css.logo} src={logo} alt="YOUR PET" />
   </NavLink>;
 };
 
