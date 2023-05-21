@@ -1,7 +1,6 @@
 import scss from './modal-notice.module.scss';
 import Loader from 'components/Loader/Loader';
-import SvgInsert from '...';
-// тут треба посилання на собачі іконки
+import SvgInsert from './../../images/img/img.jpg';
 
 import { useSelector } from 'react-redux';
 

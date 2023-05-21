@@ -2,9 +2,7 @@ import styles from './notices-categories-list.module.css';
 
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 const NoticesCategoriesList = ({ items }) => {
-
-
-  const elements = items.map(({ _id, owner, ...props }) => {
+const elements = items.map(({ _id, owner, ...props }) => {
           return (
             <NoticeCategoryItem key={_id} {...props} _id={_id} owner={owner} />
           );
@@ -18,6 +16,12 @@ const NoticesCategoriesList = ({ items }) => {
 };
 
 export default NoticesCategoriesList;
+
+//  const showModal = () => {
+//  document.body.style.overflow = 'hidden'; 
+//  setModalShow(true);
+//  dispatch(searchNotice(pet._id));
+//};
 
 // import styles from './notices-categories-list.module.css';
 // import img from './../../images/img/img.jpg';
