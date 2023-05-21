@@ -1,7 +1,8 @@
 // import React, { useState, memo } from 'react';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom/dist';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import { Formik, Form, Field } from 'formik';
 
 import UserPage from '../../UserPage/UserPage';
 
@@ -12,9 +13,10 @@ import Modal from './RegisterModal/Modal';
 // import PasswordField from './PasswordField';
 
 const RegisterForm = ({ onSubmit }) => {
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
   const handleSignup = onSubmit;
   console.log('onSubmit', handleSignup);
+
   // const [isRegistered, setIsRegistered] = useState(false);
   // let isRegistered = false;
 
@@ -29,27 +31,30 @@ const RegisterForm = ({ onSubmit }) => {
   // console.log(emailTrue);
   // if (!emailTrue) return alert('This email in use');
 
-  function verifySubmit   (values, submitProps)  {
-    const { email, confirmPassword, password } = values;
+  // function verifySubmit(values, submitProps) {
+  const verifySubmit = (values, submitProps) => {
+    // const { email, confirmPassword, password } = values;
     // const { email, password } = values;
 
     // Check password and confirmPassword (boolean)
-    console.log(password, confirmPassword);
-    if (password !== confirmPassword)
-      return alert('confirmPassword must be same like password');
+    // console.log(password, confirmPassword, this.state);
+    // if (password !== confirmPassword)
+    //   return alert('confirmPassword must be same like password');
 
     // Registration success (boolean)
-    const data = { email, password };
-    console.log(data);
-    const regSuccess = data => {
-      return true;
-    };
+    // const data = { email, password };
+    // console.log(data);
+    // const regSuccess = data => {
+    //   return true;
+    // };
 
-    if (regSuccess) {
+    if (true) {
       submitProps.setSubmitting(false);
       submitProps.resetForm();
-      setModalActive(true);
+      // setModalActive(true);
+      return true;
     }
+
     // await new Promise(resolve => setTimeout(resolve, 500));                {email: 'lm@gmail.com', id: '6469fe36859c1ddf0370b049'}
     // alert(JSON.stringify(data, null, 2));
   };
@@ -57,7 +62,7 @@ const RegisterForm = ({ onSubmit }) => {
   return (
     <div>
       <div>
-        {modalActive && <UserPage />}
+        {/* {modalActive && <UserPage />}
 
         <Modal active={modalActive} setActive={setModalActive}>
           <h2 className={styles.title}>Congrats!</h2>
@@ -69,7 +74,7 @@ const RegisterForm = ({ onSubmit }) => {
               </a>
             </div>
           </button>
-        </Modal>
+        </Modal> */}
         {/* {modalActive && document.location.replace('/user')} */}
       </div>
 
@@ -77,38 +82,35 @@ const RegisterForm = ({ onSubmit }) => {
         <h2 className={styles.title}>Registration</h2>
         <Formik
           initialValues={initialState}
-          onSubmit={(verifySubmit, handleSignup)}
+          // onSubmit={(verifySubmit(), handleSignup, setModalActive(true))}
+          onSubmit={handleSignup}
           // onSubmit={handleSignup}
           enableReinitialize
         >
           <Form className={styles.form}>
             <div className={styles.wrapper}>
               <Field name="email" {...fields.email} className={styles.field} />
+              <ErrorMessage name="email" component="div" />
               <Field
                 name="password"
                 {...fields.password}
                 className={styles.field}
               />
+              <ErrorMessage name="password" component="div" />
               <Field
                 name="confirmPassword"
                 {...fields.confirmPassword}
                 className={styles.field}
               />
+              <ErrorMessage name="confirmPassword" component="div" />
               {/* <PasswordField /> */}
             </div>
-            {/* <button
-              className={styles.button}
-              type="button"
-              onClick={() => setModalActive(true)}
-            >
-              Modal
-            </button> */}
             <button className={styles.button} type="submit">
               Registration
             </button>
             <p className={styles.p}>
               Already have an account?{' '}
-              <NavLink className={styles.login} to="/YourPet/login">
+              <NavLink className={styles.login} to="/login">
                 Login
               </NavLink>
             </p>
