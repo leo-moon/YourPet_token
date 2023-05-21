@@ -16,7 +16,8 @@ const NoticesCategoriesList = ({ items }) => {
         <article className={styles.article}>
           <div className={styles.articleDescription}>
             <h4>{title}</h4>
-            <button type="button">
+            <button type="button"
+            onClick={showModal}>
               Learn more <img src={pawIcon} alt="paw icon" />
             </button>
           </div>
@@ -65,6 +66,12 @@ const NoticesCategoriesList = ({ items }) => {
     )
   );
 
+  const showModal = () => {
+    document.body.style.overflow = 'hidden'; 
+    setModalShow(true);
+    dispatch(searchNotice(pet._id));
+  };
+  
   return (
     <>
       <ul className={styles.list}>{elements}</ul>

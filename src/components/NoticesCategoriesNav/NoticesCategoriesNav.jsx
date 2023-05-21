@@ -45,6 +45,7 @@ const NoticesCategoriesNav = () => {
           <button
             // data-da=".header-article,768,1"
             type="button"
+            onClick={showModal}
             className={styles.functionalButton}
           >
             <span>Add Pet</span>
