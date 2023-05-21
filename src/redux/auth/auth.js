@@ -12,10 +12,13 @@ const setToken = token => {
 };
 
 export const signup = async data => {
-  console.log(data);
-  const { data: result } = await instance.post('/api/auth/users/register', data);
+  const { data: result } = await instance.post(
+    '/api/auth/users/register',
+    data
+  );
   // const { data: result } = await instance.post('/users/register', data);
-  setToken(result.token);
+  // setToken(result.token);
+  localStorage.setItem('user', JSON.stringify(result));
   return result;
 };
 

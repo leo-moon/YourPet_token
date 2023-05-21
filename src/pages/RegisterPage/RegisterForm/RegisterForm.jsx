@@ -1,6 +1,6 @@
 // import React, { useState, memo } from 'react';
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom/dist';
+import { NavLink } from 'react-router-dom/dist';
 import { Formik, Form, Field } from 'formik';
 
 import UserPage from '../../UserPage/UserPage';
@@ -11,27 +11,32 @@ import styles from './register-form.module.scss';
 import Modal from './RegisterModal/Modal';
 // import PasswordField from './PasswordField';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit }) => {
   const [modalActive, setModalActive] = useState(false);
+  const handleSignup = onSubmit;
+  console.log('onSubmit', handleSignup);
   // const [isRegistered, setIsRegistered] = useState(false);
   // let isRegistered = false;
 
-  const onSubmit = async (values, submitProps) => {
+  // const verify =
+
+  // Email in DB (boolean)
+  // const emailIsNew = await(email => {
+  //   console.log(email);
+  //   return true;
+  // });
+  // const emailTrue = emailIsNew({ email });
+  // console.log(emailTrue);
+  // if (!emailTrue) return alert('This email in use');
+
+  function verifySubmit   (values, submitProps)  {
     const { email, confirmPassword, password } = values;
+    // const { email, password } = values;
 
     // Check password and confirmPassword (boolean)
     console.log(password, confirmPassword);
     if (password !== confirmPassword)
       return alert('confirmPassword must be same like password');
-
-    // Email in DB (boolean)
-    const emailIsNew = await (email => {
-      console.log(email);
-      return true;
-    });
-    const emailTrue = emailIsNew({ email });
-    console.log(emailTrue);
-    if (!emailTrue) return alert('This email in use');
 
     // Registration success (boolean)
     const data = { email, password };
@@ -39,20 +44,18 @@ const RegisterForm = () => {
     const regSuccess = data => {
       return true;
     };
+
     if (regSuccess) {
       submitProps.setSubmitting(false);
       submitProps.resetForm();
       setModalActive(true);
     }
-
-    // await new Promise(resolve => setTimeout(resolve, 500));
+    // await new Promise(resolve => setTimeout(resolve, 500));                {email: 'lm@gmail.com', id: '6469fe36859c1ddf0370b049'}
     // alert(JSON.stringify(data, null, 2));
   };
 
   return (
     <div>
-      {/* {modalActive && <Link to="/user" />} */}
-
       <div>
         {modalActive && <UserPage />}
 
@@ -74,7 +77,8 @@ const RegisterForm = () => {
         <h2 className={styles.title}>Registration</h2>
         <Formik
           initialValues={initialState}
-          onSubmit={onSubmit}
+          onSubmit={(verifySubmit, handleSignup)}
+          // onSubmit={handleSignup}
           enableReinitialize
         >
           <Form className={styles.form}>
@@ -90,7 +94,7 @@ const RegisterForm = () => {
                 {...fields.confirmPassword}
                 className={styles.field}
               />
-                {/* <PasswordField /> */}
+              {/* <PasswordField /> */}
             </div>
             {/* <button
               className={styles.button}
@@ -104,9 +108,9 @@ const RegisterForm = () => {
             </button>
             <p className={styles.p}>
               Already have an account?{' '}
-              <a className={styles.login} href="/YourPet/login">
+              <NavLink className={styles.login} to="/YourPet/login">
                 Login
-              </a>
+              </NavLink>
             </p>
           </Form>
         </Formik>
