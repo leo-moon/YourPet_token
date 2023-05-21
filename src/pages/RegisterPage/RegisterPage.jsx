@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useDispatch } from 'react-redux';
 
 import UserPage from '../UserPage/UserPage';
 import Modal from './RegisterForm/RegisterModal/Modal';
 
-// import { register } from '../../redux/auth/auth-operations';
 import { signup } from '../../redux/auth/auth-operations';
 
 import RegisterForm from './RegisterForm/RegisterForm';
 import Container from 'components/Container/Container';
-import css  from './register-page.module.css';
-import styles from './RegisterForm/register-form.module.scss'
+import css from './register-page.module.css';
+import styles from './RegisterForm/register-form.module.scss';
 
 const RegisterPage = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -26,13 +25,25 @@ const RegisterPage = () => {
     console.log(password, confirmPassword);
     if (password !== confirmPassword)
       return alert('confirmPassword must be same like password');
-    dispatch(signup(dataSent));
-    setModalActive(true);
+
+    const sendData = async () => {
+      try {
+        const  result = await dispatch(signup(dataSent));
+        console.log(result);
+        const {payload} = result
+        if (payload.id) setModalActive(true);
+        if (payload.status === 409) 
+          return alert('Email in use');
+      } catch ({ response }) {
+        console.log(response.error.message);
+      }
+    };
+    sendData();
+
   };
 
   return (
     <Container>
-      {' '}
       {modalActive && <UserPage />}
       <Modal active={modalActive} setActive={setModalActive}>
         <h2 className={styles.title}>Congrats!</h2>
