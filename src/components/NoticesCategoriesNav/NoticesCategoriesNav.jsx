@@ -43,7 +43,7 @@ const NoticesCategoriesNav = () => {
 
           </button>
           <button
-            // data-da=".header-article,768,1"
+          
             type="button"
             className={styles.functionalButton}
           >

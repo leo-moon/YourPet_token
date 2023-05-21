@@ -5,6 +5,7 @@ import heart from './../../images/icons/svg/heart.svg';
 import locationIcon from './../../images/icons/svg/location.svg';
 import clock from '../../images/icons/svg/clock.svg';
 import female from '../../images/icons/svg/female.svg';
+import plus from "./../../images/icons/svg/plus-small.svg";
 
 const NoticesCategoriesList = ({ items }) => {
   const date = new Date();
@@ -14,6 +15,7 @@ const NoticesCategoriesList = ({ items }) => {
     ({ _id, category, location, sex, dateOfBirth, title }) => (
       <li key={_id} className={styles.item}>
         <article className={styles.article}>
+         
           <div className={styles.articleDescription}>
             <h4>{title}</h4>
             <button type="button">
@@ -21,7 +23,14 @@ const NoticesCategoriesList = ({ items }) => {
             </button>
           </div>
           <div className={styles.articleHeader}>
+             <button type="button"
+            className={styles.functionalButton}
+          >
+            <span>Add Pet</span>
+          <img src={plus} alt="arrow"/>
+          </button>
             <picture className={styles.articlePicture}>
+
               <img src={img} alt="pictureArticle" />
             </picture>
             <div className={styles.articleLine}>
