@@ -1,35 +1,15 @@
+// import { BrowserRouter } from 'react-router-dom';
+import UserRoutes  from '../router';
+import css from './App.module.scss';
 
-import { React, Suspense } from 'react';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import NoticesPage from "./../pages/NoticesPage/NoticesPage.jsx";
-
-// import Script from "./../shared/script/script.js";
-
-// import FavoritePage from "./../pages/FavoritePage/FavoritePage";
-// import MyOwnPage from "./../pages/MyOwnPage/MyOwnPage";
-
+import React from 'react';
 export const App = () => {
   return (
-    <>
-<BrowserRouter basename="YourPet/">
-<Suspense>
-      <Routes> 
-            <Route path="/notices/:category" element={<NoticesPage />} />
-      </Routes>
-</Suspense>
-  </BrowserRouter>
-       
-    </>
+    // <BrowserRouter>
+    <div className={css.container}>
+    <UserRoutes />
+    </div>
+    
+    // </BrowserRouter>
   );
 };
-
-          
-
-
-          
-
-
-    
-

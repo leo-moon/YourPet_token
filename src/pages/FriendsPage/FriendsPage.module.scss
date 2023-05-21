@@ -1,0 +1,94 @@
+.friendsSection {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+}
+
+.friendsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+  }
+}
+
+.card {
+  width: 256px;
+  height: 207px;
+  padding: 16px 12px;
+  background: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+
+  &__title {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    line-height: 27px;
+    color: #54adff;
+    margin-bottom: 16px;
+  }
+
+  &__wrap {
+    display: flex;
+    gap: 16px;
+  }
+
+  img {
+    width: 100px;
+    height: 68px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__listItem {
+    font-size: 12px;
+    line-height: 16px;
+    color: #111111;
+
+    &:hover {
+      cursor: pointer;
+      color: #54adff;
+    }
+  }
+
+  &__label {
+    font-weight: 600;
+  }
+
+  address {
+    font-style: unset;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 312px;
+    height: 243px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 371px;
+    height: 255px;
+  }
+}
