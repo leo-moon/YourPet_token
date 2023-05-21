@@ -20,7 +20,7 @@ const Nav = () => {
         <NavLink className={css.item} to="/news">
           News
         </NavLink>
-        <NavLink className={css.item} to="/notices">
+        <NavLink className={css.item} to="/notices/sell">
           Find pet
         </NavLink>
         <NavLink className={css.item} to="/friends">
