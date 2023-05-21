@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom/dist';
-
+//import { NavLink } from 'react-router-dom/dist';
 
 import './modal.css';
 
