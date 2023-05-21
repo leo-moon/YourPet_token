@@ -12,12 +12,13 @@ const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const FriendsPage = lazy(() => import('./pages/FriendsPage/FriendsPage'));
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
   // const dispatch = useDispatch();
   // const { isRefreshing } = useAuth();
-  
+
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [dispatch]);
@@ -26,18 +27,24 @@ const UserRoutes = () => {
       <SharedLayout />
       <Suspense>
         <Routes>
+          {/* YourPet */}
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
           <Route path="/notices/:category" element={<NoticesPage />}></Route>
           <Route path="/friends" element={<FriendsPage />}></Route>
 
           <Route element={<PublicRoute />}>
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
 
           <Route element={<PrivateRoute />}>
-          <Route path="/user" element={<UserPage />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/add-pet" element={<AddPetPage />} />
+            {/* </Route> */}
+
+            {/* <Route path="*" element={<NotFoundPage />} /> */}
+            {/* </Route> */}
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 80em) {
     .list {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 288px);
     }
 }
 
@@ -35,10 +35,20 @@
 
 .articlePicture {
     position: relative;
+    /* width: 280px; */
+    height: 288px; 
     display: flex;
     max-width: 100%;
-    padding-bottom: 100%;
+    /* padding-bottom: 100%; */
     /* 288/288 */
+}
+
+@media screen and (max-width: 32em) {
+.articlePicture img {
+    max-width: 100%;
+    height: auto;
+}
+
 }
 
 .articlePicture img {
@@ -141,12 +151,7 @@
     position: relative;
 }
 
-.articlePicture {
-    position: relative;
-    display: flex;
-    max-width: 100%;
-    padding-bottom: 100%;
-}
+
 
 .articlePicture img {
     position: absolute;
@@ -264,3 +269,63 @@
         color: #fef9f9;
     }
 }
+
+.functionalButton {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 8px;
+z-index: 5;
+    border-radius: 40px;
+ color: #fef9f9;
+    background-color: #54adff;
+}
+
+.functionalButton span {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 137.5%;
+    /* 22/16 */
+}
+
+.functionalButton svg {
+    height: 24px;
+    width: 24px;
+    fill: currentColor;
+}
+
+@media screen and (max-width: 48em) {
+    .functionalButton {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0%, -50%);
+
+        width: 80px;
+        height: 80px;
+        padding: 0;
+        flex-direction: column-reverse;
+        gap: 4px;
+        background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+        box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    }
+
+    .functionalButton span {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 133.333333%;
+        /* 16/12 */
+    }
+
+}
+@media screen and (min-width: 48em) {
+    .functionalButton {
+display:none;
+    
+    }
+}
+
+
