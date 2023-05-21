@@ -4,6 +4,7 @@ import SvgInsert from '...';
 // тут треба посилання на собачі іконки
 
 import { useSelector } from 'react-redux';
+import Loader from 'components/Loader/Loader';
 
 const ModalNotice = ({
   id,
