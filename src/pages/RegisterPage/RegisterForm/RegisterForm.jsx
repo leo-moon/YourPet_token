@@ -1,15 +1,15 @@
 // import React, { useState, memo } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom/dist';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import { Formik, Form, Field } from 'formik';
 
-import UserPage from '../../UserPage/UserPage';
+// import UserPage from '../../UserPage/UserPage';
 
 import fields from './fields';
 import initialState from './initialState';
 import styles from './register-form.module.scss';
-import Modal from './RegisterModal/Modal';
+// import Modal from './RegisterModal/Modal';
 // import PasswordField from './PasswordField';
 
 const RegisterForm = ({ onSubmit }) => {
@@ -32,7 +32,7 @@ const RegisterForm = ({ onSubmit }) => {
   // if (!emailTrue) return alert('This email in use');
 
   // function verifySubmit(values, submitProps) {
-  const verifySubmit = (values, submitProps) => {
+  // const verifySubmit = (values, submitProps) => {
     // const { email, confirmPassword, password } = values;
     // const { email, password } = values;
 
@@ -48,16 +48,16 @@ const RegisterForm = ({ onSubmit }) => {
     //   return true;
     // };
 
-    if (true) {
-      submitProps.setSubmitting(false);
-      submitProps.resetForm();
-      // setModalActive(true);
-      return true;
-    }
+    // if (true) {
+    //   submitProps.setSubmitting(false);
+    //   submitProps.resetForm();
+    //   // setModalActive(true);
+    //   return true;
+    // }
 
     // await new Promise(resolve => setTimeout(resolve, 500));                {email: 'lm@gmail.com', id: '6469fe36859c1ddf0370b049'}
     // alert(JSON.stringify(data, null, 2));
-  };
+  // };
 
   return (
     <div>
