@@ -9,18 +9,20 @@ import NoticesCategoriesList from '../../components/NoticesCategoriesList/Notice
 import styles from './noticesPage.module.css';
 
 const NoticePage = () => {
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
 
-  const { category } = useParams();
+  console.log("items",items);
 
+  const { category } = useParams();
+  console.log("category",category);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const currentSearch = searchParams.get('search');
-    console.log(currentSearch);
+    console.log("currentSearch",currentSearch);
     if (currentSearch) {
       setSearch(currentSearch);
     }
@@ -31,10 +33,14 @@ const NoticePage = () => {
       try {
         setLoading(true);
         const data = await ApiCategoriBySearch(category, search);
-        console.log(data);
+
+        console.log("data",data);
         setItems(data);
+        setError(null);
+        
       } catch (error) {
         setError(error.message);
+         setItems([])
       } finally {
         setLoading(false);
       }
@@ -54,9 +60,6 @@ const NoticePage = () => {
       {loading && <p>...Loading</p>}
       {items && <NoticesCategoriesList items={items} />}
 
-      {/* <SellPage/> */}
-      {/* <InGoodHandsPage/> */}
-      {/* <LostFoundPage/> */}
     </div>
   );
 };
