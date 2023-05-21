@@ -61,7 +61,7 @@ const NewsPage = () => {
           <ReactPaginate
             previousLabel={<BsArrowLeft />}
             nextLabel={<BsArrowRight />}
-            pageCount={totalPages || 0}
+            pageCount={Math.ceil(totalPages) || 0}
             onPageChange={handlePageClick}
             containerClassName={styles.pagination}
             activeClassName={styles.paginationActive}

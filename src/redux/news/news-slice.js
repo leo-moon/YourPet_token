@@ -20,7 +20,6 @@ const newsSlice = createSlice({
       .addCase(fetchNews.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload.data;
-        console.log(action.payload);
         state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchNews.rejected, (state, action) => {
