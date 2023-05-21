@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import UserPageTitle from './UserPageTitle/UserPageTitle';
 import UserPageCard from './UserPageCard/UserPageCard';
 import UserFormData from './UserFormData/UserFormData';
+import Logout from './Logout/Logout';
 import Container from 'components/Container/Container';
 
 import css from './UserPage.module.css';
@@ -11,19 +12,9 @@ import TrashIcon from 'images/icons/TrashIcon';
 
 import {
   AddPetIcon,
-  LogoutIcon,
   CameraIcon,
   AddPhotoIcon,
 } from 'images/icons/userPageIcons';
-// import {
-//   AddPetIcon,
-//   LogoutIcon,
-//   CameraIcon,
-//   CheckIcon,
-//   EditIcon,
-//   AddPhotoIcon,
-//   PetLegIcon,
-// } from 'images/icons/userPageIcons';
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -47,10 +38,7 @@ const UserPage = () => {
             </div>
             <div className={css.formWrapper}>
               <UserFormData />
-              <div className={css.logoutWrapper}>
-                <LogoutIcon color={'#54ADFF'} />
-                <span className={css.logoutText}>Log Out</span>
-              </div>
+              <Logout />
             </div>
           </UserPageCard>
         </section>
