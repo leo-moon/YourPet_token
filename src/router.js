@@ -28,7 +28,7 @@ const UserRoutes = () => {
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
-          <Route path="/notices" element={<NoticesPage />}></Route>
+          <Route path="/notices/:category" element={<NoticesPage />}></Route>
           <Route path="/friends" element={<FriendsPage />}></Route>
 
           <Route element={<PublicRoute />}>
