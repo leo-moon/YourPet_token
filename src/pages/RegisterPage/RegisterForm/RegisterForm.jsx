@@ -1,6 +1,6 @@
 // import React, { useState, memo } from 'react';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom/dist';
+// import { Link } from 'react-router-dom/dist';
 import { Formik, Form, Field } from 'formik';
 
 import UserPage from '../../UserPage/UserPage';
@@ -9,7 +9,7 @@ import fields from './fields';
 import initialState from './initialState';
 import styles from './register-form.module.scss';
 import Modal from './RegisterModal/Modal';
-import PasswordField from './PasswordField';
+// import PasswordField from './PasswordField';
 
 const RegisterForm = () => {
   const [modalActive, setModalActive] = useState(false);
