@@ -8,9 +8,9 @@ const Modal = ({ active, setActive, children }) => {
     if (e.key === 'Escape') {
       setActive(false);
       console.log('elrfghecorvno');
-      // <NavLink to="/YourPet/user" />;
+      // <NavLink to="/user" />;
       setTimeout(() => {
-        document.location.replace('/YourPet/user');
+        document.location.replace('/user');
       }, 50);
     }
   });
@@ -21,7 +21,7 @@ const Modal = ({ active, setActive, children }) => {
       onClick={() => {
         setActive(false);
         // document.location.replace(`/user`);
-        document.location.replace(`/YourPet/user`);
+        document.location.replace('/user');
         // <NavLink to="/YourPet/user" />
       }}
     >
