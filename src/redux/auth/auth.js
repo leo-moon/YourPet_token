@@ -18,7 +18,7 @@ export const signup = async data => {
   );
   // const { data: result } = await instance.post('/users/register', data);
   // setToken(result.token);
-  localStorage.setItem('user', JSON.stringify(result));
+  // localStorage.setItem('user', JSON.stringify(result));
   return result;
 };
 
