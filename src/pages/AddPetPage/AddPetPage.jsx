@@ -6,7 +6,7 @@ import FirstStep from './FirstStep/FirstStep';
 import SecondStep from './SecondStep/SecondStep';
 import ThirdStep from './ThirdStep/ThirdStep';
 
-import css from './AddPage.module.css';
+import css from './AddPage.module.scss';
 
 // import getInitialFields from './getInitialFields';
 
@@ -23,10 +23,16 @@ const initialData = {
   image: '',
 };
 
+const initialStatus = {
+  firstIndicator: 'current',
+  secondIndicator: 'coming',
+  thirdIndicator: 'coming',
+};
+
 const AddPetPage = () => {
   const [data, setData] = useState(initialData);
   const [currentStep, setCurrentStep] = useState(0);
-
+  const [status, setStatus] = useState(initialStatus);
   console.log(data);
 
   const makeRequest = async formData => {
@@ -49,19 +55,40 @@ const AddPetPage = () => {
   };
 
   const steps = [
-    <FirstStep next={handleNextStep} data={data} />,
-    <SecondStep next={handleNextStep} prev={handlePrevStep} data={data} />,
-    <ThirdStep next={handleNextStep} prev={handlePrevStep} data={data} />,
+    <FirstStep
+      next={handleNextStep}
+      data={data}
+      setStatus={setStatus}
+      currentStep={currentStep}
+    />,
+    <SecondStep
+      next={handleNextStep}
+      prev={handlePrevStep}
+      data={data}
+      setStatus={setStatus}
+    />,
+    <ThirdStep
+      next={handleNextStep}
+      prev={handlePrevStep}
+      data={data}
+      setStatus={setStatus}
+    />,
   ];
 
   return (
     <div className={css.container}>
       <div className={css.formWrapper}>
-        <h1>Add pet</h1>
-        <div className={css.categoryWrapper}>
-          <h2>Choose option</h2>
-          <h2>Personal details</h2>
-          <h2>More info</h2>
+        <h1 className={css.title}>Add pet</h1>
+        <div className={css.categoryTitleWrapper}>
+          <h2 className={`${css.categoryTitle} ${css[status.firstIndicator]}`}>
+            Choose option
+          </h2>
+          <h2 className={`${css.categoryTitle} ${css[status.secondIndicator]}`}>
+            Personal details
+          </h2>
+          <h2 className={`${css.categoryTitle} ${css[status.thirdIndicator]}`}>
+            More info
+          </h2>
         </div>
 
         {steps[currentStep]}

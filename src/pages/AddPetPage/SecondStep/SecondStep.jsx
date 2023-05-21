@@ -1,40 +1,96 @@
 import { Formik, Field, Form } from 'formik';
+import { BiArrowBack } from 'react-icons/bi';
 
-import css from '../AddPage.module.css';
+import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 
-const SecondStep = ({ data, next, prev }) => {
+import css from '../AddPage.module.scss';
+
+const SecondStep = ({ data, next, prev, setStatus }) => {
   const handleSubmit = values => {
+    setStatus(prev => ({
+      ...prev,
+      secondIndicator: 'completed',
+      thirdIndicator: 'current',
+    }));
     next(values);
+  };
+
+  const onCancelBtnClick = values => {
+    prev(values);
+
+    setStatus(prev => ({
+      ...prev,
+      firstIndicator: 'current',
+      secondIndicator: 'coming',
+    }));
   };
 
   return (
     <Formik initialValues={data} onSubmit={handleSubmit}>
       {({ values }) => (
         <Form className={css.form}>
-          <h2>Personal details</h2>
           {data.category !== 'your pet' && (
-            <label>
-              Title of add
-              <Field name="title" />
-            </label>
+            <>
+              <label className={css.inputLabel} htmlFor="title">
+                Title of add
+              </label>
+              <Field
+                name="title"
+                id="title"
+                placeholder="Title of add"
+                className={css.input}
+              />
+            </>
           )}
-          <label>
+          <label htmlFor="namePet" className={css.inputLabel}>
             Name pet
-            <Field name="namePet" />
           </label>
-          <label>
-            Date of birth
-            <Field name="dateOfBirth" />
-          </label>
-          <label>
-            Breed
-            <Field name="breed" />
-          </label>
+          <Field
+            name="namePet"
+            id="namePet"
+            placeholder="Type name pet"
+            className={css.input}
+          />
 
-          <button type="button" onClick={() => prev(values)}>
+          <label htmlFor="dateOfBirth" className={css.inputLabel}>
+            Date of birth
+          </label>
+          <Field
+            name="dateOfBirth"
+            id="dateOfBirth"
+            placeholder="Type date of birth"
+            className={css.input}
+          />
+
+          <label htmlFor="breed" className={css.inputLabel}>
+            Breed
+          </label>
+          <Field
+            name="breed"
+            id="breed"
+            placeholder="Type breed"
+            className={css.input}
+          />
+
+          <button
+            type="submit"
+            className={
+              data.category === 'your pet'
+                ? css.nxtBtnStepTwoYourPet
+                : css.nextBtn
+            }
+          >
+            Next
+            <PawIcon />
+          </button>
+          <button
+            type="button"
+            onClick={() => onCancelBtnClick(values)}
+            className={css.cancelBtn}
+          >
+            <BiArrowBack color="#54ADFF" size={24} />
             Cancel
           </button>
-          <button type="submit">Next</button>
         </Form>
       )}
     </Formik>
