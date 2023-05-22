@@ -35,146 +35,148 @@ const ThirdStep = ({ next, prev, data, setStatus }) => {
     <Formik initialValues={data} onSubmit={handleSubmit}>
       {({ values }) => (
         <Form className={css.form}>
-          {/* <div
+          <div
             className={
               data.category !== 'your pet' ? css.thirdStepFormWrap : ''
             }
-          > */}
-          {/* <div> */}
-          {data.category !== 'your pet' && (
-            <>
-              <p className={css.inputLabel}>The sex</p>
-              <div className={css.sexWrap}>
-                <label
-                  htmlFor="female"
-                  className={
-                    values.sex === 'female'
-                      ? css.activeFemaleSexLabel
-                      : css.sexLabel
-                  }
-                >
-                  <BsGenderFemale
-                    size={24}
-                    color={`${
-                      values.sex === 'female' || values.sex === ''
-                        ? '#F43F5E'
-                        : '#888888'
-                    }`}
-                  />
-                  Female
+          >
+            <div>
+              {data.category !== 'your pet' && (
+                <>
+                  <p className={css.inputLabel}>The sex</p>
+                  <div className={css.sexWrap}>
+                    <label
+                      htmlFor="female"
+                      className={
+                        values.sex === 'female'
+                          ? css.activeFemaleSexLabel
+                          : css.sexLabel
+                      }
+                    >
+                      <BsGenderFemale
+                        size={24}
+                        color={`${
+                          values.sex === 'female' || values.sex === ''
+                            ? '#F43F5E'
+                            : '#888888'
+                        }`}
+                      />
+                      Female
+                    </label>
+                    <Field
+                      type="radio"
+                      name="sex"
+                      value="female"
+                      className={css.sexInput}
+                      id="female"
+                    />
+                    <label
+                      htmlFor="male"
+                      className={
+                        values.sex === 'male'
+                          ? css.activeMaleSexLabel
+                          : css.sexLabel
+                      }
+                    >
+                      <IoMaleOutline
+                        size={24}
+                        color={`${
+                          values.sex === 'male' || values.sex === ''
+                            ? '#54ADFF'
+                            : '#888888'
+                        }`}
+                      />
+                      Male
+                    </label>
+                    <Field
+                      type="radio"
+                      name="sex"
+                      value="male"
+                      className={css.sexInput}
+                      id="male"
+                    />
+                  </div>
+                </>
+              )}
+
+              <div className={css.addImgWrap}>
+                <p className={css.inputLabel}>Add photo</p>
+                <label htmlFor="file" className={css.addImg}>
+                  <AiOutlinePlus size={30} color="#54ADFF" />
                 </label>
                 <Field
-                  type="radio"
-                  name="sex"
-                  value="female"
-                  className={css.sexInput}
-                  id="female"
-                />
-                <label
-                  htmlFor="male"
-                  className={
-                    values.sex === 'male'
-                      ? css.activeMaleSexLabel
-                      : css.sexLabel
-                  }
-                >
-                  <IoMaleOutline
-                    size={24}
-                    color={`${
-                      values.sex === 'male' || values.sex === ''
-                        ? '#54ADFF'
-                        : '#888888'
-                    }`}
-                  />
-                  Male
-                </label>
-                <Field
-                  type="radio"
-                  name="sex"
-                  value="male"
-                  className={css.sexInput}
-                  id="male"
+                  type="file"
+                  name="image"
+                  id="file"
+                  className={css.addImgInput}
                 />
               </div>
-            </>
-          )}
+            </div>
 
-          <div className={css.addImgWrap}>
-            <p className={css.inputLabel}>Add photo</p>
-            <label htmlFor="file" className={css.addImg}>
-              <AiOutlinePlus size={30} color="#54ADFF" />
-            </label>
-            <Field
-              type="file"
-              name="image"
-              id="file"
-              className={css.addImgInput}
-            />
-          </div>
-          {/* </div> */}
-
-          {/* <div
+            <div
               className={
                 data.category !== 'your pet' ? css.thirdStepInputwrap : ''
               }
-            > */}
-          {data.category !== 'your pet' && (
-            <>
-              <label
-                htmlFor="location"
-                className={css.inputLabel}
-                placeholder="Type name pet"
-              >
-                Location
+            >
+              {data.category !== 'your pet' && (
+                <>
+                  <label
+                    htmlFor="location"
+                    className={css.inputLabel}
+                    placeholder="Type name pet"
+                  >
+                    Location
+                  </label>
+                  <Field
+                    name="location"
+                    id="location"
+                    className={css.input}
+                    placeholder="Type of location"
+                  />
+                </>
+              )}
+
+              {data.category === 'sell' && (
+                <>
+                  <label htmlFor="price" className={css.inputLabel}>
+                    Price
+                  </label>
+                  <Field
+                    name="price"
+                    id="price"
+                    className={css.input}
+                    placeholder="Type of price"
+                  />
+                </>
+              )}
+
+              <label htmlFor="comments" className={css.inputLabel}>
+                Comments
               </label>
               <Field
-                name="location"
-                id="location"
-                className={css.input}
-                placeholder="Type of location"
+                as="textarea"
+                name="comments"
+                id="comments"
+                className={css.commentTextarea}
+                placeholder="Type breed"
               />
-            </>
-          )}
+            </div>
+          </div>
 
-          {data.category === 'sell' && (
-            <>
-              <label htmlFor="price" className={css.inputLabel}>
-                Price
-              </label>
-              <Field
-                name="price"
-                id="price"
-                className={css.input}
-                placeholder="Type of price"
-              />
-            </>
-          )}
-
-          <label htmlFor="comments" className={css.inputLabel}>
-            Comments
-          </label>
-          <Field
-            as="textarea"
-            name="comments"
-            id="comments"
-            className={css.commentTextarea}
-            placeholder="Type breed"
-          />
-          {/* </div> */}
-          {/* </div> */}
-
-          <button className={css.nextBtn} type="submit">
-            Next
-            <PawIcon />
-          </button>
-          <button
-            className={css.cancelBtn}
-            type="button"
-            onClick={() => onCancelBtnClick(values)}
-          >
-            <BiArrowBack color="#54ADFF" size={24} />
-            Cancel
-          </button>
+          <div className={css.btnsWrap}>
+            <button className={css.nextBtn} type="submit">
+              Next
+              <PawIcon />
+            </button>
+            <button
+              className={css.cancelBtn}
+              type="button"
+              onClick={() => onCancelBtnClick(values)}
+            >
+              <BiArrowBack color="#54ADFF" size={24} />
+              Cancel
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

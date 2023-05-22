@@ -72,25 +72,26 @@ const SecondStep = ({ data, next, prev, setStatus }) => {
             className={css.input}
           />
 
-          <button
-            type="submit"
+          <div
             className={
               data.category === 'your pet'
-                ? css.nxtBtnStepTwoYourPet
-                : css.nextBtn
+                ? css.btnsStepTwoYourPetWrap
+                : css.btnsWrap
             }
           >
-            Next
-            <PawIcon />
-          </button>
-          <button
-            type="button"
-            onClick={() => onCancelBtnClick(values)}
-            className={css.cancelBtn}
-          >
-            <BiArrowBack color="#54ADFF" size={24} />
-            Cancel
-          </button>
+            <button type="submit" className={css.nextBtn}>
+              Next
+              <PawIcon />
+            </button>
+            <button
+              type="button"
+              onClick={() => onCancelBtnClick(values)}
+              className={css.cancelBtn}
+            >
+              <BiArrowBack color="#54ADFF" size={24} />
+              Cancel
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

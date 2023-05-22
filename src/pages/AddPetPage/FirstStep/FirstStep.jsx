@@ -95,18 +95,20 @@ const FirstStep = ({ data, next, setStatus, currentStep }) => {
             id="in good gands"
           />
 
-          <button className={css.nextBtnFirstSrep} type="submit">
-            Next
-            <PawIcon />
-          </button>
-          <button
-            className={css.cancelBtn}
-            type="button"
-            // onClick={onCancelBtnCLick}
-          >
-            <BiArrowBack color="#54ADFF" size={24} />
-            Cancel
-          </button>
+          <div className={css.btnsFirstStepWrap}>
+            <button className={css.nextBtn} type="submit">
+              Next
+              <PawIcon />
+            </button>
+            <button
+              className={css.cancelBtn}
+              type="button"
+              // onClick={onCancelBtnCLick}
+            >
+              <BiArrowBack color="#54ADFF" size={24} />
+              Cancel
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
