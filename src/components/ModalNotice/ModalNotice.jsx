@@ -14,7 +14,8 @@ const ModalNotice = ({
   const loading = useSelector(state => state.loading);
   // const loading = useSelector(state => state.notices.loading);
   // const loading = useSelector(selectLoading);
-    const notice = useSelector(state => state.notices.notice);
+    const notice = useSelector(state => state.notice);
+    // const notice = useSelector(state => state.notices.notice);
 
   const formatDate = date => {
     const dateFormat = new Date(date);
