@@ -41,10 +41,6 @@ const UserRoutes = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/user" element={<UserPage />} />
             <Route path="/add-pet" element={<AddPetPage />} />
-            {/* </Route> */}
-
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
-            {/* </Route> */}
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
