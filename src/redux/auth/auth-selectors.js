@@ -11,3 +11,5 @@ export const selectAuth = ({ auth }) => {
   return { isLogin, token };
 };
 export const selectLoading = ({ auth }) => auth.loading;
+
+export const selectIsRefreshing = state => state.auth.isRefreshing;
