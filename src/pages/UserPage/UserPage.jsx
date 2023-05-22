@@ -15,6 +15,10 @@ import {
   AddPhotoIcon,
 } from 'images/icons/userPageIcons';
 
+const openModal = () => {
+  setIsOpen(true);
+};
+
 const UserPage = () => {
   const navigate = useNavigate();
   const handleAddPet = () => {
