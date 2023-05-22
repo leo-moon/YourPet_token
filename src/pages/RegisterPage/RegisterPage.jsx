@@ -10,7 +10,7 @@ import { signup } from '../../redux/auth/auth-operations';
 import RegisterForm from './RegisterForm/RegisterForm';
 import Container from 'components/Container/Container';
 import css from './register-page.module.css';
-import styles from './RegisterForm/register-form.module.scss';
+import styles from './RegisterForm/RegisterModal/modal.module.scss';
 import pawprint from 'images/pawprint.svg';
 
 const RegisterPage = () => {
@@ -48,8 +48,9 @@ const RegisterPage = () => {
   return (
     <Container>
       {modalActive && <UserPage />}
+      {/* <div className={styles.modal}> */}
       <Modal active={modalActive} setActive={setModalActive}>
-        <h2 className={styles.title}>Congrats!</h2>
+        <h2 className={styles.modal__header}>Congrats!</h2>
         <h3 className={styles.modal_title}> Youre registration is success</h3>
         <button className={styles.modal_button}>
           <div className={styles.modal_button_items}>
@@ -60,6 +61,7 @@ const RegisterPage = () => {
           </div>
         </button>
       </Modal>
+      {/* </div> */}
       <div className={css.div}>
         <RegisterForm onSubmit={handleSignup} />
       </div>
