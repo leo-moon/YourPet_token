@@ -4,7 +4,7 @@ import scss from './modal-approve-action.module.scss'
 import PropTypes from 'prop-types';
 
 export const ModalApproveAction = ({ onClose }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
