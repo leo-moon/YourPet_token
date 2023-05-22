@@ -12,28 +12,30 @@ const NewsItem = ({ id, imgUrl, title, text, date, url }) => {
   };
   return (
     <li key={id} className={styles.item}>
-      <img
-        alt={title}
-        loading="lazy"
-        className={styles.image}
-        src={imageError ? defaultImage : imgUrl}
-        onError={handleImageError}
-      />
+      <div className={styles.imageContainer}>
+        <img
+          alt={title}
+          loading="lazy"
+          className={styles.image}
+          src={imageError ? defaultImage : imgUrl}
+          onError={handleImageError}
+        />
+      </div>
 
       <div className={styles.itemContainer}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.text}>{text}</p>
-        <div className={styles.itemWrapper}>
-          <p className={styles.date}>{formattedDate}</p>
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.link}
-          >
-            Read more
-          </a>
-        </div>
+      </div>
+      <div className={styles.itemWrapper}>
+        <p className={styles.date}>{formattedDate}</p>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          Read more
+        </a>
       </div>
     </li>
   );
