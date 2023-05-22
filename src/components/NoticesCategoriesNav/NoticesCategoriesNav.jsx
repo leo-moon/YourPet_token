@@ -25,7 +25,7 @@ const NoticesCategoriesNav = () => {
           <StyledLink to="/notices/lost-found" className={styles.navigationButton} >
             lost/found
           </StyledLink>
-             <StyledLink to="/notices/fo-free" className={styles.navigationButton } >
+             <StyledLink to="/notices/for-free" className={styles.navigationButton } >
             in good hands
             </StyledLink>
           <StyledLink to="/notices/favorite" className={styles.navigationButton} >
@@ -43,8 +43,9 @@ const NoticesCategoriesNav = () => {
 
           </button>
           <button
-            // data-da=".header-article,768,1"
+          
             type="button"
+            // onClick={showModal}
             className={styles.functionalButton}
           >
             <span>Add Pet</span>

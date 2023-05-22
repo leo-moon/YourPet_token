@@ -12,10 +12,13 @@ const setToken = token => {
 };
 
 export const signup = async data => {
-  console.log(data);
-  const { data: result } = await instance.post('/api/auth/users/register', data);
+  const { data: result } = await instance.post(
+    '/api/auth/users/register',
+    data
+  );
   // const { data: result } = await instance.post('/users/register', data);
-  setToken(result.token);
+  // setToken(result.token);
+  // localStorage.setItem('user', JSON.stringify(result));
   return result;
 };
 
@@ -36,9 +39,9 @@ export const getCurrent = async token => {
   }
 };
 
-export const logout = async token => {
+export const logout = async () => {
   try {
-    const { data } = await instance.post('/users/logout');
+    const { data } = await instance.post('/api/auth/users/logout');
     setToken();
     return data;
   } catch (error) {

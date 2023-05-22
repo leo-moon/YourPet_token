@@ -1,69 +1,72 @@
 import { useSelector } from 'react-redux';
-import ClockIcon from 'icons/ClockIcon';
-import FemaleIcon from 'icons/FemaleIcon';
-import LocationIcon from 'icons/LocationIcon';
-import HeartIcon from 'icons/HeartIcon';
-import TrashIcon from 'icons/TrashIcon';
-import MaleIcon from 'icons/MaleIcon';
-import { getUser } from 'redux/auth/auth-selectors';
-import Button from 'shared/components/ButtonNotices/ButtonNotices';
+import ClockIcon from '../images/icons/ClockIcon';
+import FemaleIcon from '../images/icons/FemaleIcon';
+import LocationIcon from '../images/icons/LocationIcon';
+import HeartIcon from '../images/icons/HeartIcon';
+import TrashIcon from '../images/icons/TrashIcon';
+import MaleIcon from '../images/icons/MaleIcon';
+import pawIcon from './../../images/img/paw.svg';
 
+import { getUser } from '../../redux/auth/auth-selectors';
+import Button from '../ButtonNotices/ButtonNotices';
+import { isUserLogin } from '../../redux/auth/auth-selectors';
+import useToggleModalWindow from '../../hooks/useToggleModalWindow';
+import Modal from '../Modal/Modal';
+
+import ModalNotice from '../ModalNotice/ModalNotice';
+
+// import NoticeModal from '../NoticeModal/NoticeModal';
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
   _id,
-  file,
+  noticeAvatar,
   category,
   title,
   location,
-  date,
+  dateOfBirth,
   sex,
+  comments,
+  breed,
+  owner,
+  name,
 }) => {
   const user = useSelector(getUser);
-  // console.log(user);
+  const isLoggedIn = useSelector(isUserLogin);
 
-  function getAge(date) {
-    const ymdArr = date.split('.').map(Number).reverse();
-    ymdArr[1]--;
-    const bornDate = new Date(...ymdArr);
+  const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
-    const now = new Date();
-
-    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
-
-    now.setDate(now.getDate() - Math.floor(leapYears));
-
-    const nowAsTimestamp = now.getTime();
-    const bornDateAsTimestamp = bornDate.getTime();
-
-    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
-
-    const oneYearInMs = 3.17098e-11;
-
-    const age = Math.floor(ageAsTimestamp * oneYearInMs);
-    // console.log(age);
-    return age;
-  }
-
-  const age = getAge(date);
+  
+  const date = new Date();
+  const thisYear = Number(date.getFullYear());
+  const age = Number(dateOfBirth.slice(6, 10) - thisYear);
 
   return (
     <li key={_id} className={css.listItems}>
       <div className={css.imageThumb}>
-        <img className={css.photoAnimal} src={file} alt={title} width="280" />
+        <img className={css.photoAnimal} src={noticeAvatar} alt={title} width="280" />
         <div className={css.topBlock}>
           <p className={css.categoryInfo}>{category}</p>
           <div>
             <Button
               className={css.topBtn}
               SVGComponent={() => (
-                <HeartIcon color="#54ADFF" favorite={user.favorite} />
+                <HeartIcon
+                  className={
+                    css.favorite
+                      ? `${css.icons} ${css.favoriteIcon}`
+                      : css.icons
+                  }
+                  favorite={user.favorite}
+                />
               )}
             />
-            <Button
-              className={css.topBtn}
-              SVGComponent={() => <TrashIcon color="#54ADFF" />}
-            />
+            {isLoggedIn && (
+              <Button
+                className={css.topBtn}
+                SVGComponent={() => <TrashIcon color="#54ADFF" />}
+              />
+            )}
           </div>
         </div>
         <div className={css.infoCardBlock}>
@@ -73,7 +76,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {age === 1 ? '1 year' : `${age} years`}
+            {age === 0 ? '1 year' : `${age} years`}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (
@@ -87,8 +90,27 @@ const NoticeCategoryItem = ({
         </div>
       </div>
       <div className={css.noticeDesc}>
-        <h3 className={css.noticeTitle}>{title}</h3>
-        <Button className={css.learnBtn}>Learn more</Button>
+        <h3 className={css.noticeTitle}>Cute {title} looking hor a home</h3>
+        <Button className={css.learnBtn} onClick={openModal}>
+          Learn more <img src={pawIcon} alt="paw icon" />
+        </Button>
+        {isModalOpen && (
+          <Modal closeModal={closeModal}>
+            <ModalNotice
+              _id={_id}
+              noticeAvatar={noticeAvatar}
+              category={category}
+              location={location}
+              dateOfBirth={dateOfBirth}
+              sex={sex}
+              title={title}
+              comments={comments}
+              breed={breed}
+              owner={owner}
+              name={name}
+              />
+          </Modal>
+        )}
       </div>
     </li>
   );

@@ -22,7 +22,7 @@
         align-items: center;
     }
 
-    .inner :not(:last-child) {
+    .inner:not(:last-child) {
         margin-bottom: 42px;
     }
 }
@@ -164,6 +164,7 @@
             padding: 0;
             border-radius: 50%;
             background-color: #c5dff6;
+            
         }
 
         .functionalButton:nth-child(1) span {
@@ -179,24 +180,7 @@
 
 @media screen and (max-width: 48em) {
     .functionalButton:nth-child(2) {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(0%, -50%);
-
-        width: 80px;
-        height: 80px;
-        padding: 0;
-        flex-direction: column-reverse;
-        gap: 4px;
-        background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-        box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+        display: none;
     }
 
-    .functionalButton:nth-child(2) span {
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 133.333333%;
-        /* 16/12 */
-    }
 }

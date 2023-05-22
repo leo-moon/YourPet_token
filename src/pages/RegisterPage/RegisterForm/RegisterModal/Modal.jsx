@@ -7,11 +7,10 @@ const Modal = ({ active, setActive, children }) => {
     if (e.key === 'Escape') {
       setActive(false);
       console.log('elrfghecorvno');
+      // <NavLink to="/user" />;
       setTimeout(() => {
-        document.location.replace('/user');
+        document.location.replace('/YourPet/user');
       }, 50);
-      // window.location.href = '/user';
-      // document.location.replace('/user');
     }
   });
 
@@ -20,7 +19,7 @@ const Modal = ({ active, setActive, children }) => {
       className={active ? 'modal active' : 'modal'}
       onClick={() => {
         setActive(false);
-        document.location.replace(`/user`);
+        document.location.replace('/YourPet/user');
       }}
     >
       <div
