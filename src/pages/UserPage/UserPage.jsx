@@ -15,6 +15,11 @@ import {
   AddPhotoIcon,
 } from 'images/icons/userPageIcons';
 
+const openModal = () => {
+  setIsModalOpen(true);
+  document.body.style.overflow = 'hidden';
+};
+
 const UserPage = () => {
   const navigate = useNavigate();
   const handleAddPet = () => {
@@ -53,15 +58,20 @@ const UserPage = () => {
           </div>
           <ul className={css.petList}>
             <li className={css.petItem}>
-              <TrashIcon color={'#54ADFF'} className={css.deleteIcon} />
+
+              {/* обгортаю в button для подальшого відкриття модального вікна при натисканні */}
+            <button type="button" onClick={openModal}>
+              <TrashIcon color={'#54ADFF'} className={css.deleteIcon} 
+               />
               <img
                 src="https://res.cloudinary.com/dwptjohyl/image/upload/v1684266179/iypomlbmaefrplomzkzn.jpg"
                 alt="domestic pet"
                 width="240"
                 height="240"
                 className={css.petImg}
-                
-              />
+               />
+               </button>
+               
               <div>
                 <p className={css.text}>
                   <span className={css.attributeName}>Name: </span>Jack
