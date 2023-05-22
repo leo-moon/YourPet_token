@@ -1,20 +1,29 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-import { logout } from 'redux/auth/auth-operations';
+import ModalLogout from './Modal/ModalLogout';
 
 import css from './Logout.module.css';
 import { LogoutIcon } from 'images/icons/userPageIcons';
 
 const Logout = () => {
-  const dispatche = useDispatch();
-  const onLogout = () => {
-    dispatche(logout());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <button onClick={onLogout} className={css.button}>
-      <LogoutIcon color={'#54ADFF'} />
-      <span className={css.text}>Log Out</span>
-    </button>
+    <>
+      <button className={css.button} onClick={handleOpenModal}>
+        <LogoutIcon color={'#54ADFF'} />
+        <span className={css.text}>Log Out</span>
+      </button>
+      {isModalOpen && <ModalLogout onCloseModal={handleCloseModal} />}
+    </>
   );
 };
 
