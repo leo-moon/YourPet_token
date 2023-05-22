@@ -61,6 +61,7 @@ const UserPage = () => {
                 width="240"
                 height="240"
                 className={css.petImg}
+                
               />
               <div>
                 <p className={css.text}>
@@ -89,6 +90,7 @@ const UserPage = () => {
                 width="240"
                 height="240"
                 className={css.petImg}
+              
               />
               <div>
                 <p className={css.text}>
