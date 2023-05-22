@@ -8,7 +8,7 @@ import css from './ModalLogout.module.css';
 import { LogoutIcon, CloseIcon } from 'images/icons/userPageIcons';
 
 const ModalLogout = ({ onCloseModal }) => {
-  const onClose = useCallback(() => onCloseModal(), []);
+  const onClose = useCallback(() => onCloseModal(), [onCloseModal]);
 
   useEffect(() => {
     const handleDownInEscape = e => {
