@@ -8,9 +8,9 @@ import { IoMaleOutline } from 'react-icons/io5';
 
 import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 
-import css from '../AddPage.module.scss';
+import css from '../AddPetPage.module.scss';
 
-const ThirdStep = ({ next, prev, data, setStatus }) => {
+const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
   const handleSubmit = values => {
     setStatus(prev => ({
       ...prev,
@@ -34,7 +34,7 @@ const ThirdStep = ({ next, prev, data, setStatus }) => {
   return (
     <Formik initialValues={data} onSubmit={handleSubmit}>
       {({ values }) => (
-        <Form className={css.form}>
+        <Form className={css.formStepThree}>
           <div
             className={
               data.category !== 'your pet' ? css.thirdStepFormWrap : ''
@@ -99,8 +99,18 @@ const ThirdStep = ({ next, prev, data, setStatus }) => {
                 </>
               )}
 
-              <div className={css.addImgWrap}>
-                <p className={css.inputLabel}>Add photo</p>
+              <div
+                className={
+                  data.category === 'your pet'
+                    ? css.addImgWrap
+                    : css.addImgThirdStepWrap
+                }
+              >
+                <p className={css.addImgLabelThirdStep}>
+                  {data.category === 'your pet'
+                    ? 'Add photo'
+                    : 'Load the pet’s image:'}
+                </p>
                 <label htmlFor="file" className={css.addImg}>
                   <AiOutlinePlus size={30} color="#54ADFF" />
                 </label>
@@ -157,13 +167,17 @@ const ThirdStep = ({ next, prev, data, setStatus }) => {
                 as="textarea"
                 name="comments"
                 id="comments"
-                className={css.commentTextarea}
+                className={
+                  data.category !== 'your pet'
+                    ? css.textareaThirdStep
+                    : css.commentTextarea
+                }
                 placeholder="Type breed"
               />
             </div>
           </div>
 
-          <div className={css.btnsWrap}>
+          <div className={css.btnsThirdStepWrap}>
             <button className={css.nextBtn} type="submit">
               Next
               <PawIcon />

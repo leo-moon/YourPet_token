@@ -1,5 +1,9 @@
 // Mobile first step
 
+.container {
+   padding-top: 20px;
+}
+
 .formWrapper {
    max-width: 280px;
    padding: 20px 8px 16px;
@@ -8,7 +12,7 @@
    display: Flex;
    flex-direction: column;
 
-   margin-top: 20px;
+   // margin-top: 20px;
 
    background-color: #FFFFFF;
    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
@@ -37,7 +41,7 @@
 
 .categoryTitleWrapper {
    display: flex;
-
+   justify-content: center;
 }
 
 .categoryTitle {
@@ -277,19 +281,47 @@ input::placeholder {
 @media screen and (min-width: 768px) {
 
    // Tablet first step
+   .container {
+      padding-top: 60px;
+      padding-bottom: 523px;
+   }
 
    .formWrapper {
+      margin-right: auto;
+      margin-left: auto;
+      // margin-bottom: 523px;
+
       max-width: 458px;
-      margin-top: 60px;
+      // margin-top: 60px;
       padding: 20px 32px;
    }
 
+   .formWrapperThirdStep {
+      composes: formWrapper;
+      max-width: 704px;
+   }
+
    .form {
+      margin-top: 20px;
+   }
+
+   .formStepOne{
       margin-top: 40px;
+   }
+
+   .formStepThree {
+      composes: form;
+      align-items: center;
    }
 
    .title {
       font-size: 28px;
+   }
+
+   .titleThirdStep {
+      composes: title;
+      display: flex;
+      align-self: center;
    }
 
    .categoryTitle {
@@ -313,14 +345,21 @@ input::placeholder {
    }
 
    .btnsWrap {
-      align-self: flex-end;
+      align-self: center;
       flex-direction: row-reverse;
       gap: 24px;
    }
 
+   
+
    .btnsFirstStepWrap {
       margin-top: 137px;
     }
+
+   .btnsThirdStepWrap {
+      composes: btnsWrap;
+      margin-top: 60px;
+   }
 
    //  Tablet second step 
 
@@ -347,7 +386,7 @@ input::placeholder {
       margin-top: 40px;
    }
 
-   // Mobile third step
+   // Tablet third step
 
    .addImg {
       margin-bottom: 0px;
@@ -357,7 +396,13 @@ input::placeholder {
    }
 
    .addImgWrap {
+      flex-direction: column;
       gap: 33px;
+   }
+
+   .addImgThirdStepWrap {
+      composes: addImgWrap;
+      gap: 8px;
    }
 
    .commentTextarea {
@@ -371,7 +416,10 @@ input::placeholder {
       font-size: 16px;
    }
 
-   // Tablet third step
+   .textareaThirdStep {
+      composes: commentTextarea;
+      height: 182px;
+   }
 
    .thirdStepFormWrap {
       display: flex;
@@ -381,6 +429,36 @@ input::placeholder {
       margin-left: 45px;
    }
 }   
+
+@media screen and (min-width: 1280px) {
+   // Desktop first step
+      .container {
+         padding-top: 40px;
+         padding-bottom: 118px;
+      }
+   
+      .formWrapperThirdStep {
+         max-width: 822px;
+         padding: 20px 75px 37px;
+      }
+   
+      // Desktop third step
+   
+   
+      .addImgThirdStepWrap {
+         composes: addImgWrap;
+         gap: 12px;
+      }
+   
+      .thirdStepInputwrap {
+         margin-left: 97px;
+      }
+
+      .addImgLabelThirdStep {
+         composes: inputLabel;
+         font-size: 18px;
+      }
+}
 
 
 

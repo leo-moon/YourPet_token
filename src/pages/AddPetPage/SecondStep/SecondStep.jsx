@@ -3,7 +3,7 @@ import { BiArrowBack } from 'react-icons/bi';
 
 import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 
-import css from '../AddPage.module.scss';
+import css from '../AddPetPage.module.scss';
 
 const SecondStep = ({ data, next, prev, setStatus }) => {
   const handleSubmit = values => {

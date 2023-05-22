@@ -6,9 +6,7 @@ import FirstStep from './FirstStep/FirstStep';
 import SecondStep from './SecondStep/SecondStep';
 import ThirdStep from './ThirdStep/ThirdStep';
 
-import css from './AddPage.module.scss';
-
-// import getInitialFields from './getInitialFields';
+import css from './AddPetPage.module.scss';
 
 const initialData = {
   category: 'your pet',
@@ -72,13 +70,41 @@ const AddPetPage = () => {
       prev={handlePrevStep}
       data={data}
       setStatus={setStatus}
+      currentStep={currentStep}
     />,
   ];
 
+  const getCurrentTitle = () => {
+    if (currentStep === 0) {
+      return 'Add pet';
+    }
+
+    if (currentStep === 1 || 2) {
+      switch (data.category) {
+        case 'your pet':
+          return 'Add my pet';
+        case 'sell':
+          return 'Add pet for sell';
+        case 'lost/found':
+          return 'Add lost pet';
+        default:
+          return 'Add pet without an owner';
+      }
+    }
+  };
+
   return (
     <div className={css.container}>
-      <div className={css.formWrapper}>
-        <h1 className={css.title}>Add pet</h1>
+      <div
+        className={
+          currentStep === 2 && data.category !== 'your pet'
+            ? css.formWrapperThirdStep
+            : css.formWrapper
+        }
+      >
+        <h1 className={currentStep === 2 ? css.titleThirdStep : css.title}>
+          {getCurrentTitle()}
+        </h1>
         <div className={css.categoryTitleWrapper}>
           <h2 className={`${css.categoryTitle} ${css[status.firstIndicator]}`}>
             Choose option
@@ -97,72 +123,3 @@ const AddPetPage = () => {
   );
 };
 export default AddPetPage;
-
-// const [step, setStep] = useState(1);
-// const [option, setOption] = useState('your pet');
-// const [completedFields, setCompletedFields] = useState({});
-// // console.log(step);
-// // console.log(option);
-// console.log(completedFields);
-// console.log(getInitialFields(step, option));
-
-// const onNextBtnClick = e => {
-//   if (e.target.textContent !== 'Next') return;
-
-//   let userValues = {};
-
-//   const fields = Object.keys(getInitialFields(step, option));
-
-//   fields.forEach(el => {
-//     const { value } = e.currentTarget.elements[el];
-
-//     // console.log(value);
-
-//     userValues = { ...userValues, [el]: value };
-
-//     // console.log(userValues);
-//   });
-
-//   console.log(userValues);
-
-//   setCompletedFields(prev => ({ ...prev, ...userValues }));
-
-//   if (step === 1) {
-//     setOption(e.currentTarget.elements.addPetOption.value);
-//   }
-
-//   setStep(prev => prev + 1);
-
-//   // console.log(completedFields);
-// };
-
-// const onCancelBtnCLick = () => {
-//   setStep(prev => prev - 1);
-// };
-
-// return (
-//   <Formik
-//     initialValues={
-//       // getInitialFields(step, option)
-//       initialValues
-//     }
-//   >
-//     <Form onClick={onNextBtnClick}>
-// <h1>Add pet</h1>
-// <h2>Choose option</h2>
-// <h2>Personal details</h2>
-// <h2>More info</h2>
-//       <FirstStep setStep={setStep} setOption={setOption} step={step} />
-//       <SecondStep setStep={setStep} setOption={setOption} step={step} />
-//       <ThirdStep setStep={setStep} setOption={setOption} step={step} />
-//       <button
-//         type="button"
-//         onClick={onCancelBtnCLick}
-//         disabled={step === 0 ? true : false}
-//       >
-//         Cancel
-//       </button>
-//       <button type="button">Next</button>
-//     </Form>
-//   </Formik>
-// );
