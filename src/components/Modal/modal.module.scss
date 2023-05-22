@@ -1,13 +1,18 @@
 .modal {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100vw;
-   height: 100vh;
+  //  position: fixed;
+  //  top: 0;
+  //  left: 0;
+  //  width: 100vw;
+  //  height: 100vh;
+  position: absolute;
+width: 681px;
+height: 540px;
+left: 299px;
+top: 200px;
    display: flex;
    justify-content: center;
    align-items: center;
-   background: rgba(17, 17, 17, 0.6);
+   background: #ffffff;
    backdrop-filter: blur(10px);
    z-index: 2000;
    overflow: hidden;

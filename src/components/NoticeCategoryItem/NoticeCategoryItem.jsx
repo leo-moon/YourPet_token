@@ -91,8 +91,11 @@ const NoticeCategoryItem = ({
       </div>
       <div className={css.noticeDesc}>
         <h3 className={css.noticeTitle}>Cute {title} looking hor a home</h3>
-        <Button className={css.learnBtn} onClick={openModal}>
-          Learn more <img src={pawIcon} alt="paw icon" />
+        <Button className={css.learnBtn}
+         onClick={showModal}
+        //  нужно проверить отклик модального окна при нажатии на " Learn more"
+        >
+          Learn more
         </Button>
         {isModalOpen && (
           <Modal closeModal={closeModal}>
