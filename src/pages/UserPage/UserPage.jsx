@@ -15,16 +15,15 @@ import {
   AddPhotoIcon,
 } from 'images/icons/userPageIcons';
 
-const openModal = () => {
-  setIsOpen(true);
-};
-
 const UserPage = () => {
   const navigate = useNavigate();
   const handleAddPet = () => {
-    navigate('/add-pet');
+    navigate('/add-pet')};
+    const openModal = () => {
+      navigate('/');
   };
-  return (
+
+    return (
     <Container>
       <div className={css.wrapper}>
         <section className={css.userSection}>
