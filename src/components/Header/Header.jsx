@@ -9,6 +9,7 @@ import UserNav from '../Nav/UserNav/UserNav';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import userIcon from 'images/user-1.svg';
+import pawprint from 'images/pawprint.svg';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -46,11 +47,13 @@ const Header = () => {
                   </NavLink>
                 </div>
               ) : (
-                <div className={css.authNavigateTablet}>
-                  <NavLink to="/login" onClick={toggle} style={{ width: 95 }}>
-                    Login
+                <div className={css.authNavigateMob}>
+                  <NavLink className={css.login} to="/login" onClick={toggle} style={{ width: 95 }}>
+                    LogiIN
+                    <img className={css.icon} src={pawprint} alt="pawprint" />
                   </NavLink>
                   <NavLink
+                  className={css.register}
                     to="/register"
                     onClick={toggle}
                     style={{ width: 144 }}
@@ -63,7 +66,7 @@ const Header = () => {
               <NavLink to="/news" onClick={toggle}>
                 News
               </NavLink>
-              <NavLink to="/notices" onClick={toggle}>
+              <NavLink to="/notices/sell" onClick={toggle}>
                 Find pet
               </NavLink>
               <NavLink to="/friends" onClick={toggle}>
