@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from './auth';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://your-pet.onrender.com/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -37,24 +37,44 @@ export const login = createAsyncThunk(
   }
 );
 
+// export const current = createAsyncThunk(
+//   'auth/current',
+//   async (_, { rejectWithValue, getState }) => {
+//     try {
+//       const { auth } = getState();
+//       const data = await api.getCurrent(auth.token);
+//       return data;
+//     } catch ({ response }) {
+//       return rejectWithValue(response);
+//     }
+//   },
+//   {
+//     condition: (_, { getState }) => {
+//       const { auth } = getState();
+//       if (!auth.token) {
+//         return false;
+//       }
+//     },
+//   }
+// );
+
 export const current = createAsyncThunk(
   'auth/current',
-  async (_, { rejectWithValue, getState }) => {
-    try {
-      const { auth } = getState();
-      const data = await api.getCurrent(auth.token);
-      return data;
-    } catch ({ response }) {
-      return rejectWithValue(response);
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { auth } = getState();
-      if (!auth.token) {
-        return false;
-      }
-    },
+
+    try {
+      setAuthHeader(persistedToken);
+      const res = await axios.get('/api/auth/users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -71,23 +91,22 @@ export const logout = createAsyncThunk(
   }
 );
 
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
 
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+//     if (persistedToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
 
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
-    try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get('/users/current');
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//     try {
+//       setAuthHeader(persistedToken);
+//       const res = await axios.get('/users/current');
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
