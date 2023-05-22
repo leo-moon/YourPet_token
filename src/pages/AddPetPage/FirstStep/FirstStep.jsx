@@ -3,7 +3,7 @@ import { BiArrowBack } from 'react-icons/bi';
 
 import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 
-import css from '../AddPage.module.scss';
+import css from '../AddPetPage.module.scss';
 
 const FirstStep = ({ data, next, setStatus, currentStep }) => {
   const handleSubmit = values => {
@@ -95,18 +95,20 @@ const FirstStep = ({ data, next, setStatus, currentStep }) => {
             id="in good gands"
           />
 
-          <button className={css.nextBtnFirstSrep} type="submit">
-            Next
-            <PawIcon />
-          </button>
-          <button
-            className={css.cancelBtn}
-            type="button"
-            // onClick={onCancelBtnCLick}
-          >
-            <BiArrowBack color="#54ADFF" size={24} />
-            Cancel
-          </button>
+          <div className={css.btnsFirstStepWrap}>
+            <button className={css.nextBtn} type="submit">
+              Next
+              <PawIcon />
+            </button>
+            <button
+              className={css.cancelBtn}
+              type="button"
+              // onClick={onCancelBtnCLick}
+            >
+              <BiArrowBack color="#54ADFF" size={24} />
+              Cancel
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
