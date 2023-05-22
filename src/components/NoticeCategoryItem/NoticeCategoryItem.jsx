@@ -5,6 +5,7 @@ import LocationIcon from '../images/icons/LocationIcon';
 import HeartIcon from '../images/icons/HeartIcon';
 import TrashIcon from '../images/icons/TrashIcon';
 import MaleIcon from '../images/icons/MaleIcon';
+import pawIcon from './../../images/img/paw.svg';
 
 import { getUser } from '../../redux/auth/auth-selectors';
 import Button from '../ButtonNotices/ButtonNotices';
@@ -12,9 +13,9 @@ import { isUserLogin } from '../../redux/auth/auth-selectors';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import Modal from '../Modal/Modal';
 
-// import ModalNotice from '../ModalNotice/ModalNotice';
+import ModalNotice from '../ModalNotice/ModalNotice';
 
-
+// import NoticeModal from '../NoticeModal/NoticeModal';
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
@@ -33,33 +34,12 @@ const NoticeCategoryItem = ({
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(isUserLogin);
 
-  const { isModalOpen, closeModal } = useToggleModalWindow();
+  const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
-
-  function getAge(dateOfBirth) {
-    const ymdArr = dateOfBirth.split('.').map(Number).reverse();
-    ymdArr[1]--;
-    const bornDate = new Date(...ymdArr);
-
-    const now = new Date();
-
-    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
-
-    now.setDate(now.getDate() - Math.floor(leapYears));
-
-    const nowAsTimestamp = now.getTime();
-    const bornDateAsTimestamp = bornDate.getTime();
-
-    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
-
-    const oneYearInMs = 3.17098e-11;
-
-    const age = Math.floor(ageAsTimestamp * oneYearInMs);
-    
-    return age;
-  }
-
-  const age = getAge(dateOfBirth);
+  
+  const date = new Date();
+  const thisYear = Number(date.getFullYear());
+  const age = Number(dateOfBirth.slice(6, 10) - thisYear);
 
   return (
     <li key={_id} className={css.listItems}>
@@ -96,7 +76,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {age === 1 ? '1 year' : `${age} years`}
+            {age === 0 ? '1 year' : `${age} years`}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (
@@ -119,8 +99,19 @@ const NoticeCategoryItem = ({
         </Button>
         {isModalOpen && (
           <Modal closeModal={closeModal}>
-            {/* <ModalNotice
-              /> */}
+            <ModalNotice
+              _id={_id}
+              noticeAvatar={noticeAvatar}
+              category={category}
+              location={location}
+              dateOfBirth={dateOfBirth}
+              sex={sex}
+              title={title}
+              comments={comments}
+              breed={breed}
+              owner={owner}
+              name={name}
+              />
           </Modal>
         )}
       </div>

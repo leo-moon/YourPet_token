@@ -137,10 +137,15 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  margin-right: 12px;
   /* identical to box height */
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
   letter-spacing: 0.04em;
   /* Фоновый */
   color: #fef9f9;
+}
+.modal_button_items {
+  display: flex;
+  justify-content: space-between;
 }

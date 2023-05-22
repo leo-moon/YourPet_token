@@ -1,11 +1,17 @@
 .listItems {
     list-style: none;
+    max-width: 440px;
     padding: 0;
     margin: 0;
     margin-bottom: 24px;
     box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     border-radius: 0px 0px 40px 40px;
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.listItems:hover,
+.listItems:focus {
+    box-shadow: 7px 13px 14px rgba(116, 177, 232, 0.24);
 }
 
 .imageThumb {
@@ -26,6 +32,20 @@
     padding-right: 12px;
     display: flex;
     justify-content: space-between;
+}
+
+.icons {
+    stroke: #54adff;
+}
+
+.favoriteIcon {
+    /* composes: icons; */
+    fill: #54adff;
+}
+
+.infoIcons {
+    /* composes: icons; */
+    margin-right: 4px;
 }
 
 .categoryInfo {
@@ -70,6 +90,8 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    justify-content: space-around;
+    width: 280px;
 }
 
 .noticeInfo {
@@ -77,7 +99,7 @@
     align-items: center;
     justify-content: center;
     height: 28px;
-    max-width: 80px;
+    /* max-width: 80px; */
     padding: 2px;
     padding-left: 4px;
     padding-right: 8px;
@@ -93,8 +115,18 @@
     min-width: 84px;
 }
 
-.noticeinfo:not(:last-child) {
-    margin-right: 12px;
+/* .noticeinfo:not(:last-child) {
+  margin-right: 12px;
+} */
+
+.locationInfo {
+    /* composes: noticeInfo; */
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.locationInfo:hover,
+.locationInfo:focus {
+    background-color: #54adff;
 }
 
 .icon {
@@ -104,6 +136,17 @@
 .noticeDesc {
     padding: 20px;
     padding-bottom: 24px;
+}
+
+.locationIcon {
+    margin-right: 4px;
+    stroke: #54adff;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.locationIcon:hover,
+.locationIcon:focus {
+    stroke: #ffffff;
 }
 
 .noticeTitle {
@@ -129,9 +172,11 @@
     border: 2px solid #54adff;
     border-radius: 40px;
     transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
 .learnBtn::before {
+    /* content: url('../pawprint.svg'); */
     content: '';
     position: absolute;
     right: 50px;

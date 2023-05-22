@@ -1,5 +1,4 @@
 import React from 'react';
-//import { NavLink } from 'react-router-dom/dist';
 
 import './modal.css';
 
@@ -10,7 +9,7 @@ const Modal = ({ active, setActive, children }) => {
       console.log('elrfghecorvno');
       // <NavLink to="/user" />;
       setTimeout(() => {
-        document.location.replace('/user');
+        document.location.replace('/YourPet/user');
       }, 50);
     }
   });
@@ -20,9 +19,7 @@ const Modal = ({ active, setActive, children }) => {
       className={active ? 'modal active' : 'modal'}
       onClick={() => {
         setActive(false);
-        // document.location.replace(`/user`);
-        document.location.replace('/user');
-        // <NavLink to="/YourPet/user" />
+        document.location.replace('/YourPet/user');
       }}
     >
       <div

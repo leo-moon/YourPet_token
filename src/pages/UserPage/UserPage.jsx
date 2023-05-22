@@ -5,10 +5,9 @@ import UserPageCard from './UserPageCard/UserPageCard';
 import UserFormData from './UserFormData/UserFormData';
 import Logout from './Logout/Logout';
 import Container from 'components/Container/Container';
+import PetsList from './PetsList/PetsList';
 
 import css from './UserPage.module.css';
-
-import TrashIcon from 'images/icons/TrashIcon';
 
 import {
   AddPetIcon,
@@ -112,6 +111,7 @@ const UserPage = () => {
               </div>
             </li>
           </ul>
+          <PetsList />
         </section>
       </div>
     </Container>

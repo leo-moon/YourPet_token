@@ -111,9 +111,9 @@ p {
   color: #000000;
 }
 
-.modal_notice__item_description_link:hover, .modal_notice__item_description_link:focus{
-  color: $accentColor;
-}
+// .modal_notice__item_description_link:hover, .modal_notice__item_description_link:focus{
+//   color: $accentColor;
+// }
 
 .modal_notice__item_comment {
   margin-top: 28px;
@@ -148,10 +148,10 @@ p {
     justify-content: center;
   }
 
-  &:hover > svg,
-  &:focus > svg {
-    fill: $lightColor;
-  }
+  // &:hover > svg,
+  // &:focus > svg {
+  //   fill: $lightColor;
+  // }
 }
 
 @media screen and (min-width: 768px) {

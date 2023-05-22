@@ -1,4 +1,4 @@
-import css from "./UserNav.module.css"
+import css from "./UserNav.module.scss"
 import { NavLink } from 'react-router-dom';
 import userIcon from 'images/user-1.svg';
 
@@ -8,7 +8,7 @@ const UserNav = () => {
         <NavLink className={css.user} to="/user">
         <img className={css.icon} src={userIcon} alt="userIcon" /> 
         {/* {name} */}
-        NAME
+        <p className={css.name}>NAME</p> 
         </NavLink>
       </div>
     );

@@ -45,7 +45,7 @@ const NoticesCategoriesNav = () => {
           <button
           
             type="button"
-            onClick={showModal}
+            // onClick={showModal}
             className={styles.functionalButton}
           >
             <span>Add Pet</span>
