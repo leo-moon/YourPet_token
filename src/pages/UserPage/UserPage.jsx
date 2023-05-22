@@ -8,7 +8,7 @@ import Container from 'components/Container/Container';
 import PetsList from './PetsList/PetsList';
 
 import css from './UserPage.module.css';
-
+import TrashIcon from 'images/icons/TrashIcon';
 import {
   AddPetIcon,
   CameraIcon,

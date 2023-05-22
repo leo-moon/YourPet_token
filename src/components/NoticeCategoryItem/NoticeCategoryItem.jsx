@@ -5,7 +5,7 @@ import LocationIcon from '../images/icons/LocationIcon';
 import HeartIcon from '../images/icons/HeartIcon';
 import TrashIcon from '../images/icons/TrashIcon';
 import MaleIcon from '../images/icons/MaleIcon';
-import pawIcon from './../../images/img/paw.svg';
+// import pawIcon from './../../images/img/paw.svg';
 
 import { getUser } from '../../redux/auth/auth-selectors';
 import Button from '../ButtonNotices/ButtonNotices';
@@ -92,7 +92,7 @@ const NoticeCategoryItem = ({
       <div className={css.noticeDesc}>
         <h3 className={css.noticeTitle}>Cute {title} looking hor a home</h3>
         <Button className={css.learnBtn}
-         onClick={showModal}
+         onClick={openModal}
         //  нужно проверить отклик модального окна при нажатии на " Learn more"
         >
           Learn more
