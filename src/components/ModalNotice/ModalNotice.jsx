@@ -5,16 +5,28 @@ import SvgInsert from './../../images/img/img.jpg';
 import { useSelector } from 'react-redux';
 
 const ModalNotice = ({
-  id,
+  // id,
   onClose,
   onAddDelete,
-  categoryNotice,
+  // categoryNotice,
   favorite,
+  _id,
+  noticeAvatar,
+  category,
+  title,
+  location,
+  dateOfBirth,
+  sex,
+  comments,
+  breed,
+  owner,
+  name,
+  price,
 }) => {
-  const loading = useSelector(state => state.loading);
+  // const loading = useSelector(state => state.loading);
   // const loading = useSelector(state => state.notices.loading);
   // const loading = useSelector(selectLoading);
-    const notice = useSelector(state => state.notice);
+  //   const notice = useSelector(state => state.notice);
     // const notice = useSelector(state => state.notices.notice);
 
   const formatDate = date => {
@@ -37,6 +49,7 @@ const ModalNotice = ({
       ) : (
         <>
           {notice !== null && (
+            <li key={_id} className={css.listItems}>
             <div className={scss.modal_notice__content}>
               <div className={scss.modal_notice__content_info}>
                 <div className={scss.modal_notice__close} onClick={onClose}>
@@ -45,20 +58,20 @@ const ModalNotice = ({
                 <div className={scss.modal_notice__image_content}>
                   <img
                     className={scss.modal_notice__image}
-                    src={notice.image}
-                    alt={notice.name}
+                    src={noticeAvatar}
+                    alt={name}
                   />
                   <span className={scss.modal_notice__category}>
-                    {categoryNotice(notice.category)}
+                    {categoryNotice(category)}
                   </span>
                 </div>
                 <div>
-                  <h3 className={scss.modal_notice__title}>{notice.title}</h3>
+                  <h3 className={scss.modal_notice__title}>{title}</h3>
                   <ul className={scss.modal_notice__list}>
                     <li className={scss.modal_notice__item}>
                       <h4 className={scss.modal_notice__item_title}>Name:</h4>
                       <p className={scss.modal_notice__item_description}>
-                        {notice.name}
+                        {name}
                       </p>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -66,7 +79,7 @@ const ModalNotice = ({
                         Birthday:
                       </h4>
                       <p className={scss.modal_notice__item_description}>
-                        {formatDate(notice.birthday)}
+                        {formatDate(dateOfBirth)}
                       </p>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -74,7 +87,7 @@ const ModalNotice = ({
                         Breed:
                         </h4>
                       <p className={scss.modal_notice__item_description}>
-                        {notice.breed}
+                        {breed}
                       </p>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -82,7 +95,7 @@ const ModalNotice = ({
                         Place:
                         </h4>
                       <p className={scss.modal_notice__item_description}>
-                        {notice.location}
+                        {location}
                       </p>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -90,7 +103,7 @@ const ModalNotice = ({
                         The sex:
                       </h4>
                       <p className={scss.modal_notice__item_description}>
-                        {notice.sex}
+                        {sex}
                       </p>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -98,11 +111,11 @@ const ModalNotice = ({
                         Email:
                         </h4>
                       <a
-                        href={`mailto:${notice.owner.email}`}
+                        href={`mailto:${owner.email}`}
                         className={`${scss.modal_notice__item_description} ${scss.modal_notice__item_description_link}`}
                         type="button"
                       >
-                        {notice.owner.email}
+                        {owner.email}
                       </a>
                     </li>
                     <li className={scss.modal_notice__item}>
@@ -110,20 +123,20 @@ const ModalNotice = ({
                         Phone:
                         </h4>
                       <a
-                        href={`tel:+${notice.owner.phone}`}
+                        href={`tel:+${owner.phone}`}
                         className={`${scss.modal_notice__item_description} ${scss.modal_notice__item_description_link}`}
                         type="button"
                       >
-                        {`+${notice.owner.phone}`}
+                        {`+${owner.phone}`}
                       </a>
                     </li>
-                    {notice.category !== 'In good hands' && (
+                    {category !== 'In good hands' && (
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>
                           Price:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {`${notice.price}$`}
+                          {`${price}$`}
                         </p>
                       </li>
                     )}
@@ -134,7 +147,7 @@ const ModalNotice = ({
                 <span className={scss.modal_notice__item_title}>
                   Comments:
                   </span>
-                {notice.comments}
+                {comments}
               </article>
               <div className={scss.modal_notice__button_container}>
                 <a
@@ -176,6 +189,7 @@ const ModalNotice = ({
                 )}
               </div>
             </div>
+            </li>
           )}
         </>
       )}
