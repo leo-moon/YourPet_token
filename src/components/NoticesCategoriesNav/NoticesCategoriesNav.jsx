@@ -3,6 +3,8 @@ import filters from "../../images/icons/svg/filters.svg";
 import plus from "../../images/icons/svg/plus-small.svg";
 
 import { NavLink } from "react-router-dom";
+
+import { useAuth } from 'hooks/useAuth';
 import styled from "styled-components";
 
 const StyledLink = styled(NavLink)`
@@ -15,6 +17,8 @@ const StyledLink = styled(NavLink)`
 `;
 
 const NoticesCategoriesNav = () => {
+
+  const { isLoggedIn } = useAuth();
   return (
     <>
           <div className={styles.inner}>
@@ -25,15 +29,15 @@ const NoticesCategoriesNav = () => {
           <StyledLink to="/notices/lost-found" className={styles.navigationButton} >
             lost/found
           </StyledLink>
-             <StyledLink to="/notices/fo-free" className={styles.navigationButton } >
+             <StyledLink to="/notices/for-free" className={styles.navigationButton } >
             in good hands
             </StyledLink>
-          <StyledLink to="/notices/favorite" className={styles.navigationButton} >
+          {isLoggedIn && <StyledLink to="/notices/favorite" className={styles.navigationButton} >
             favorite ads
-          </StyledLink>
-          <StyledLink to="/notices/own"className={styles.navigationButton} >
+          </StyledLink>}
+          {isLoggedIn && <StyledLink to="/notices/own" className={styles.navigationButton} >
             my ads
-          </StyledLink>
+          </StyledLink>}
         </nav>
           
               <div className={styles.functional}>
@@ -45,6 +49,7 @@ const NoticesCategoriesNav = () => {
           <button
           
             type="button"
+            // onClick={showModal}
             className={styles.functionalButton}
           >
             <span>Add Pet</span>
