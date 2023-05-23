@@ -5,3 +5,9 @@ export const postUserPet = async petData => {
 
   return data;
 };
+
+export const postNotice = async noticeData => {
+  const { data } = await instance.post('api/notices/addnotice', noticeData);
+
+  return data;
+};

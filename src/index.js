@@ -12,11 +12,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <AuthLayout>
-          <BrowserRouter basename="/YourPet">
-            <App />
-          </BrowserRouter>
-        </AuthLayout>
+        {/* <AuthLayout> */}
+        <BrowserRouter basename="/YourPet">
+          <App />
+        </BrowserRouter>
+        {/* </AuthLayout> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>

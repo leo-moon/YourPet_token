@@ -12,17 +12,14 @@ import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 import css from '../AddPetPage.module.scss';
 
 const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
-  const handleSubmit = values => {
+  const handleSubmit = (values, formik) => {
     setStatus(prev => ({
       ...prev,
       thirdIndicator: 'completed',
     }));
-    next(values, true);
+    // console.log(values);
+    next(values, true, formik);
   };
-
-  // if (data.image !== '') {
-  //   console.log(URL.createObjectURL(data.image));
-  // }
 
   const onCancelBtnClick = values => {
     prev(values);

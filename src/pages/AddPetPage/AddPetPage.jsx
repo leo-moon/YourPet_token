@@ -1,6 +1,6 @@
 // import { object, string, number, date, InferType } from 'yup';
 import { useState } from 'react';
-// import { dispatch } from 'react/redux';
+import { useNavigate } from 'react-router-dom';
 
 import FirstStep from './FirstStep/FirstStep';
 import SecondStep from './SecondStep/SecondStep';
@@ -35,30 +35,49 @@ const AddPetPage = () => {
   const [data, setData] = useState(initialData);
   const [currentStep, setCurrentStep] = useState(0);
   const [status, setStatus] = useState(initialStatus);
+  const navigate = useNavigate();
 
-  const makeRequest = async () => {
-    const values = Object.entries(data);
+  console.log(data);
+
+  const makeRequest = async (resetForm, newData) => {
+    // console.log(data);
+    const values = Object.entries({ ...data, ...newData });
     let formData = new FormData();
 
+    // console.log(values);
+
     values.forEach(el => {
+      // console.log(el[0], el[1]);
       if (el[1] === '') return;
 
       formData.append(el[0], el[1]);
     });
-    try {
-      await API.postUserPet(formData);
 
+    formData.forEach(el => console.log(el));
+
+    try {
+      if (data.category === 'your pet') {
+        await API.postUserPet(formData);
+
+        navigate('/user');
+      } else {
+        await API.postNotice(formData);
+
+        navigate('/notices/sell');
+      }
+
+      resetForm();
       setData(initialData);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleNextStep = (newData, final = false) => {
+  const handleNextStep = (newData, final = false, { resetForm } = {}) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest();
+      makeRequest(resetForm, newData);
 
       return;
     }
@@ -104,7 +123,7 @@ const AddPetPage = () => {
           return 'Add my pet';
         case 'sell':
           return 'Add pet for sell';
-        case 'lost/found':
+        case 'lost-found':
           return 'Add lost pet';
         default:
           return 'Add pet without an owner';
