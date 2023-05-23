@@ -13,6 +13,10 @@
         border-radius: 40px;
     }
 
+        @media screen and (min-width: 1280px) {
+           min-width: 820px;
+        }
+
 }
 
 .petItem:not(:last-child) {

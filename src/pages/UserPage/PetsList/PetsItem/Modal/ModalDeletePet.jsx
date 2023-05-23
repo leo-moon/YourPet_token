@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux';
 import { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { logout } from 'redux/auth/auth-operations';
+import instance from 'redux/auth/auth';
 
-import css from './ModalLogout.module.css';
-import { LogoutIcon, CloseIcon } from 'images/icons/userPageIcons';
+import css from './ModalDeletePet.module.css';
+import { CloseIcon } from 'images/icons/userPageIcons';
 
-const ModalLogout = ({ onCloseModal }) => {
+const ModalDeletePet = ({ onCloseModal, selectedPetId, onDeleteSuccess }) => {
   const onClose = useCallback(() => onCloseModal(), [onCloseModal]);
+  console.log(selectedPetId);
 
   useEffect(() => {
     const handleDownInEscape = e => {
@@ -28,18 +27,21 @@ const ModalLogout = ({ onCloseModal }) => {
     }
   };
 
-  const navigate = useNavigate();
-
-  const handleMainMenu = () => {
-    navigate('/');
+  const deletePet = async id => {
+    try {
+      await instance.delete(`/api/user/pets/removeuserpet/${id}`);
+      onDeleteSuccess();
+    } catch (error) {
+      console.error('Error deleting pet:', error);
+    }
   };
 
-  const dispatche = useDispatch();
-
-  const onLogout = () => {
-    dispatche(logout());
-    onClose();
-    handleMainMenu();
+  const onDelete = async () => {
+    try {
+      await deletePet(selectedPetId);
+      onClose();
+      onDeleteSuccess();
+    } catch (error) {}
   };
 
   return (
@@ -49,14 +51,13 @@ const ModalLogout = ({ onCloseModal }) => {
           <CloseIcon color={'#54ADFF'} />
         </button>
 
-        <p className={css.text}>Already leaving?</p>
+        <p className={css.text}>Are you sure?</p>
         <div className={css.buttonWrapper}>
           <button className={css.button} onClick={onClose}>
             Cancel
           </button>
-          <button className={css.button} onClick={onLogout}>
+          <button className={css.button} onClick={onDelete}>
             <span>Yes</span>
-            <LogoutIcon color={'#FFFFFF'} />
           </button>
         </div>
       </div>
@@ -64,4 +65,4 @@ const ModalLogout = ({ onCloseModal }) => {
   );
 };
 
-export default ModalLogout;
+export default ModalDeletePet;
