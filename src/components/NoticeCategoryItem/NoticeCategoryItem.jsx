@@ -92,7 +92,7 @@ const NoticeCategoryItem = ({
         </div>
       </div>
       <div className={css.noticeDesc}>
-        <h3 className={css.noticeTitle}>Cute {title} looking for a home</h3>
+        <h3 className={css.noticeTitle}>{title}</h3>
         <Button
           className={css.learnBtn}
           onClick={openModal}
