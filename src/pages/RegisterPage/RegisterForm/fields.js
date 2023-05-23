@@ -14,14 +14,14 @@ const fields = {
     placeholder: 'Enter email',
   },
   password: {
-    type: 'password',
+    // type: 'password',
     name: 'password',
     required: true,
     label: 'User password:',
     placeholder: 'Enter password',
   },
   confirmPassword: {
-    type: 'text',
+    // type: 'password',
     name: 'confirmPassword',
     required: true,
     label: 'User password:',

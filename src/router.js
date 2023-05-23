@@ -27,7 +27,6 @@ const UserRoutes = () => {
       <SharedLayout />
       <Suspense>
         <Routes>
-          {/* YourPet */}
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/news" element={<NewsPage />}></Route>
           <Route path="/notices/:category" element={<NoticesPage />}></Route>

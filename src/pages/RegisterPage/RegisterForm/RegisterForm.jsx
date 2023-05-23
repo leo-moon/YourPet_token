@@ -1,83 +1,44 @@
-// import React, { useState, memo } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom/dist';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import { Formik, Form, Field } from 'formik';
-
-// import UserPage from '../../UserPage/UserPage';
 
 import fields from './fields';
 import initialState from './initialState';
 import styles from './register-form.module.scss';
-// import Modal from './RegisterModal/Modal';
-// import PasswordField from './PasswordField';
+
+import eyeOpen from '../../../images/icons/svg/eye-open.svg';
+import eyeClosed from '../../../images/icons/svg/eye-closed.svg';
 
 const RegisterForm = ({ onSubmit }) => {
-  // const [modalActive, setModalActive] = useState(false);
   const handleSignup = onSubmit;
-  console.log('onSubmit', handleSignup);
+  // console.log('onSubmit', handleSignup);
 
-  // const [isRegistered, setIsRegistered] = useState(false);
-  // let isRegistered = false;
-
-  // const verify =
-
-  // Email in DB (boolean)
-  // const emailIsNew = await(email => {
-  //   console.log(email);
-  //   return true;
-  // });
-  // const emailTrue = emailIsNew({ email });
-  // console.log(emailTrue);
-  // if (!emailTrue) return alert('This email in use');
-
-  // function verifySubmit(values, submitProps) {
-  // const verifySubmit = (values, submitProps) => {
-    // const { email, confirmPassword, password } = values;
-    // const { email, password } = values;
-
-    // Check password and confirmPassword (boolean)
-    // console.log(password, confirmPassword, this.state);
-    // if (password !== confirmPassword)
-    //   return alert('confirmPassword must be same like password');
-
-    // Registration success (boolean)
-    // const data = { email, password };
-    // console.log(data);
-    // const regSuccess = data => {
-    //   return true;
-    // };
-
-    // if (true) {
-    //   submitProps.setSubmitting(false);
-    //   submitProps.resetForm();
-    //   // setModalActive(true);
-    //   return true;
-    // }
-
-    // await new Promise(resolve => setTimeout(resolve, 500));                {email: 'lm@gmail.com', id: '6469fe36859c1ddf0370b049'}
-    // alert(JSON.stringify(data, null, 2));
-  // };
+  const [icon, setIcon] = useState(eyeClosed);
+  const [inputType, setInputType] = useState('password');
+  const [iconConfirmPassword, setIconConfirmPassword] = useState(eyeClosed);
+  const [inputTypeConfirmPassword, setInputTypeConfirmPassword] =
+    useState('password');
+  const togglePassword = () => {
+    if (inputType === 'password') {
+      setInputType('text');
+      setIcon(eyeOpen);
+    } else {
+      setInputType('password');
+      setIcon(eyeClosed);
+    }
+  };
+  const toggleConfirmPassword = () => {
+    if (inputTypeConfirmPassword === 'password') {
+      setInputTypeConfirmPassword('text');
+      setIconConfirmPassword(eyeOpen);
+    } else {
+      setInputTypeConfirmPassword('password');
+      setIconConfirmPassword(eyeClosed);
+    }
+  };
 
   return (
     <div>
-      <div>
-        {/* {modalActive && <UserPage />}
-
-        <Modal active={modalActive} setActive={setModalActive}>
-          <h2 className={styles.title}>Congrats!</h2>
-          <h3 className={styles.modal_title}> Youre registration is success</h3>
-          <button className={styles.modal_button}>
-            <div className={styles.modal_button_items}>
-              <a href="/YourPet/user" className={styles.modal__button_text}>
-                Go to profile
-              </a>
-            </div>
-          </button>
-        </Modal> */}
-        {/* {modalActive && document.location.replace('/user')} */}
-      </div>
-
       <section className={styles.formik}>
         <h2 className={styles.title}>Registration</h2>
         <Formik
@@ -89,21 +50,38 @@ const RegisterForm = ({ onSubmit }) => {
         >
           <Form className={styles.form}>
             <div className={styles.wrapper}>
-              <Field name="email" {...fields.email} className={styles.field} />
+              <div className={styles.input_field}>
+                <Field
+                  className={styles.field_pass}
+                  name="email"
+                  {...fields.email}
+                />
+              </div>
               <ErrorMessage name="email" component="div" />
-              <Field
-                name="password"
-                {...fields.password}
-                className={styles.field}
-              />
+              <div className={styles.input_field}>
+                <Field
+                  className={styles.field_pass}
+                  type={inputType}
+                  name="password"
+                  {...fields.password}
+                />
+                <span className="password-icon" onClick={togglePassword}>
+                  <img src={icon} alt="icon" />
+                </span>
+              </div>
               <ErrorMessage name="password" component="div" />
-              <Field
-                name="confirmPassword"
-                {...fields.confirmPassword}
-                className={styles.field}
-              />
+              <div className={styles.input_field}>
+                <Field
+                  className={styles.field_pass}
+                  type={inputTypeConfirmPassword}
+                  name="confirmPassword"
+                  {...fields.confirmPassword}
+                ></Field>
+                <span className="password-icon" onClick={toggleConfirmPassword}>
+                  <img src={iconConfirmPassword} alt="icon" />
+                </span>
+              </div>
               <ErrorMessage name="confirmPassword" component="div" />
-              {/* <PasswordField /> */}
             </div>
             <button className={styles.button} type="submit">
               Registration

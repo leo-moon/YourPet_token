@@ -30,22 +30,24 @@ export const LoginForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h2 className={styles.h}>Login</h2>
-      <label className={styles.label}>
+      <div className={styles.wrapper}>
+      
         <input
           className={styles.input}
           value={email}
           onChange={handleChange}
           {...fields.email}
         />
-      </label>
-      <label className={styles.label}>
+      
+      
         <input
           className={styles.input}
           value={password}
           onChange={handleChange}
           {...fields.password}
         />
-      </label>
+      
+      </div>
       <button className={styles.button} type="submit">
         <p className={styles.pp}>Login</p>
       </button>
