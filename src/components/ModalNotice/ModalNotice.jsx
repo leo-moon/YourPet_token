@@ -1,6 +1,7 @@
 import scss from './modal-notice.module.scss';
 import Loader from 'components/Loader/Loader';
-import SvgInsert from './../../images/img/img.jpg';
+import SvgX from 'images/eye-closed.svg';
+import SvgH from 'images/heart.svg';
 import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 
@@ -52,7 +53,7 @@ const ModalNotice = ({
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
                   <div className={scss.modal_notice__close} onClick={onClose}>
-                    <SvgInsert id="icon-close" />
+                    <SvgX id="icon-close" />
                   </div>
                   <div className={scss.modal_notice__image_content}>
                     <img
@@ -165,7 +166,7 @@ const ModalNotice = ({
                       type="button"
                     >
                       Remove
-                      <SvgInsert
+                      <SvgH
                         className={scss.modal_notice__button_favorite}
                         id="icon-heart-favorite"
                       />
@@ -180,7 +181,7 @@ const ModalNotice = ({
                       type="button"
                     >
                       Add to
-                      <SvgInsert
+                      <SvgH
                         className={scss.modal_notice__button_favorite}
                         id="icon-heart-favorite"
                       />
