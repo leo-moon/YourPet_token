@@ -1,64 +1,92 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
 
-import { fetchContacts } from 'shared/servises/user-api';
+import instance from 'redux/auth/auth';
+
+import ModalDeletePet from './Modal/ModalDeletePet';
 
 import TrashIcon from 'images/icons/TrashIcon';
-
 import css from './PetsItem.module.css';
 
 const PetsItem = () => {
-  //   console.log(fetchContacts());
-  //   const allPets = async () => {
-  //     try {
-  //       const data = await fetchContacts();
-  //       return data;
-  //     } catch ({ response }) {
-  //       return response.data.message;
-  //     }
-  //   };
-  const fetchAllContacts = createAsyncThunk(
-    'contacts/fetch-all',
-    async (_, thunkAPI) => {
-      try {
-        const data = await fetchContacts();
-        return data;
-      } catch ({ response }) {
-        return thunkAPI.rejectWithValue(response.data.message);
-      }
+  const [myPets, setMyPets] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPetId, setSelectedPetId] = useState(null);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleDelete = id => {
+    setSelectedPetId(id);
+    setIsModalOpen(true);
+  };
+
+  const fetchData = async () => {
+    try {
+      const { data } = await instance.get('/api/user/pets/getAllUserPets');
+      setMyPets(data.userPets);
+    } catch (error) {
+      console.error('Error fetching pets:', error);
     }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleDeleteSuccess = () => {
+    setIsModalOpen(false);
+    fetchData();
+  };
+
+  if (!Object.keys(myPets).length) return <p>There are no pets here...</p>;
+
+  const petCards = myPets.map(
+    ({ _id, breed, comments, dateOfBirth, namePet, petAvatar }) => (
+      <li key={_id} className={css.petItem}>
+        <button onClick={() => handleDelete(_id)}>
+          <TrashIcon color={'#54ADFF'} className={css.deleteIcon} />
+        </button>
+        <img
+          src={petAvatar}
+          alt={namePet}
+          width="240"
+          height="240"
+          className={css.petImg}
+        />
+        <div>
+          <p className={css.text}>
+            <span className={css.attributeName}>Name: </span>
+            {namePet}
+          </p>
+          <p className={css.text}>
+            <span className={css.attributeName}>Date of birth: </span>
+            {dateOfBirth}
+          </p>
+          <p className={css.text}>
+            <span className={css.attributeName}>Breed: </span>
+            {breed}
+          </p>
+          <p className={css.text}>
+            <span className={css.attributeName}>Comments: </span>
+            {comments}
+          </p>
+        </div>
+      </li>
+    )
   );
 
-  console.log(fetchAllContacts());
-
   return (
-    <li className={css.petItem}>
-      <TrashIcon color={'#54ADFF'} className={css.deleteIcon} />
-      <img
-        src="https://res.cloudinary.com/dwptjohyl/image/upload/v1684266179/iypomlbmaefrplomzkzn.jpg"
-        alt="domestic pet"
-        width="240"
-        height="240"
-        className={css.petImg}
-      />
-      <div>
-        <p className={css.text}>
-          <span className={css.attributeName}>Name: </span>Jack
-        </p>
-        <p className={css.text}>
-          <span className={css.attributeName}>Date of birth: </span>
-          22.04.2018
-        </p>
-        <p className={css.text}>
-          <span className={css.attributeName}>Breed: </span>Labrador
-        </p>
-        <p className={css.text}>
-          <span className={css.attributeName}>Comments: </span>
-          Jack is a gray Persian dog with green eyes. He loves to be pampered
-          and groomed, and enjoys playing with toys. Although a bitshy, he's a
-          loyal and affectionate lap dog.
-        </p>
-      </div>
-    </li>
+    <>
+      {petCards}
+      {isModalOpen && (
+        <ModalDeletePet
+          onCloseModal={handleCloseModal}
+          selectedPetId={selectedPetId}
+          onDeleteSuccess={handleDeleteSuccess}
+        />
+      )}
+    </>
   );
 };
 

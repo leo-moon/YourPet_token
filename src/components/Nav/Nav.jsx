@@ -1,10 +1,10 @@
 import css from './Nav.module.scss';
-//import { useSelector, useDispatch } from 'react-redux';
-import AuthNav from './AuthNav/AuthNav';
-import UserNav from './UserNav/UserNav';
+// import AuthNav from './AuthNav/AuthNav';
+// import UserNav from './UserNav/UserNav';
 import { NavLink } from 'react-router-dom';
-import menuHam from 'images/menu-hamburger.svg';
-import { useAuth } from 'hooks/useAuth';
+// import menuHam from 'images/menu-hamburger.svg';
+// import { useAuth } from 'hooks/useAuth';
+
 //import { setMenuActive } from 'redux/menuSlice';
 
 const Nav = () => {
@@ -12,8 +12,7 @@ const Nav = () => {
   //const isLogin = useSelector(state => state.auth.isLogin);
   //const dispatch = useDispatch();
 
-  const { isLoggedIn } = useAuth();
-
+  // const { isLoggedIn } = useAuth();
   return (
     <div className={css.div}>
       <div className={css.menu}>
@@ -27,15 +26,11 @@ const Nav = () => {
           Our friends
         </NavLink>
       </div>
-      <div>
-        {/* <UserNav /> */}
-      </div>
-      {/* <AuthNav /> */}
-      {isLoggedIn ? <UserNav /> : <AuthNav />}   
-
-      <NavLink className={css.menuIcon}>
+      {/* {isLoggedIn ? <UserNav /> : <AuthNav />}    */}
+   
+      {/* <NavLink className={css.menuIcon} to="/menu">
         <img className={css.menuBur} src={menuHam} alt="menuBurger" />
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 };

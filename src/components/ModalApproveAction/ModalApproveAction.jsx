@@ -3,13 +3,12 @@ import { logOut } from 'redux/auth/operations';
 import scss from './modal-approve-action.module.scss'
 import PropTypes from 'prop-types';
 
-export const ModalApproveAction = ({ onClose }) => {
-  // const { t } = useTranslation();
+const ModalApproveAction = ({ onClose }) => {
 
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
-    onClose();
+   onClose();
     dispatch(logOut());
   };
 
