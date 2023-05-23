@@ -62,7 +62,7 @@ const ModalNotice = ({
                       alt={name}
                     />
                     <span className={scss.modal_notice__category}>
-                      {categoryNotice(category)}
+                      {categoryNotice(notice.category)}
                     </span>
                   </div>
                   <div>
