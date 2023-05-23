@@ -3,6 +3,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
 import { BsGenderFemale } from 'react-icons/bs';
 import { IoMaleOutline } from 'react-icons/io5';
+
 // BsGenderFemale;
 // IoMaleOutline;
 
@@ -19,6 +20,10 @@ const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
     next(values, true);
   };
 
+  // if (data.image !== '') {
+  //   console.log(URL.createObjectURL(data.image));
+  // }
+
   const onCancelBtnClick = values => {
     prev(values);
 
@@ -29,12 +34,15 @@ const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
     }));
   };
 
-  console.log(data);
-
   return (
     <Formik initialValues={data} onSubmit={handleSubmit}>
-      {({ values }) => (
+      {({ values, setFieldValue }) => (
         <Form className={css.formStepThree}>
+          {/* <img
+            width="200"
+            alt="pet"
+            src={values.image !== '' ? URL.createObjectURL(values.image) : ''}
+          /> */}
           <div
             className={
               data.category !== 'your pet' ? css.thirdStepFormWrap : ''
@@ -106,19 +114,29 @@ const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
                     : css.addImgThirdStepWrap
                 }
               >
-                <p className={css.addImgLabelThirdStep}>
-                  {data.category === 'your pet'
+                <p className={css.inputLabel}>
+                  {/* {data.category === 'your pet'
                     ? 'Add photo'
-                    : 'Load the pet’s image:'}
+                    : 'Load the pet’s image:'} */}
+                  Add photo
                 </p>
                 <label htmlFor="file" className={css.addImg}>
-                  <AiOutlinePlus size={30} color="#54ADFF" />
+                  {values.image !== '' ? (
+                    <img
+                      width="100%"
+                      src={URL.createObjectURL(values.image)}
+                      alt="pet"
+                    />
+                  ) : (
+                    <AiOutlinePlus size={30} color="#54ADFF" />
+                  )}
                 </label>
-                <Field
+                <input
                   type="file"
                   name="image"
                   id="file"
                   className={css.addImgInput}
+                  onChange={e => setFieldValue('image', e.target.files[0])}
                 />
               </div>
             </div>

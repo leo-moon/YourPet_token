@@ -1,10 +1,14 @@
-// import { Formik, Form } from 'formik';
 // import { object, string, number, date, InferType } from 'yup';
 import { useState } from 'react';
+// import { dispatch } from 'react/redux';
 
 import FirstStep from './FirstStep/FirstStep';
 import SecondStep from './SecondStep/SecondStep';
 import ThirdStep from './ThirdStep/ThirdStep';
+
+import * as API from '../../shared/servises/add-pet-page-api';
+
+// import { fetchAddPet } from 'redux/pets/pets-operations';
 
 import css from './AddPetPage.module.scss';
 
@@ -31,19 +35,34 @@ const AddPetPage = () => {
   const [data, setData] = useState(initialData);
   const [currentStep, setCurrentStep] = useState(0);
   const [status, setStatus] = useState(initialStatus);
-  console.log(data);
 
-  const makeRequest = async formData => {
-    console.log('Form submited', formData);
+  const makeRequest = async () => {
+    const values = Object.entries(data);
+    let formData = new FormData();
+
+    values.forEach(el => {
+      if (el[1] === '') return;
+
+      formData.append(el[0], el[1]);
+    });
+    try {
+      await API.postUserPet(formData);
+
+      setData(initialData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(data);
+      makeRequest();
+
       return;
     }
+
     setCurrentStep(prev => prev + 1);
   };
 
@@ -102,7 +121,13 @@ const AddPetPage = () => {
             : css.formWrapper
         }
       >
-        <h1 className={currentStep === 2 ? css.titleThirdStep : css.title}>
+        <h1
+          className={
+            currentStep === 2 && data.category !== 'your pet'
+              ? css.titleThirdStep
+              : css.title
+          }
+        >
           {getCurrentTitle()}
         </h1>
         <div className={css.categoryTitleWrapper}>

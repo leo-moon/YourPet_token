@@ -1,17 +1,7 @@
-import { instance } from './user-api';
+import instance from '../../redux/auth/auth';
 
-export const getAllContacts = async () => {
-  const { data } = await instance.get('/contacts');
-
-  return data;
-};
-
-export const addContact = async ({ name, phone: number }) => {
-  const { data } = await instance.post(`/contacts`, { name, number });
+export const postUserPet = async petData => {
+  const { data } = await instance.post('api/user/pets/adduserpet', petData);
 
   return data;
-};
-
-export const deleteContact = async id => {
-  instance.delete(`/contacts/${id}`);
 };
