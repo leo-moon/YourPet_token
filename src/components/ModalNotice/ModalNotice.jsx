@@ -8,7 +8,6 @@ const ModalNotice = ({
   id,
   onClose,
   onAddDelete,
-  categoryNotice,
   favorite,
   _id,
   noticeAvatar,
@@ -29,7 +28,7 @@ const ModalNotice = ({
   //   const notice = useSelector(state => state.notice);
   const notice = useSelector(state => state.notice);
 
-  const formatDate = date => {
+  const dateOfBirth = date => {
     const dateFormat = new Date(date);
     return `${
       dateFormat.getMonth() + 1 < 10
@@ -62,7 +61,7 @@ const ModalNotice = ({
                       alt={name}
                     />
                     <span className={scss.modal_notice__category}>
-                      {categoryNotice(category)}
+                      {category}
                     </span>
                   </div>
                   <div>
@@ -79,7 +78,7 @@ const ModalNotice = ({
                           Birthday:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {formatDate(dateOfBirth)}
+                          {dateOfBirth}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
