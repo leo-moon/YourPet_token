@@ -3,13 +3,15 @@
   align-items: center;
   align-items: center;
   justify-content: center;
-    @media screen and (max-width: 767px) {
-      display: none;
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 }
 
 .login {
   display: flex;
+  text-align: center;
+  justify-content: center;
   font-family: 'Manrope', sans-serif;
   margin-right: 20px;
   font-style: normal;
@@ -17,7 +19,8 @@
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  padding: 9px 41px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   color: #fef9f9;
   text-decoration: none;
   background-color: #ffc107;
@@ -26,13 +29,17 @@
 }
 
 .register {
+  display: flex;
+  text-align: center;
+  justify-content: center;
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  padding: 9px 20px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   color: #ffc107;
   text-decoration: none;
   background-color: #fef9f9;
@@ -41,5 +48,5 @@
 }
 
 .icon {
- margin-left: 8px;
+  margin-left: 8px;
 }

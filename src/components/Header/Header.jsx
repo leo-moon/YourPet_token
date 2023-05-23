@@ -48,30 +48,40 @@ const Header = () => {
                 </div>
               ) : (
                 <div className={css.authNavigateMob}>
-                  <NavLink className={css.login} to="/login" onClick={toggle} style={{ width: 95 }}>
+                  <NavLink
+                    className={css.login}
+                    to="/login"
+                    onClick={toggle}
+                    style={{ width: 165 }}
+                  >
                     LogiIN
                     <img className={css.icon} src={pawprint} alt="pawprint" />
                   </NavLink>
                   <NavLink
-                  className={css.register}
+                    className={css.register}
                     to="/register"
                     onClick={toggle}
-                    style={{ width: 144 }}
+                    style={{ width: 165 }}
                   >
                     Registation
                   </NavLink>
                 </div>
               )}
-
-              <NavLink to="/news" onClick={toggle}>
-                News
-              </NavLink>
-              <NavLink to="/notices/sell" onClick={toggle}>
-                Find pet
-              </NavLink>
-              <NavLink to="/friends" onClick={toggle}>
-                Our friends
-              </NavLink>
+              <div className={css.navdiv}>
+                <NavLink className={css.link} to="/news" onClick={toggle}>
+                  News
+                </NavLink>
+                <NavLink
+                  className={css.link}
+                  to="/notices/sell"
+                  onClick={toggle}
+                >
+                  Find pet
+                </NavLink>
+                <NavLink className={css.link} to="/friends" onClick={toggle}>
+                  Our friends
+                </NavLink>
+              </div>
             </div>
           </div>
         )}
