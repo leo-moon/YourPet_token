@@ -21,25 +21,25 @@ const RegisterPage = () => {
   const handleSignup = data => {
     const { email, password, confirmPassword } = data;
     const dataSent = { email, password };
-    console.log(data);
+    // console.log(data);
     // setModalActive(true);
     // Check password and confirmPassword (boolean)
-    console.log(password, confirmPassword);
+    // console.log(password, confirmPassword);
     if (password !== confirmPassword)
-      return alert('confirmPassword must be same like password');
+      return alert('confirmPassword must match the password');
 
     const sendData = async () => {
       try {
         const result = await dispatch(signup(dataSent));
-        console.log(result);
+        // console.log(result);
         const { payload } = result;
-        if (payload.id) {
+        if (payload.email || payload.token) {
           setModalActive(true);
           localStorage.setItem('user', JSON.stringify(payload));
         }
         if (payload.status === 409) return alert('Email in use');
       } catch ({ response }) {
-        console.log(response.error.message);
+        // console.log(response.error.message);
       }
     };
     sendData();

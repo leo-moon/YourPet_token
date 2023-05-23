@@ -11,7 +11,7 @@ import eyeClosed from '../../../images/icons/svg/eye-closed.svg';
 
 const RegisterForm = ({ onSubmit }) => {
   const handleSignup = onSubmit;
-  console.log('onSubmit', handleSignup);
+  // console.log('onSubmit', handleSignup);
 
   const [icon, setIcon] = useState(eyeClosed);
   const [inputType, setInputType] = useState('password');
