@@ -33,3 +33,36 @@
             margin-bottom: 0px;
             }
 }
+
+.photo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 182px;
+        height: 182px;
+        background-color: #CCE4FB;
+        border-radius: 40px;
+}
+
+.editPhotoWrapper {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-top: 14px;
+}
+
+.editPhotoTitle {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.83;
+        letter-spacing: 0.04em;
+
+        margin-left: 8px;
+}
+
+.formWrapper {
+        margin-right: auto;
+}
