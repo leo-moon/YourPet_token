@@ -5,9 +5,9 @@ import * as api from './auth';
 
 axios.defaults.baseURL = 'https://your-pet.onrender.com/';
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
