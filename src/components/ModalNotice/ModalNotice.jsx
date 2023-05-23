@@ -28,7 +28,7 @@ const ModalNotice = ({
   //   const notice = useSelector(state => state.notice);
   const notice = useSelector(state => state.notice);
 
-  const dateOfBirth = date => {
+  const formatDate = date => {
     const dateFormat = new Date(date);
     return `${
       dateFormat.getMonth() + 1 < 10
@@ -78,7 +78,7 @@ const ModalNotice = ({
                           Birthday:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {dateOfBirth}
+                          {formatDate(dateOfBirth)}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
