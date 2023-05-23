@@ -27,7 +27,7 @@ const ModalNotice = ({
   // const loading = useSelector(state => state.notices.loading);
   // const loading = useSelector(selectLoading);
   //   const notice = useSelector(state => state.notice);
-  const notice = useSelector(state => state.notices.notice);
+  const notice = useSelector(state => state.notice);
 
   const formatDate = date => {
     const dateFormat = new Date(date);
@@ -151,7 +151,7 @@ const ModalNotice = ({
                 </article>
                 <div className={scss.modal_notice__button_container}>
                   <a
-                    href={`tel:+${notice.phone}`}
+                    href={`tel:+${owner.phone}`}
                     className={`${scss.button__primary_main} ${scss.modal_notice__button} ${scss.modal_notice__button_contact}`}
                     type="button"
                   >
