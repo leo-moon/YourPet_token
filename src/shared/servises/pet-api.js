@@ -10,16 +10,28 @@ return data;
 
 
 
-// export const ApiFavorite = async () => {
-//   const { data } = await axios.get(`https://your-pet.onrender.com/api/notices/userfavoritenotices`);
-//   return data;
-// };
+export const ApiFavorite = async (token) => {
+const { data } =
+    await axios.get(`https://your-pet.onrender.com/api/notices/userfavoritenotices`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+  return data;
+};
 
-// export const ApiMyOwn = async () => {
-//   const { data } = await axios.get(`https://your-pet.onrender.com/api/notices/mynotices`);
-//   console.log(data)
-//   return data;
-// };
+export const ApiMynotices = async (token) => {
+const { data } =
+    await axios.get(`https://your-pet.onrender.com/api/notices/mynotices`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+  return data;
+};
+
 
 
 
