@@ -37,46 +37,46 @@ export const login = createAsyncThunk(
   }
 );
 
-// export const current = createAsyncThunk(
-//   'auth/current',
-//   async (_, { rejectWithValue, getState }) => {
-//     try {
-//       const { auth } = getState();
-//       const data = await api.getCurrent(auth.token);
-//       return data;
-//     } catch ({ response }) {
-//       return rejectWithValue(response);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const { auth } = getState();
-//       if (!auth.token) {
-//         return false;
-//       }
-//     },
-//   }
-// );
-
 export const current = createAsyncThunk(
   'auth/current',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
+  async (_, { rejectWithValue, getState }) => {
     try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get('/api/auth/users/current');
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const { auth } = getState();
+      const data = await api.getCurrent(auth.token);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
   }
 );
+
+// export const current = createAsyncThunk(
+//   'auth/current',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+
+//     if (persistedToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+
+//     try {
+//       setAuthHeader(persistedToken);
+//       const res = await axios.get('/api/auth/users/current');
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk(
   'auth/logout',

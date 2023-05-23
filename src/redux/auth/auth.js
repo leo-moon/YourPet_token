@@ -16,9 +16,7 @@ export const signup = async data => {
     '/api/auth/users/register',
     data
   );
-  // const { data: result } = await instance.post('/users/register', data);
-  // setToken(result.token);
-  // localStorage.setItem('user', JSON.stringify(result));
+  setToken(result.token);
   return result;
 };
 
@@ -31,7 +29,7 @@ export const login = async data => {
 export const getCurrent = async token => {
   try {
     setToken(token);
-    const { data } = await instance.get('/users/current');
+    const { data } = await instance.get('/api/auth/users/current');
     return data;
   } catch (error) {
     setToken();
