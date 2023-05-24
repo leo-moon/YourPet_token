@@ -60,9 +60,9 @@ const FirstStep = ({ data, next, setStatus, currentStep }) => {
           />
 
           <label
-            htmlFor="lost/found"
+            htmlFor="lost-found"
             className={
-              values.category === 'lost/found'
+              values.category === 'lost-found'
                 ? css.activeCategoryLabel
                 : css.categoryLabel
             }
@@ -72,15 +72,15 @@ const FirstStep = ({ data, next, setStatus, currentStep }) => {
           <Field
             type="radio"
             name="category"
-            value="lost/found"
+            value="lost-found"
             className={css.category}
-            id="lost/found"
+            id="lost-found"
           />
 
           <label
-            htmlFor="in good gands"
+            htmlFor="for-free"
             className={
-              values.category === 'in good gands'
+              values.category === 'for-free'
                 ? css.activeCategoryLabel
                 : css.categoryLabel
             }
@@ -90,9 +90,9 @@ const FirstStep = ({ data, next, setStatus, currentStep }) => {
           <Field
             type="radio"
             name="category"
-            value="in good gands"
+            value="for-free"
             className={css.category}
-            id="in good gands"
+            id="for-free"
           />
 
           <div className={css.btnsFirstStepWrap}>
