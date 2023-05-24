@@ -1,7 +1,7 @@
 import scss from './modal-notice.module.scss';
 import Loader from 'components/Loader/Loader';
-import SvgX from 'images/eye-closed.svg';
-import SvgH from 'images/heart.svg';
+import SvgX from 'images/cross-small.svg';
+import SvgH from 'images/icons/HeartIcon';
 import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 
