@@ -8,7 +8,6 @@ const ModalNotice = ({
   id,
   onClose,
   onAddDelete,
-  categoryNotice,
   favorite,
   _id,
   noticeAvatar,
@@ -62,7 +61,7 @@ const ModalNotice = ({
                       alt={name}
                     />
                     <span className={scss.modal_notice__category}>
-                      {categoryNotice(category)}
+                      {category}
                     </span>
                   </div>
                   <div>
