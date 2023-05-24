@@ -17,8 +17,12 @@ import { getFavorite, getUserId, getUser} from '../../redux/auth/auth-selectors'
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
-  fetchDeleteNotice,
 } from '../../redux/notices/noticesOperations';
+// import {
+//   fetchAddToFavorite,
+//   fetchRemoveFromFavorite,
+//   fetchDeleteNotice,
+// } from '../../redux/notices/noticesOperations';
 
 
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -106,23 +110,23 @@ const NoticeCategoryItem = ({
   };
   const checkFavorite = _id => {
     // if (favorites.includes(_id)) {
-    if (_id===_id) {
+    if (_id === userId) {
       return true;
     }
     return false;
   };
 
-  const checkOwner = owner => {
-    if (owner === userId) {
-      return true;
-    }
-    return false;
-  };
-  const handleDelete = _id => {
-    console.log(_id);
-    dispatch(fetchDeleteNotice(_id));
-    toasty.toastSuccess('Deleted successful');
-  };
+  // const checkOwner = owner => {
+  //   if (owner === userId) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+  // const handleDelete = _id => {
+  //   console.log(_id);
+  //   dispatch(fetchDeleteNotice(_id));
+  //   toasty.toastSuccess('Deleted successful');
+  // };
   
   return (
     <li key={_id} className={css.listItems}>
