@@ -214,6 +214,7 @@ input::placeholder {
    height: 112px;
    background-color: #CCE4FB;
    border-radius: 20px;
+   overflow: hidden;
 }
 
 .addImgInput {
@@ -396,12 +397,12 @@ input::placeholder {
    }
 
    .addImgWrap {
-      flex-direction: column;
       gap: 33px;
    }
 
    .addImgThirdStepWrap {
       composes: addImgWrap;
+      flex-direction: column;
       gap: 8px;
    }
 
@@ -454,10 +455,10 @@ input::placeholder {
          margin-left: 97px;
       }
 
-      .addImgLabelThirdStep {
-         composes: inputLabel;
-         font-size: 18px;
-      }
+      // .addImgLabelThirdStep {
+      //    composes: inputLabel;
+      //    font-size: 18px;
+      // }
 }
 
 

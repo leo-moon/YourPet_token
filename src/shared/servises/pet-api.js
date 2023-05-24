@@ -31,7 +31,3 @@ const { data } =
         });
   return data;
 };
-
-
-
-

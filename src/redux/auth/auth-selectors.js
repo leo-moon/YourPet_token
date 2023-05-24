@@ -13,3 +13,7 @@ export const selectAuth = ({ auth }) => {
 export const selectLoading = ({ auth }) => auth.loading;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+
+export const getFavorite = ({ auth }) => auth.favorite;
+
+export const getUserId = ({ auth }) => auth.user._id;

@@ -1,9 +1,16 @@
+// import { object, string, number, date, InferType } from 'yup';
 import { Formik, Field, Form } from 'formik';
 import { BiArrowBack } from 'react-icons/bi';
 
 import PawIcon from 'images/icons/AddPetPageIcons/PawIcon';
 
 import css from '../AddPetPage.module.scss';
+
+// const schema = object({
+//   namePet: string().min(2).max(16).required(),
+//   dateOfBirth: number().required().positive().integer(),
+//   breed: string().required(),
+// });
 
 const SecondStep = ({ data, next, prev, setStatus }) => {
   const handleSubmit = values => {
