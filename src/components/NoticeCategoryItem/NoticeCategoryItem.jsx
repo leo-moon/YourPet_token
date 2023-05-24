@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import * as toasty from '../../shared/toastify/toastify';
+import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from '../images/icons/ClockIcon';
 import FemaleIcon from '../images/icons/FemaleIcon';
 import LocationIcon from '../images/icons/LocationIcon';
@@ -11,6 +12,14 @@ import Button from '../ButtonNotices/ButtonNotices';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import Modal from '../Modal/Modal';
+import { getFavorite, getUserId, getUser} from '../../redux/auth/auth-selectors';
+
+import {
+  fetchAddToFavorite,
+  fetchRemoveFromFavorite,
+  fetchDeleteNotice,
+} from '../../redux/notices/noticesOperations';
+
 
 import ModalNotice from '../ModalNotice/ModalNotice';
 
@@ -30,14 +39,90 @@ const NoticeCategoryItem = ({
   owner,
   name,
 }) => {
-  // const user = useSelector(getUser);
+  const user = useSelector(getUser);
   const isLoggedIn = useSelector(isUserLogin);
 
+  const favorites = useSelector(getFavorite);
+  const userId = useSelector(getUserId);
+    
+
+  
+  console.log(user);
+  console.log(favorites);
+  console.log(userId);
+
+
+ const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
-  const date = new Date();
-  const thisYear = Number(date.getFullYear());
-  const age = Number(dateOfBirth.slice(6, 10) - thisYear);
+  // const date = new Date();
+  // const thisYear = Number(date.getFullYear());
+  // const age = Number(dateOfBirth.slice(6, 10) - thisYear);
+  function getAge(dateOfBirth) {
+    const ymdArr = dateOfBirth.split('.').map(Number).reverse();
+    ymdArr[1]--;
+    const bornDate = new Date(...ymdArr);
+
+    const now = new Date();
+
+    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
+
+    now.setDate(now.getDate() - Math.floor(leapYears));
+
+    const nowAsTimestamp = now.getTime();
+    const bornDateAsTimestamp = bornDate.getTime();
+
+    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
+
+    const oneYearInMs = 3.17098e-11;
+
+    const age = Math.floor(ageAsTimestamp * oneYearInMs);
+    return age;
+  }
+
+  const age = getAge(dateOfBirth);
+
+  const handleFavoriteToggle = async () => {
+    if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
+    if (favorites.includes(_id)) {
+      try {
+        dispatch(fetchRemoveFromFavorite(_id));
+        toasty.toastSuccess('remove from favorite');
+        
+        return;
+      } catch (e) {
+        toasty.toastError(e.message);
+      }
+    } else {
+      try {
+        dispatch(fetchAddToFavorite(_id));
+        toasty.toastSuccess('add to favorite');
+       
+        return;
+      } catch (e) {
+        toasty.toastError(e.message);
+      }
+    }
+  };
+  const checkFavorite = _id => {
+    // if (favorites.includes(_id)) {
+    if (_id===_id) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkOwner = owner => {
+    if (owner === userId) {
+      return true;
+    }
+    return false;
+  };
+  const handleDelete = _id => {
+    console.log(_id);
+    dispatch(fetchDeleteNotice(_id));
+    toasty.toastSuccess('Deleted successful');
+  };
   
   return (
     <li key={_id} className={css.listItems}>
@@ -52,18 +137,19 @@ const NoticeCategoryItem = ({
           <p className={css.categoryInfo}>{category}</p>
           {isLoggedIn && (
             <div>
-              <Button
-                className={css.topBtn}
-                SVGComponent={() => (
-                  <HeartIcon
-                    className={
-                      css.favorite
-                        ? `${css.icons} ${css.favoriteIcon}`
-                        : css.icons
-                    }
-                  />
-                )}
-              />
+             <Button
+              onClick={handleFavoriteToggle}
+              className={css.topBtn}
+              SVGComponent={() => (
+                <HeartIcon
+                  className={
+                    checkFavorite(_id)
+                      ? `${css.icons} ${css.favoriteIcon}`
+                      : css.icons
+                  }
+                />
+              )}
+            />
               <Button
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
@@ -96,8 +182,7 @@ const NoticeCategoryItem = ({
         <Button
           className={css.learnBtn}
           onClick={openModal}
-          //  нужно проверить отклик модального окна при нажатии на " Learn more"
-        >
+                >
           Learn more
         </Button>
         {isModalOpen && (
