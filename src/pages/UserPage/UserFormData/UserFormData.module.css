@@ -1,9 +1,38 @@
-.form {
-    margin-top: 20px;
+/* .formWrapper{
+    @media screen and (min-width: 768px) {
             
+            display: flex;
+            flex-direction: row-reverse;
+    
+        }
+    
         @media screen and (min-width: 1280px) {
-            margin-top: 25px;
-                
+             flex-direction: column;
+                    }
+} */
+
+.form {
+        @media screen and (min-width: 768px) {
+            
+            display: flex;
+            flex-direction: row-reverse;
+            
+                }
+        @media screen and (min-width: 1280px) {     
+            flex-direction: column;
+        }
+}
+
+.formFieldWrapper {
+    margin-right: auto;
+    margin-top: 20px;
+    
+        @media screen and (min-width: 768px) {
+            margin-top: 0px;    
+        }
+    
+        @media screen and (min-width: 1280px) {
+            margin-top: 25px;     
         }
 }
 
@@ -62,9 +91,43 @@
         line-height: 1.37;
             
         }
+       
+}
 
-    
-        
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.photo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.editPhotoWrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+.editPhotoTitle {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.83;
+    letter-spacing: 0.04em;
+
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .editIcon {
@@ -72,3 +135,21 @@
     right: 12px;
 }
 
+.uploadbtn {
+    display: none;
+}
+
+/* .submitting svg {
+    
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+} */

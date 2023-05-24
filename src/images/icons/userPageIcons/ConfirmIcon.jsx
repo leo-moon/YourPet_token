@@ -1,17 +1,17 @@
 import * as React from 'react';
 
-function CloseIcon(props) {
+function ConfirmIcon(props) {
   return (
     <svg
-      width={16}
-      height={16}
-      viewBox="0 0 16 16"
+      width={18}
+      height={13}
+      viewBox="0 0 18 13"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M15 1L1 15M1.00004 1L15 15"
+        d="M17 1L6 12L1 7"
         stroke={props.color}
         strokeWidth={2}
         strokeLinecap="round"
@@ -21,4 +21,4 @@ function CloseIcon(props) {
   );
 }
 
-export default CloseIcon;
+export default ConfirmIcon;
