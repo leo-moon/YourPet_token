@@ -50,8 +50,8 @@ const NoticeCategoryItem = ({
   const userId = useSelector(getUserId);
     
 
-  
   console.log(user);
+  console.log(_id);
   console.log(favorites);
   console.log(userId);
 
@@ -128,6 +128,16 @@ const NoticeCategoryItem = ({
   //   toasty.toastSuccess('Deleted successful');
   // };
   
+  const getCategoryNotice = category => {
+    if (category === "for-free") {
+      category = "in good hands";
+    }
+    if (category === "lost-found") {
+      category = "lost/found";
+    }
+    return category;
+  }
+  
   return (
     <li key={_id} className={css.listItems}>
       <div className={css.imageThumb}>
@@ -138,7 +148,7 @@ const NoticeCategoryItem = ({
           width="280"
         />
         <div className={css.topBlock}>
-          <p className={css.categoryInfo}>{category}</p>
+          <p className={css.categoryInfo}>{getCategoryNotice(category)}</p>
           {isLoggedIn && (
             <div>
              <Button
