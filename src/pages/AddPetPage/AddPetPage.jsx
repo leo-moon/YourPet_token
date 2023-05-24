@@ -6,7 +6,7 @@ import FirstStep from './FirstStep/FirstStep';
 import SecondStep from './SecondStep/SecondStep';
 import ThirdStep from './ThirdStep/ThirdStep';
 
-import * as API from '../../shared/servises/add-pet-page-api';
+import * as API from 'shared/servises/add-pet-page-api';
 
 // import { fetchAddPet } from 'redux/pets/pets-operations';
 

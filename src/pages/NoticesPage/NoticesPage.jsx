@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
 
-import { ApiCategoriBySearch, ApiFavorite,ApiMynotices } from './../../shared/servises/pet-api';
+import {
+  ApiCategoryBySearchAndCategory,
+  ApiFavoriteCategory,
+  ApiMynoticesCategory,
+} from './../../shared/servises/pet-api';
 import NoticesSearch from '../../components/NoticesSearch/NoticesSearch';
 import Menu from '../../components/NoticesCategoriesNav/NoticesCategoriesNav.jsx';
 import NoticesCategoriesList from '../../components/NoticesCategoriesList/NoticesCategoriesList.jsx';
@@ -12,98 +16,95 @@ import styles from './noticesPage.module.css';
 import { useSelector } from 'react-redux';
 import { selectAuth } from './../../redux/auth/auth-selectors';
 
-
 const NoticePage = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
-
-  console.log("items", items);
-
+  console.log('items', items);
   const { token } = useSelector(selectAuth);
-  console.log("tokenNoticesPage", token)
-  
-  useEffect(() => {
-    const fetchFavoritePet = async () => {
-      try {
-        setLoading(true);
-        const data = await ApiFavorite(token);
-        console.log("dataFavorite",data)
-        setItems(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFavoritePet();
-  }, [setItems, setError, setLoading, token]);
-  
-    useEffect(() => {
-    const fetchMynotices = async () => {
-      try {
-        setLoading(true);
-        const data = await ApiMynotices(token);
-        console.log("dataFavorite",data)
-        setItems(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMynotices();
-  }, [setItems, setError, setLoading,token]);
-
 
   const { category } = useParams();
-  console.log("category",category);
+  console.log('category', category);
   const [searchParams, setSearchParams] = useSearchParams();
+  const searchPetByTitle = ({ search }) => {
+    setSearchParams({ search });
+  };
 
   useEffect(() => {
     const currentSearch = searchParams.get('search');
-    console.log("currentSearch",currentSearch);
+
     if (currentSearch) {
       setSearch(currentSearch);
     }
   }, [searchParams]);
 
-
   useEffect(() => {
-    const fetchCategoriBySearch = async () => {
-      try {
-        setLoading(true);
-        const data = await ApiCategoriBySearch(category, search);
+    if (
+      category === 'sell' ||
+      category === 'lost-found' ||
+      category === 'for-free'
+    ) {
+      const fetchNoticesByCategory = async (category, search) => {
+        try {
+          setLoading(true);
+          const data = await ApiCategoryBySearchAndCategory(category, search);
+          setItems(data);
+          setError(null);
+          return data;
+        } catch (error) {
+          setError(error.message);
+          setItems([]);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchNoticesByCategory(category, search);
+    } else if (category === 'favorite') {
+      const fetchFavoriteCategory = async () => {
+        try {
+          setLoading(true);
+          const data = await ApiFavoriteCategory(token);
+          setItems(data);
+          return data;
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-        console.log("data",data);
-        setItems(data);
-        setError(null);
-        
-      } catch (error) {
-        setError(error.message);
-         setItems([])
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCategoriBySearch();
-  }, [setItems, setError, setLoading, search, category]);
-
-  const searchPetByTitle = ({ search }) => {
-    setSearchParams({ search });
-  };
+      fetchFavoriteCategory();
+    } else if (category === 'own') {
+      const fetchOwnCategory = async () => {
+        try {
+          setLoading(true);
+          const data = await ApiMynoticesCategory(token);
+          setItems(data);
+          return data;
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchOwnCategory();
+    }
+  }, [category, search, token]);
 
   return (
     <div className={styles.container}>
       <NoticesSearch onSubmit={searchPetByTitle} />
       <Menu />
       {loading && <Loader />}
-      {error && <p>...error</p>}
+      {error && <p className={styles.error}>...error</p>}
       {items && <NoticesCategoriesList items={items} />}
-
     </div>
   );
 };
 
 export default NoticePage;
+
+//   if(search !== ""){
+//   setSearch("")
+// }
