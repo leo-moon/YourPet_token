@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // const baseURL = 'https://api.themoviedb.org/3';
 
-export const ApiCategoriBySearch = async (category,searchQuery) => {
+export const ApiCategoryBySearchAndCategory = async (category,searchQuery) => {
 const { data } =
 await axios.get(`https://your-pet.onrender.com/api/notices?category=${category}&search=${searchQuery}`)
 return data;
@@ -10,7 +10,7 @@ return data;
 
 
 
-export const ApiFavorite = async (token) => {
+export const ApiFavoriteCategory = async (token) => {
 const { data } =
     await axios.get(`https://your-pet.onrender.com/api/notices/userfavoritenotices`,
         {
@@ -21,7 +21,7 @@ const { data } =
   return data;
 };
 
-export const ApiMynotices = async (token) => {
+export const ApiMynoticesCategory = async (token) => {
 const { data } =
     await axios.get(`https://your-pet.onrender.com/api/notices/mynotices`,
         {
