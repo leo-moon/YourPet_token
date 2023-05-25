@@ -97,6 +97,7 @@ const NoticeCategoryItem = ({
       user: { favorite: fav },
     } = userId;
     console.log(fav);
+  
     // console.log(idd);
     // if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
     if (fav.includes(_id)) {
@@ -110,6 +111,7 @@ const NoticeCategoryItem = ({
       }
     } else {
       try {
+        console.log(_id);
         dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
 
