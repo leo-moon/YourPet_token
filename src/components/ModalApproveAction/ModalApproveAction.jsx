@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/operations';
+// import { logOut } from 'redux/auth/operations';
+import { logout } from 'redux/auth/auth-operations';
 import scss from './modal-approve-action.module.scss'
 import PropTypes from 'prop-types';
 
@@ -9,7 +10,7 @@ const ModalApproveAction = ({ onClose }) => {
 
   const handleLogOut = () => {
    onClose();
-    dispatch(logOut());
+    dispatch(logout());
   };
 
   return (
