@@ -9,16 +9,16 @@ import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 const ModalNotice = (data, favorite, checkFavorite) => {
   const loading = useSelector(selectLoading);
 
-  const formatDate = ({ dateOfBirth }) => {
-    if (!dateOfBirth) {
-      const formatedDate = '00.00.0000';
-      return formatedDate;
-    }
-    const birthDateToObject = new Date(dateOfBirth);
-    const formatedDate =
-      birthDateToObject.toLocaleDateString('ua') || '00.00.0000';
-    return formatedDate;
-  };
+  // const formatDate = ({ dateOfBirth }) => {
+  //   if (!dateOfBirth) {
+  //     const formatedDate = '00.00.0000';
+  //     return formatedDate;
+  //   }
+  //   const birthDateToObject = new Date(dateOfBirth);
+  //   const formatedDate =
+  //     birthDateToObject.toLocaleDateString('ua') || '00.00.0000';
+  //   return formatedDate;
+  // };
 
 
 
