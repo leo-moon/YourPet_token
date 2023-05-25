@@ -14,11 +14,6 @@ import useToggleModalApproveAction from '../../hooks/useToggleModalModalApproveA
 import Modal from '../Modal/Modal';
 import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
 import { getFavorite, getUserId} from '../../redux/auth/auth-selectors';
-
-// import {
-//   fetchAddToFavorite,
-//   fetchRemoveFromFavorite,
-// } from '../../redux/notices/noticesOperations';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
