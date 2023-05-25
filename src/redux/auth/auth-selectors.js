@@ -17,3 +17,5 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const getFavorite = ({ auth }) => auth.favorite;
 
 export const getUserId = ({ auth }) => auth.user._id;
+
+export const selectError = ({ auth }) => auth.error;
