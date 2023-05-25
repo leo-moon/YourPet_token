@@ -1,0 +1,26 @@
+.div {
+  display: flex;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #ffc107;
+}
+
+.icon {
+  margin-right: 12px;
+}
+@media screen and (max-width: 767px) {
+  .icon {
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .name {
+    display: none;
+  }
+}/*# sourceMappingURL=UserNav.module.css.map */

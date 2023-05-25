@@ -1,14 +1,17 @@
 import scss from './modal-notice.module.scss';
 import Loader from 'components/Loader/Loader';
-import SvgX from 'images/cross-small.svg';
+import { CloseIcon } from 'images/icons/userPageIcons';
 import SvgH from 'images/icons/HeartIcon';
 import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
+import useToggleModalWindow from '../../hooks/useToggleModalWindow';
+// import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+// import Modal from '../Modal/Modal';
 
 const ModalNotice = ({
   id,
   onClose,
-  onAddDelete,
+  deletePet,
   favorite,
   _id,
   noticeAvatar,
@@ -28,7 +31,7 @@ const ModalNotice = ({
   // const loading = useSelector(selectLoading);
   //   const notice = useSelector(state => state.notice);
   const notice = useSelector(state => state.notice);
-
+  
   const formatDate = date => {
     const dateFormat = new Date(date);
     return `${
@@ -42,6 +45,18 @@ const ModalNotice = ({
     }.${dateFormat.getFullYear()}`;
   };
 
+  const { closeModal } = useToggleModalWindow();
+
+  const getCategoryNotice = category => {
+    if (category === "for-free") {
+      category = "in good hands";
+    }
+    if (category === "lost-found") {
+      category = "lost/found";
+    }
+    return category;
+  }
+
   return (
     <>
       {loading ? (
@@ -52,20 +67,24 @@ const ModalNotice = ({
             <li key={_id} className={scss.listItems}>
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
-                  <div className={scss.modal_notice__close} onClick={onClose}>
-                    <SvgX id="icon-close" />
+                  <div >
+                  <button onClick={closeModal}  >
+          <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close} width="24" height="24"/>
+        </button>
                   </div>
                   <div className={scss.modal_notice__image_content}>
                     <img
                       className={scss.modal_notice__image}
                       src={noticeAvatar}
-                      alt={name}
+                      alt={title}
                     />
-                    <span className={scss.modal_notice__category}>
-                      {category}
+                    <div className={scss.modal_notice__category}>
+                    <span className={scss.modal_notice__category_info}>
+                      {getCategoryNotice(category)}
                     </span>
+                    </div>
                   </div>
-                  <div>
+                  <div className={scss.modal_notice__full}>
                     <h3 className={scss.modal_notice__title}>{title}</h3>
                     <ul className={scss.modal_notice__list}>
                       <li className={scss.modal_notice__item}>
@@ -124,7 +143,7 @@ const ModalNotice = ({
                         </h4>
                         <a
                           href={`tel:+${owner.phone}`}
-                          className={`${scss.modal_notice__item_description} ${scss.modal_notice__item_description_link}`}
+                          className={`${scss.modal_notice__item_description}`}
                           type="button"
                         >
                           {`+${owner.phone}`}
@@ -149,10 +168,10 @@ const ModalNotice = ({
                   </span>
                   {comments}
                 </article>
-                <div className={scss.modal_notice__button_container}>
+                <div>
                   <a
                     href={`tel:+${owner.phone}`}
-                    className={`${scss.button__primary_main} ${scss.modal_notice__button} ${scss.modal_notice__button_contact}`}
+                    className={`${scss.modal_notice__button_contact}`}
                     type="button"
                   >
                     Contact
@@ -160,30 +179,30 @@ const ModalNotice = ({
                   {favorite && (
                     <button
                       onClick={() => {
-                        onAddDelete(id);
+                        deletePet(id);
                       }}
-                      className={`${scss.button__primary_not_main} ${scss.modal_notice__button}`}
+                      className={`${scss.modal_notice__button_favorite}`}
                       type="button"
                     >
                       Remove
-                      <SvgH
-                        className={scss.modal_notice__button_favorite}
-                        id="icon-heart-favorite"
+                      <SvgH color={'#ffffff'}
+                        className={scss.modal_notice__icon_favorite}
+                     
                       />
                     </button>
                   )}
                   {!favorite && (
                     <button
                       onClick={() => {
-                        onAddDelete(id);
+                        deletePet(id);
                       }}
-                      className={`${scss.button__primary_not_main} ${scss.modal_notice__button}`}
+                      className={`${scss.modal_notice__button_favorite}`}
                       type="button"
                     >
                       Add to
-                      <SvgH
-                        className={scss.modal_notice__button_favorite}
-                        id="icon-heart-favorite"
+                      <SvgH color={'#ffffff'}
+                        className={scss.modal_notice__icon_favorite}
+                        
                       />
                     </button>
                   )}
@@ -198,3 +217,5 @@ const ModalNotice = ({
 };
 
 export default ModalNotice;
+
+
