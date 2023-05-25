@@ -10,7 +10,7 @@ const Modal = ({ closeModal, children }) => {
     const handleDownInEscape = e => {
       if (e.code === 'Escape') {
         closeModal();
-      }
+       }
     };
     window.addEventListener('keydown', handleDownInEscape);
     return () => {
@@ -21,6 +21,8 @@ const Modal = ({ closeModal, children }) => {
   const handleDown = e => {
     if (e.currentTarget === e.target) 
     closeModal();
+
+    
     
   };
 

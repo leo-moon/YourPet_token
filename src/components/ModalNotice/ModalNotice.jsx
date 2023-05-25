@@ -44,7 +44,7 @@ const ModalNotice = (data, favorite, checkFavorite) => {
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
                   <div >
-                  <button  onClick={closeModal} type="button"  >
+                  <button  onClick={closeModal} type="button" aria-hidden="true" >
                     <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close } width="24" height="24"/>
                   </button>
                   </div>
