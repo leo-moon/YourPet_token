@@ -11,18 +11,20 @@ import MaleIcon from '../images/icons/MaleIcon';
 import Button from '../ButtonNotices/ButtonNotices';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
+import useToggleModalApproveAction from '../../hooks/useToggleModalModalApproveAction';
 import Modal from '../Modal/Modal';
+import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
 import { getFavorite, getUserId, getUser} from '../../redux/auth/auth-selectors';
 
-import {
-  fetchAddToFavorite,
-  fetchRemoveFromFavorite,
-} from '../../redux/notices/noticesOperations';
 // import {
 //   fetchAddToFavorite,
 //   fetchRemoveFromFavorite,
-//   fetchDeleteNotice,
 // } from '../../redux/notices/noticesOperations';
+import {
+  fetchAddToFavorite,
+  fetchRemoveFromFavorite,
+  fetchDeleteNotice,
+} from '../../redux/notices/noticesOperations';
 
 
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -58,6 +60,9 @@ const NoticeCategoryItem = ({
 
  const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
+  const { isModalOpenApprove, openModalApprove, closeModalApprove } =
+    useToggleModalApproveAction();
+
 
   // const date = new Date();
   // const thisYear = Number(date.getFullYear());
@@ -116,27 +121,27 @@ const NoticeCategoryItem = ({
     return false;
   };
 
-  // const checkOwner = owner => {
-  //   if (owner === userId) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-  // const handleDelete = _id => {
-  //   console.log(_id);
-  //   dispatch(fetchDeleteNotice(_id));
-  //   toasty.toastSuccess('Deleted successful');
-  // };
+  const checkOwner = owner => {
+    if (owner === userId) {
+      return true;
+    }
+    return false;
+  };
+  const handleDelete = _id => {
+ 
+    dispatch(fetchDeleteNotice(_id));
+    toasty.toastSuccess('Deleted successful');
+  };
   
-  const getCategoryNotice = category => {
-    if (category === "for-free") {
-      category = "in good hands";
-    }
-    if (category === "lost-found") {
-      category = "lost/found";
-    }
-    return category;
-  }
+  // const getCategoryNotice = category => {
+  //   if (category === "for-free") {
+  //     category = "in good hands";
+  //   }
+  //   if (category === "lost-found") {
+  //     category = "lost/found";
+  //   }
+  //   return category;
+  // }
   
   return (
     <li key={_id} className={css.listItems}>
@@ -147,11 +152,14 @@ const NoticeCategoryItem = ({
           alt={title}
           width="280"
         />
-        <div className={css.topBlock}>
-          <p className={css.categoryInfo}>{getCategoryNotice(category)}</p>
-          {isLoggedIn && (
-            <div>
-             <Button
+         <div className={css.topBlock}>
+          {category === 'for-free' ? (
+            <p className={css.categoryInfo}>in good hands</p>
+          ) : (
+            <p className={css.categoryInfo}>{category}</p>
+          )}
+          <div>
+            <Button
               onClick={handleFavoriteToggle}
               className={css.topBtn}
               SVGComponent={() => (
@@ -164,12 +172,22 @@ const NoticeCategoryItem = ({
                 />
               )}
             />
+            {checkOwner(owner) && (
               <Button
+                onClick={openModalApprove}
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
               />
-            </div>
-          )}
+            )}
+            {isModalOpenApprove && (
+              <ModalApproveAction
+                closeModal={closeModalApprove}
+                handleDelete={handleDelete}
+                _id={_id}
+                title={title}
+              />
+            )}
+          </div>
         </div>
         <div className={css.infoCardBlock}>
           <p className={css.noticeInfo}>
