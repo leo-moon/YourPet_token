@@ -1,0 +1,28 @@
+.div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1279px) {
+  .div {
+    display: none;
+  }
+}
+
+.item {
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  margin-right: 40px;
+  color: #111111;
+  text-decoration: none;
+}
+.item:hover, .item:focus {
+  color: #ffc107;
+}
+.item.active {
+  color: #ffc107;
+}/*# sourceMappingURL=Nav.module.css.map */
