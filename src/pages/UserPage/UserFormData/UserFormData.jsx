@@ -26,7 +26,7 @@ const UserFormData = () => {
   const [userData, setUserData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   // const [isEditable, setIsEditable] = useState(true);
-  const [isSubmittingData, setIsSubmittingData] = useState(false);
+  // const [isSubmittingData, setIsSubmittingData] = useState(false);
   const [activeField, setActiveField] = useState(null);
 
   const toggleEditable = field => {
@@ -153,7 +153,8 @@ const UserFormData = () => {
                   ) : (
                     <button className={css.editBtn} type="submit">
                       <ConfirmIcon
-                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        // color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        color={'#54ADFF'}
                       />
                     </button>
                   )}
@@ -182,7 +183,8 @@ const UserFormData = () => {
                   ) : (
                     <button className={css.editBtn} type="submit">
                       <ConfirmIcon
-                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        // color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        color={'#54ADFF'}
                       />
                     </button>
                   )}
@@ -210,7 +212,8 @@ const UserFormData = () => {
                   ) : (
                     <button className={css.editBtn} type="submit">
                       <ConfirmIcon
-                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        // color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        color={'#54ADFF'}
                       />
                     </button>
                   )}
@@ -237,7 +240,8 @@ const UserFormData = () => {
                   ) : (
                     <button className={css.editBtn} type="submit">
                       <ConfirmIcon
-                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        // color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        color={'#54ADFF'}
                       />
                     </button>
                   )}
@@ -264,7 +268,8 @@ const UserFormData = () => {
                   ) : (
                     <button className={css.editBtn} type="submit">
                       <ConfirmIcon
-                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        // color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                        color={'#54ADFF'}
                       />
                     </button>
                   )}
