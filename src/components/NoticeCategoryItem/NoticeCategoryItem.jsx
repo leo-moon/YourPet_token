@@ -118,6 +118,16 @@ const NoticeCategoryItem = ({
     dispatch(fetchDeleteNotice(_id));
     toasty.toastSuccess('Deleted successful');
   };
+
+  const getCategoryNotice = category => {
+    if (category === "for-free") {
+      category = "in good hands";
+    }
+    if (category === "lost-found") {
+      category = "lost/found";
+    }
+    return category;
+  }
   
   return (
     <li key={_id} className={css.listItems}>
@@ -132,7 +142,7 @@ const NoticeCategoryItem = ({
           {category === 'for-free' ? (
             <p className={css.categoryInfo}>in good hands</p>
           ) : (
-            <p className={css.categoryInfo}>{category}</p>
+            <p className={css.categoryInfo}>{getCategoryNotice(category)}</p>
           )}
           <div>
             <Button
