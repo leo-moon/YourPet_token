@@ -6,20 +6,22 @@ import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 
-const ModalNotice = (data, favorite, deletePet) => {
+const ModalNotice = (data, favorite, checkFavorite) => {
   const loading = useSelector(selectLoading);
-  const formatDate = date => {
-    const dateFormat = new Date(date);
-    return `${
-      dateFormat.getMonth() + 1 < 10
-        ? `0${dateFormat.getMonth() + 1}`
-        : dateFormat.getMonth() + 1
-    }.${
-      dateFormat.getDate() < 10
-        ? `0${dateFormat.getDate()}`
-        : dateFormat.getDate()
-    }.${dateFormat.getFullYear()}`;
+
+  const formatDate = ({ dateOfBirth }) => {
+    if (!dateOfBirth) {
+      const formatedDate = '00.00.0000';
+      return formatedDate;
+    }
+    const birthDateToObject = new Date(dateOfBirth);
+    const formatedDate =
+      birthDateToObject.toLocaleDateString('ua') || '00.00.0000';
+    return formatedDate;
   };
+
+
+
   const { closeModal } = useToggleModalWindow();
 
   const getCategoryNotice = category => {
@@ -42,11 +44,11 @@ const ModalNotice = (data, favorite, deletePet) => {
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
                   <div >
-                  <button onClick={closeModal}  >
-                    <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close} width="24" height="24"/>
+                  <button  onClick={closeModal} type="button"  >
+                    <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close } width="24" height="24"/>
                   </button>
                   </div>
-                  <div className={scss.modal_notice__image_content}>
+                  <div >
                     <img
                       className={scss.modal_notice__image}
                       src={data.noticeAvatar}
@@ -59,7 +61,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                     </div>
                   </div>
                   <div className={scss.modal_notice__full}>
-                    <h3 className={scss.modal_notice__title}>{data.title}</h3>
+                    <h3  className={scss.modal_notice__full_title}>{data.title}</h3>
                     <ul className={scss.modal_notice__list}>
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>Name:</h4>
@@ -72,7 +74,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                           Birthday:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {formatDate(data.dateOfBirth)}
+                        {data.dateOfBirth}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -80,7 +82,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                           Breed:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {data.breed}
+                        {data.breed}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -153,7 +155,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                   {favorite && (
                     <button
                       onClick={() => {
-                        deletePet(data._id);
+                        checkFavorite(data._id);
                       }}
                       className={`${scss.modal_notice__button_favorite}`}
                       type="button"
@@ -168,7 +170,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                   {!favorite && (
                     <button
                       onClick={() => {
-                        deletePet(data._id);
+                        checkFavorite(data._id);
                       }}
                       className={`${scss.modal_notice__button_favorite}`}
                       type="button"
