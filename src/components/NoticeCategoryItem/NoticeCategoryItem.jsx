@@ -40,6 +40,7 @@ const NoticeCategoryItem = ({
   const isLoggedIn = useSelector(isUserLogin);
 
   const userId = useSelector(getUserId);
+  console.log(userId);
   const data = {
     _id: _id,
     noticeAvatar: noticeAvatar,
