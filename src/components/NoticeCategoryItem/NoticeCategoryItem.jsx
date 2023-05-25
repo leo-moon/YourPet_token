@@ -14,7 +14,7 @@ import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import useToggleModalApproveAction from '../../hooks/useToggleModalModalApproveAction';
 import Modal from '../Modal/Modal';
 import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
-import { getFavorite, getUserId } from '../../redux/auth/auth-selectors';
+import {  getUserId } from '../../redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
@@ -38,7 +38,7 @@ const NoticeCategoryItem = ({
   price,
 }) => {
   const isLoggedIn = useSelector(isUserLogin);
-  const favorites = useSelector(getFavorite);
+
   const userId = useSelector(getUserId);
   const data = {
     _id: _id,
@@ -54,11 +54,18 @@ const NoticeCategoryItem = ({
     namePet: namePet,
     price: price,
   };
+
+  // const user = useSelector(getUser);
+  // const copy = Object.assign({}, userId);
+  // const { user: { favorite: fav, _id: idd}} = copy;
+  // console.log(fav);
+  // console.log(idd);
   const [currentNotice, setCurrentNotice] = useState({});
   const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
   const { isModalOpenApprove, openModalApprove, closeModalApprove } =
     useToggleModalApproveAction();
+
 
   // const date = new Date();
   // const thisYear = Number(date.getFullYear());
@@ -84,8 +91,13 @@ const NoticeCategoryItem = ({
   };
 
   const handleFavoriteToggle = async () => {
+  console.log(userId);
+  // const copy = Object.assign({}, userId);
+  const { user: { favorite: fav }} = userId;
+  console.log(fav);
+  // console.log(idd);
     // if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
-    if (favorites.includes(_id)) {
+    if (fav.includes(_id)) {
       try {
         dispatch(fetchRemoveFromFavorite(_id));
         toasty.toastSuccess('remove from favorite');
@@ -106,14 +118,16 @@ const NoticeCategoryItem = ({
     }
   };
   const checkFavorite = _id => {
-    // if (favorites.includes(_id)) {
-    if (_id === userId) {
+    const { user: { favorite: fav}} = userId;
+    if (fav.includes(_id)) {
+  
       return true;
     }
     return false;
   };
   const checkOwner = ownerNotice => {
-    if (ownerNotice === userId) {
+    const { user: { _id: idd}} = userId;
+    if (ownerNotice === idd) {
       return true;
     }
     return false;
