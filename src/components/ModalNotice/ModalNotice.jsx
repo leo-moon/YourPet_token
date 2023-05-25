@@ -5,33 +5,9 @@ import SvgH from 'images/icons/HeartIcon';
 import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
-// import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
-// import Modal from '../Modal/Modal';
 
-const ModalNotice = ({
-  id,
-  onClose,
-  deletePet,
-  favorite,
-  _id,
-  noticeAvatar,
-  category,
-  title,
-  location,
-  dateOfBirth,
-  sex,
-  comments,
-  breed,
-  owner,
-  name,
-  price,
-}) => {
+const ModalNotice = (data, favorite, deletePet) => {
   const loading = useSelector(selectLoading);
-  // const loading = useSelector(state => state.notices.loading);
-  // const loading = useSelector(selectLoading);
-  //   const notice = useSelector(state => state.notice);
-  const notice = useSelector(state => state.notice);
-  
   const formatDate = date => {
     const dateFormat = new Date(date);
     return `${
@@ -44,18 +20,7 @@ const ModalNotice = ({
         : dateFormat.getDate()
     }.${dateFormat.getFullYear()}`;
   };
-
   const { closeModal } = useToggleModalWindow();
-
-  const getCategoryNotice = category => {
-    if (category === "for-free") {
-      category = "in good hands";
-    }
-    if (category === "lost-found") {
-      category = "lost/found";
-    }
-    return category;
-  }
 
   return (
     <>
@@ -63,34 +28,33 @@ const ModalNotice = ({
         <Loader />
       ) : (
         <>
-          {notice !== null && (
-            <li key={_id} className={scss.listItems}>
+            <li key={data._id} className={scss.listItems}>
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
                   <div >
                   <button onClick={closeModal}  >
-          <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close} width="24" height="24"/>
-        </button>
+                    <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close} width="24" height="24"/>
+                  </button>
                   </div>
                   <div className={scss.modal_notice__image_content}>
                     <img
                       className={scss.modal_notice__image}
-                      src={noticeAvatar}
-                      alt={title}
+                      src={data.noticeAvatar}
+                      alt="123"
                     />
                     <div className={scss.modal_notice__category}>
                     <span className={scss.modal_notice__category_info}>
-                      {getCategoryNotice(category)}
+                      {data.category}
                     </span>
                     </div>
                   </div>
                   <div className={scss.modal_notice__full}>
-                    <h3 className={scss.modal_notice__title}>{title}</h3>
+                    <h3 className={scss.modal_notice__title}>{data.title}</h3>
                     <ul className={scss.modal_notice__list}>
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>Name:</h4>
                         <p className={scss.modal_notice__item_description}>
-                          {name}
+                          {data.namePet}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -98,7 +62,7 @@ const ModalNotice = ({
                           Birthday:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {formatDate(dateOfBirth)}
+                          {formatDate(data.dateOfBirth)}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -106,7 +70,7 @@ const ModalNotice = ({
                           Breed:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {breed}
+                          {data.breed}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -114,7 +78,7 @@ const ModalNotice = ({
                           Place:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {location}
+                          {data.location}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
@@ -122,40 +86,40 @@ const ModalNotice = ({
                           The sex:
                         </h4>
                         <p className={scss.modal_notice__item_description}>
-                          {sex}
+                          {data.sex}
                         </p>
                       </li>
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>
                           Email:
                         </h4>
-                        <a
-                          href={`mailto:${owner.email}`}
+                        {/* <a
+                          href={`mailto:${data.owner.email}`}
                           className={`${scss.modal_notice__item_description} ${scss.modal_notice__item_description_link}`}
                           type="button"
                         >
-                          {owner.email}
-                        </a>
+                          {data.owner.email}
+                        </a> */}
                       </li>
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>
                           Phone:
                         </h4>
-                        <a
-                          href={`tel:+${owner.phone}`}
+                        {/* <a
+                          href={`tel:+${data.owner.phone}`}
                           className={`${scss.modal_notice__item_description}`}
                           type="button"
                         >
-                          {`+${owner.phone}`}
-                        </a>
+                          {`+${data.owner.phone}`}
+                        </a> */}
                       </li>
-                      {category !== 'In good hands' && (
+                      {data.category === 'sell' &&  (
                         <li className={scss.modal_notice__item}>
                           <h4 className={scss.modal_notice__item_title}>
                             Price:
                           </h4>
                           <p className={scss.modal_notice__item_description}>
-                            {`${price}$`}
+                            {data.price}$
                           </p>
                         </li>
                       )}
@@ -166,20 +130,20 @@ const ModalNotice = ({
                   <span className={scss.modal_notice__item_title}>
                     Comments:
                   </span>
-                  {comments}
+                  {data.comments}
                 </article>
                 <div>
-                  <a
-                    href={`tel:+${owner.phone}`}
+                  {/* <a
+                    href={`tel:+${data.owner.phone}`}
                     className={`${scss.modal_notice__button_contact}`}
                     type="button"
                   >
                     Contact
-                  </a>
+                  </a> */}
                   {favorite && (
                     <button
                       onClick={() => {
-                        deletePet(id);
+                        deletePet(data._id);
                       }}
                       className={`${scss.modal_notice__button_favorite}`}
                       type="button"
@@ -194,7 +158,7 @@ const ModalNotice = ({
                   {!favorite && (
                     <button
                       onClick={() => {
-                        deletePet(id);
+                        deletePet(data._id);
                       }}
                       className={`${scss.modal_notice__button_favorite}`}
                       type="button"
@@ -209,7 +173,6 @@ const ModalNotice = ({
                 </div>
               </div>
             </li>
-          )}
         </>
       )}
     </>
