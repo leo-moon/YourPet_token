@@ -6,15 +6,14 @@ import LocationIcon from '../images/icons/LocationIcon';
 import HeartIcon from '../images/icons/HeartIcon';
 import TrashIcon from '../images/icons/TrashIcon';
 import MaleIcon from '../images/icons/MaleIcon';
-// import pawIcon from './../../images/img/paw.svg';
-
+import { useState } from 'react';
 import Button from '../ButtonNotices/ButtonNotices';
 import { isUserLogin } from '../../redux/auth/auth-selectors';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import useToggleModalApproveAction from '../../hooks/useToggleModalModalApproveAction';
 import Modal from '../Modal/Modal';
 import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
-import { getFavorite, getUserId, getUser} from '../../redux/auth/auth-selectors';
+import { getFavorite, getUserId} from '../../redux/auth/auth-selectors';
 
 // import {
 //   fetchAddToFavorite,
@@ -25,11 +24,7 @@ import {
   fetchRemoveFromFavorite,
   fetchDeleteNotice,
 } from '../../redux/notices/noticesOperations';
-
-
 import ModalNotice from '../ModalNotice/ModalNotice';
-
-// import NoticeModal from '../NoticeModal/NoticeModal';
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
@@ -42,27 +37,32 @@ const NoticeCategoryItem = ({
   sex,
   comments,
   breed,
-  owner,
-  name,
+  ownerNotice,
+  namePet,
+  price,
 }) => {
-  const user = useSelector(getUser);
   const isLoggedIn = useSelector(isUserLogin);
-
   const favorites = useSelector(getFavorite);
   const userId = useSelector(getUserId);
-    
-
-  console.log(user);
-  console.log(_id);
-  console.log(favorites);
-  console.log(userId);
-
-
+  const data = {
+    _id: _id,
+    noticeAvatar: noticeAvatar,
+    category: category,
+    title: title,
+    location: location,
+    dateOfBirth: dateOfBirth,
+    sex: sex,
+    comments: comments,
+    breed: breed,
+    ownerNotice: ownerNotice,
+    namePet: namePet,
+    price: price,
+  };
+  const [currentNotice, setCurrentNotice] = useState({});
  const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
   const { isModalOpenApprove, openModalApprove, closeModalApprove } =
     useToggleModalApproveAction();
-
 
   // const date = new Date();
   // const thisYear = Number(date.getFullYear());
@@ -71,24 +71,16 @@ const NoticeCategoryItem = ({
     const ymdArr = dateOfBirth.split('.').map(Number).reverse();
     ymdArr[1]--;
     const bornDate = new Date(...ymdArr);
-
     const now = new Date();
-
     const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
-
     now.setDate(now.getDate() - Math.floor(leapYears));
-
     const nowAsTimestamp = now.getTime();
     const bornDateAsTimestamp = bornDate.getTime();
-
     const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
-
     const oneYearInMs = 3.17098e-11;
-
     const age = Math.floor(ageAsTimestamp * oneYearInMs);
     return age;
   }
-
   const age = getAge(dateOfBirth);
 
   const handleFavoriteToggle = async () => {
@@ -120,9 +112,8 @@ const NoticeCategoryItem = ({
     }
     return false;
   };
-
-  const checkOwner = owner => {
-    if (owner === userId) {
+  const checkOwner = ownerNotice => {
+    if (ownerNotice === userId) {
       return true;
     }
     return false;
@@ -132,16 +123,6 @@ const NoticeCategoryItem = ({
     dispatch(fetchDeleteNotice(_id));
     toasty.toastSuccess('Deleted successful');
   };
-  
-  // const getCategoryNotice = category => {
-  //   if (category === "for-free") {
-  //     category = "in good hands";
-  //   }
-  //   if (category === "lost-found") {
-  //     category = "lost/found";
-  //   }
-  //   return category;
-  // }
   
   return (
     <li key={_id} className={css.listItems}>
@@ -172,7 +153,7 @@ const NoticeCategoryItem = ({
                 />
               )}
             />
-            {checkOwner(owner) && (
+            {checkOwner(ownerNotice) && (
               <Button
                 onClick={openModalApprove}
                 className={css.topBtn}
@@ -213,25 +194,18 @@ const NoticeCategoryItem = ({
         <h3 className={css.noticeTitle}>{title}</h3>
         <Button
           className={css.learnBtn}
-          onClick={openModal}
-                >
+          onClick={()=> {
+            console.log(data)
+            setCurrentNotice(data)
+            console.log(currentNotice)
+            openModal()
+          }}
+          >
           Learn more
         </Button>
         {isModalOpen && (
           <Modal closeModal={closeModal}>
-            <ModalNotice
-              _id
-              noticeAvatar
-              category
-              location
-              dateOfBirth
-              sex
-              title
-              comments
-              breed
-              owner
-              name
-            />
+            <ModalNotice {...currentNotice}/>
           </Modal>
         )}
       </div>

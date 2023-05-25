@@ -10,9 +10,7 @@ import NoticesSearch from '../../components/NoticesSearch/NoticesSearch';
 import Menu from '../../components/NoticesCategoriesNav/NoticesCategoriesNav.jsx';
 import NoticesCategoriesList from '../../components/NoticesCategoriesList/NoticesCategoriesList.jsx';
 import Loader from 'components/Loader/Loader';
-
 import styles from './noticesPage.module.css';
-
 import { useSelector } from 'react-redux';
 import { selectAuth } from './../../redux/auth/auth-selectors';
 
@@ -21,11 +19,8 @@ const NoticePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
-  console.log('items', items);
   const { token } = useSelector(selectAuth);
-
   const { category } = useParams();
-  console.log('category', category);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchPetByTitle = ({ search }) => {
     setSearchParams({ search });
