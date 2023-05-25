@@ -7,12 +7,10 @@ import {
   ApiMynoticesCategory,
 } from './../../shared/servises/pet-api';
 import NoticesSearch from '../../components/NoticesSearch/NoticesSearch';
-import Menu from '../../components/NoticesCategoriesNav/NoticesCategoriesNav.jsx';
+import NoticesCategoriesNav from './../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from '../../components/NoticesCategoriesList/NoticesCategoriesList.jsx';
 import Loader from 'components/Loader/Loader';
-
 import styles from './noticesPage.module.css';
-
 import { useSelector } from 'react-redux';
 import { selectAuth } from './../../redux/auth/auth-selectors';
 
@@ -21,11 +19,8 @@ const NoticePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
-  console.log('items', items);
   const { token } = useSelector(selectAuth);
-
   const { category } = useParams();
-  console.log('category', category);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchPetByTitle = ({ search }) => {
     setSearchParams({ search });
@@ -92,13 +87,18 @@ const NoticePage = () => {
     }
   }, [category, search, token]);
 
+  const changNavAndSearch = () => {
+    setSearch("");
+  };
+
+
   return (
     <div className={styles.container}>
       <NoticesSearch onSubmit={searchPetByTitle} />
-      <Menu />
+      <NoticesCategoriesNav changNavAndSearch={changNavAndSearch} />
       {loading && <Loader />}
       {error && <p className={styles.error}>...error</p>}
-      {items && <NoticesCategoriesList items={items} />}
+      {items.length > 0 ? <NoticesCategoriesList items={items} /> : <p>There are no pets here...add please</p>}
     </div>
   );
 };
