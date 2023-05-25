@@ -22,6 +22,16 @@ const ModalNotice = (data, favorite, deletePet) => {
   };
   const { closeModal } = useToggleModalWindow();
 
+  const getCategoryNotice = category => {
+    if (category === "for-free") {
+      category = "in good hands";
+    }
+    if (category === "lost-found") {
+      category = "lost/found";
+    }
+    return category;
+  }
+
   return (
     <>
       {loading ? (
@@ -44,7 +54,7 @@ const ModalNotice = (data, favorite, deletePet) => {
                     />
                     <div className={scss.modal_notice__category}>
                     <span className={scss.modal_notice__category_info}>
-                      {data.category}
+                      {getCategoryNotice(data.category)}
                     </span>
                     </div>
                   </div>
