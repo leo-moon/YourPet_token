@@ -14,6 +14,8 @@ export const selectLoading = ({ auth }) => auth.loading;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
-export const getFavorite = ({ auth }) => auth.favorite;
+export const getFavorite = ({ auth }) => auth.user.favorite;
 
-export const getUserId = ({ auth }) => auth.user._id;
+export const getUserId = ({ auth }) => auth.user;
+
+export const selectError = ({ auth }) => auth.error;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom/dist';
 
 import UserPage from '../UserPage/UserPage';
@@ -12,8 +12,12 @@ import Container from 'components/Container/Container';
 import css from './register-page.module.css';
 import styles from './RegisterForm/RegisterModal/modal.module.scss';
 import pawprint from 'images/pawprint.svg';
+import { selectLoading, selectError } from 'redux/auth/auth-selectors';
+import Loader from 'components/Loader/Loader';
 
 const RegisterPage = () => {
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
   const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
@@ -43,10 +47,15 @@ const RegisterPage = () => {
       }
     };
     sendData();
+
+    // if (loading && error) {
+    //   return <Loader />;
+    // }
   };
 
   return (
     <Container>
+      {loading && !error && <Loader />}
       {modalActive && <UserPage />}
       {/* <div className={styles.modal}> */}
       <Modal active={modalActive} setActive={setModalActive}>

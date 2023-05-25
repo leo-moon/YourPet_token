@@ -5,22 +5,22 @@ import { useEffect } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ closeModal, children }) => {
   useEffect(() => {
     const handleDownInEscape = e => {
       if (e.code === 'Escape') {
-        onClose();
+        closeModal();
       }
     };
     window.addEventListener('keydown', handleDownInEscape);
     return () => {
       window.removeEventListener('keydown', handleDownInEscape);
     };
-  }, [onClose]);
+  }, [closeModal]);
 
   const handleDown = e => {
     if (e.currentTarget === e.target) 
-      onClose();
+    closeModal();
     
   };
 
