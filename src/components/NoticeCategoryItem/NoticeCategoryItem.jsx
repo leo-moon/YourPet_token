@@ -14,7 +14,7 @@ import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import useToggleModalApproveAction from '../../hooks/useToggleModalModalApproveAction';
 import Modal from '../Modal/Modal';
 import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
-import {  getUserId } from '../../redux/auth/auth-selectors';
+import { getUserId } from '../../redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
@@ -67,7 +67,6 @@ const NoticeCategoryItem = ({
   const { isModalOpenApprove, openModalApprove, closeModalApprove } =
     useToggleModalApproveAction();
 
-
   // const date = new Date();
   // const thisYear = Number(date.getFullYear());
   // const age = Number(dateOfBirth.slice(6, 10) - thisYear);
@@ -92,11 +91,13 @@ const NoticeCategoryItem = ({
   };
 
   const handleFavoriteToggle = async () => {
-  console.log(userId);
-  // const copy = Object.assign({}, userId);
-  const { user: { favorite: fav }} = userId;
-  console.log(fav);
-  // console.log(idd);
+    console.log(userId);
+    // const copy = Object.assign({}, userId);
+    const {
+      user: { favorite: fav },
+    } = userId;
+    console.log(fav);
+    // console.log(idd);
     // if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
     if (fav.includes(_id)) {
       try {
@@ -119,15 +120,18 @@ const NoticeCategoryItem = ({
     }
   };
   const checkFavorite = _id => {
-    const { user: { favorite: fav}} = userId;
+    const {
+      user: { favorite: fav },
+    } = userId;
     if (fav.includes(_id)) {
-  
       return true;
     }
     return false;
   };
   const checkOwner = ownerNotice => {
-    const { user: { _id: idd}} = userId;
+    const {
+      user: { _id: idd },
+    } = userId;
     if (ownerNotice === idd) {
       return true;
     }
@@ -206,7 +210,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {age === 0 ? '1 year' : `${age} years`}
+            {age === 0 ? '1 year' : `${age} year`}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (
