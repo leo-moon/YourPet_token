@@ -25,6 +25,18 @@ const initialValues = {
 const UserFormData = () => {
   const [userData, setUserData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isEditable, setIsEditable] = useState(true);
+  const [isSubmittingData, setIsSubmittingData] = useState(false);
+  const [activeField, setActiveField] = useState(null);
+
+  const toggleEditable = field => {
+    // setIsEditable(prevState => !prevState);
+    if (activeField === field) {
+      setActiveField(null);
+    } else {
+      setActiveField(field);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -55,17 +67,23 @@ const UserFormData = () => {
     } catch (error) {
       console.error('Error updating avatar:', error);
     }
-    // finally {
-    //   setIsSubmitting(false);
-    // }
   };
 
   const handleDeleteClick = setFieldValue => {
     setFieldValue('image', null);
   };
 
+  // const initialValues = {
+  //   name: userData.name ?? '',
+  //   email: userData.email || '',
+  //   birthday: userData.birthday ?? '',
+  //   phone: userData.phone ?? '',
+  //   city: userData.city ?? '',
+  //   image: null,
+  // };
+
   const DataUser = userData.map(
-    ({ name, email, Birthday, Phone, City, avatarURL }, index) => (
+    ({ _id, name, email, Birthday, Phone, City, avatarURL }, index) => (
       <div key={index}>
         <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
           {formikProps => (
@@ -82,13 +100,7 @@ const UserFormData = () => {
 
                 {(formikProps.values.image && (
                   <div className={css.editPhotoWrapper}>
-                    <button
-                      type="submit"
-                      className={`${css.submitBtn} ${
-                        isSubmitting ? css.submitting : ''
-                      }`}
-                      disabled={isSubmitting}
-                    >
+                    <button type="submit">
                       <ConfirmIcon
                         color={isSubmitting ? '#00C3AD' : '#54ADFF'}
                       />
@@ -127,21 +139,54 @@ const UserFormData = () => {
                     type="text"
                     placeholder="Enter name"
                     name="name"
-                    value={name}
+                    value={formikProps.values.name || name}
+                    disabled={activeField !== 'name'}
+                    autoFocus={activeField === 'name'}
                   />
-                  <EditIcon color={'#54ADFF'} className={css.editIcon} />
+                  {!activeField || activeField !== 'name' ? (
+                    <button
+                      className={css.editBtn}
+                      onClick={() => toggleEditable('name')}
+                    >
+                      <EditIcon color={'#54ADFF'} />
+                    </button>
+                  ) : (
+                    <button className={css.editBtn} type="submit">
+                      <ConfirmIcon
+                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                      />
+                    </button>
+                  )}
                   <ErrorMessage name="name" component="div" />
                 </label>
                 <label className={css.fieldWrapper}>
                   <span className={css.fieldName}>Email:</span>
+
                   <Field
                     className={css.field}
                     type="text"
                     placeholder="Enter email"
                     name="email"
-                    value={email}
+                    value={formikProps.values.email || email}
+                    disabled={activeField !== 'email'}
+                    autoFocus={activeField === 'email'}
                   />
-                  <EditIcon color={'#54ADFF'} className={css.editIcon} />
+
+                  {!activeField || activeField !== 'email' ? (
+                    <button
+                      className={css.editBtn}
+                      onClick={() => toggleEditable('email')}
+                    >
+                      <EditIcon color={'#54ADFF'} />
+                    </button>
+                  ) : (
+                    <button className={css.editBtn} type="submit">
+                      <ConfirmIcon
+                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                      />
+                    </button>
+                  )}
+
                   <ErrorMessage name="email" component="div" />
                 </label>
                 <label className={css.fieldWrapper}>
@@ -151,9 +196,24 @@ const UserFormData = () => {
                     type="text"
                     placeholder="Enter birthday"
                     name="birthday"
-                    value={Birthday}
+                    value={formikProps.values.birthday || Birthday}
+                    disabled={activeField !== 'birthday'}
+                    autoFocus={activeField === 'birthday'}
                   />
-                  <EditIcon color={'#54ADFF'} className={css.editIcon} />
+                  {!activeField || activeField !== 'birthday' ? (
+                    <button
+                      className={css.editBtn}
+                      onClick={() => toggleEditable('birthday')}
+                    >
+                      <EditIcon color={'#54ADFF'} />
+                    </button>
+                  ) : (
+                    <button className={css.editBtn} type="submit">
+                      <ConfirmIcon
+                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                      />
+                    </button>
+                  )}
                   <ErrorMessage name="birthday" component="div" />
                 </label>
                 <label className={css.fieldWrapper}>
@@ -163,9 +223,24 @@ const UserFormData = () => {
                     type="text"
                     placeholder="Enter phone"
                     name="phone"
-                    value={Phone}
+                    value={formikProps.values.phone || Phone}
+                    disabled={activeField !== 'phone'}
+                    autoFocus={activeField === 'phone'}
                   />
-                  <EditIcon color={'#54ADFF'} className={css.editIcon} />
+                  {!activeField || activeField !== 'phone' ? (
+                    <button
+                      className={css.editBtn}
+                      onClick={() => toggleEditable('phone')}
+                    >
+                      <EditIcon color={'#54ADFF'} />
+                    </button>
+                  ) : (
+                    <button className={css.editBtn} type="submit">
+                      <ConfirmIcon
+                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                      />
+                    </button>
+                  )}
                   <ErrorMessage name="phone" component="div" />
                 </label>
                 <label className={css.fieldWrapper}>
@@ -175,9 +250,24 @@ const UserFormData = () => {
                     type="text"
                     placeholder="Enter city"
                     name="city"
-                    value={City}
+                    value={formikProps.values.city || City}
+                    disabled={activeField !== 'city'}
+                    autoFocus={activeField === 'city'}
                   />
-                  <EditIcon color={'#54ADFF'} className={css.editIcon} />
+                  {!activeField || activeField !== 'city' ? (
+                    <button
+                      className={css.editBtn}
+                      onClick={() => toggleEditable('city')}
+                    >
+                      <EditIcon color={'#54ADFF'} />
+                    </button>
+                  ) : (
+                    <button className={css.editBtn} type="submit">
+                      <ConfirmIcon
+                        color={isSubmittingData ? '#00C3AD' : '#54ADFF'}
+                      />
+                    </button>
+                  )}
                   <ErrorMessage name="city" component="div" />
                 </label>
               </div>
