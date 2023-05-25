@@ -23,10 +23,12 @@ const Header = () => {
   return (
     <div className={css.headerStyle}>
       <div className={css.header}>
-        <Logo className={css.logo} />
-        <Nav />
-        {isLoggedIn ? <UserNav /> : <AuthNav />}
-        <button
+        <Logo/>
+        
+          <Nav />
+          <div className={css.nav}>
+          {isLoggedIn ? <UserNav /> : <AuthNav />}
+          <button
           className={css.menuIcon}
           onClick={toggle}
           aria-label="mobile menu"
@@ -37,6 +39,9 @@ const Header = () => {
             <img className={css.menuBur} src={menuHam} alt="menuBurger" />
           )}
         </button>
+        </div>
+
+        
         {isOpen && (
           <div className={css.burger}>
             <div className={css.listMenu}>

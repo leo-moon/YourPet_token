@@ -1,9 +1,3 @@
-.headerStyle {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -35,8 +29,14 @@
   }
 }
 
-.logo {
-  margin-right: 159px;
+// .logo {
+//   margin-right: 159px;
+// }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .menu {
