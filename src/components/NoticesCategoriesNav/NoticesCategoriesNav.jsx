@@ -17,7 +17,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = ({ changNavAndSearch }) => {
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
@@ -25,16 +25,22 @@ const NoticesCategoriesNav = () => {
     <>
       <div className={styles.inner}>
         <nav className={styles.navigation}>
-          <StyledLink to="/notices/sell" className={styles.navigationButton}>
+          <StyledLink
+            onClick={changNavAndSearch}
+            to="/notices/sell"
+            className={styles.navigationButton}
+          >
             sell
           </StyledLink>
           <StyledLink
+            onClick={changNavAndSearch}
             to="/notices/lost-found"
             className={styles.navigationButton}
           >
             lost/found
           </StyledLink>
           <StyledLink
+            onClick={changNavAndSearch}
             to="/notices/for-free"
             className={styles.navigationButton}
           >
@@ -42,6 +48,7 @@ const NoticesCategoriesNav = () => {
           </StyledLink>
           {isLoggedIn && (
             <StyledLink
+              onClick={changNavAndSearch}
               to="/notices/favorite"
               className={styles.navigationButton}
             >
@@ -49,7 +56,11 @@ const NoticesCategoriesNav = () => {
             </StyledLink>
           )}
           {isLoggedIn && (
-            <StyledLink to="/notices/own" className={styles.navigationButton}>
+            <StyledLink
+              onClick={changNavAndSearch}
+              to="/notices/own"
+              className={styles.navigationButton}
+            >
               my ads
             </StyledLink>
           )}
