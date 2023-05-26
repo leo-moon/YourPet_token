@@ -11,18 +11,44 @@ const setToken = token => {
   instance.defaults.headers.authorization = '';
 };
 
+
+instance.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response.status === 401) {
+      const refreshToken = localStorage.getItem('refreshToken');
+      try {
+        const { data } = await instance.post('/auth/refresh', { refreshToken });
+        setToken(data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        // error.config.headers.common.authorization = `Bearer ${data.accessToken}`;
+        return instance(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+
+
+
+
 export const signup = async data => {
   const { data: result } = await instance.post(
     '/api/auth/users/register',
     data
   );
-  setToken(result.token);
+  // setToken(result.token);
   return result;
 };
 
 export const login = async data => {
   const { data: result } = await instance.post('/api/auth/users/login', data);
-  setToken(result.token);
+  // setToken(result.token);
+  setToken(result.accessToken);
+  localStorage.setItem('refreshToken', data.refreshToken);
   return result;
 };
 
