@@ -132,7 +132,7 @@ const SecondStep = ({ data, next, prev, setStatus }) => {
               className={css.cancelBtn}
             >
               <BiArrowBack color="#54ADFF" size={24} />
-              Cancel
+              Back
             </button>
           </div>
         </Form>

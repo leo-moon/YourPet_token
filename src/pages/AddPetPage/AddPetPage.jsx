@@ -35,6 +35,7 @@ const AddPetPage = () => {
   const [data, setData] = useState(initialData);
   const [currentStep, setCurrentStep] = useState(0);
   const [status, setStatus] = useState(initialStatus);
+
   const navigate = useNavigate();
 
   console.log(data);

@@ -271,7 +271,7 @@ const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
 
           <div className={css.btnsThirdStepWrap}>
             <button className={css.nextBtn} type="submit">
-              Next
+              Done
               <PawIcon />
             </button>
             <button
@@ -280,7 +280,7 @@ const ThirdStep = ({ next, prev, data, setStatus, currentStep }) => {
               onClick={() => onCancelBtnClick(values)}
             >
               <BiArrowBack color="#54ADFF" size={24} />
-              Cancel
+              Back
             </button>
           </div>
         </Form>
