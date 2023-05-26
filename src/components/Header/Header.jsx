@@ -20,6 +20,7 @@ const Header = () => {
       : (document.body.style.overflow = 'unset');
   };
   const { isLoggedIn } = useAuth();
+  
   return (
     <div className={css.headerStyle}>
       <div className={css.header}>
@@ -47,7 +48,7 @@ const Header = () => {
             <div className={css.listMenu}>
               {isLoggedIn ? (
                 <div className={css.authNavigate}>
-                  <NavLink to="/user" onClick={toggle} style={{ width: 164 }}>
+                  <NavLink  className={css.iconMob} to="/user" onClick={toggle} style={{ width: 164 }}>
                     <img className={css.icon} src={userIcon} alt="userIcon" />
                   </NavLink>
                 </div>
