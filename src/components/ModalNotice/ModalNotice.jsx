@@ -6,27 +6,29 @@ import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
 import Modal from 'components/Modal/Modal';
+import { useEffect, useState } from 'react';
+import {fetchDataUser} from "../../shared/servises/pet-api";
 
 const ModalNotice = (data, favorite, checkFavorite) => {
   const loading = useSelector(selectLoading);
+  const [state, setState] = useState("");
 
-  // const formatDate = ({ dateOfBirth }) => {
-  //   if (!dateOfBirth) {
-  //     const formatedDate = '00.00.0000';
-  //     return formatedDate;
-  //   }
-  //   const birthDateToObject = new Date(dateOfBirth);
-  //   const formatedDate =
-  //     birthDateToObject.toLocaleDateString('ua') || '00.00.0000';
-  //   return formatedDate;
-  // };
-
-
+  useEffect(() => {
+    const owner = data.ownerNotice;
+    const fetchData = async (owner) => {
+      try {
+        const data = await fetchDataUser(owner);
+        setState(data)
+        return data;
+      } catch (error) {
+        return error
+      } 
+    };
+    fetchData(owner);
+  
+  }, [data.ownerNotice]);
 
   const { isModalOpen, closeModal } = useToggleModalWindow();
-
-  const B = data.ownerNotice;
-  console.log(B);
   
   const handleDown = e => {
     if (e.currentTarget === e.target) {
@@ -118,25 +120,25 @@ const ModalNotice = (data, favorite, checkFavorite) => {
                         <h4 className={scss.modal_notice__item_title}>
                           Email:
                         </h4>
-                        {/* <a
-                          href={`mailto:${data.owner.email}`}
+                        <a
+                          href={`mailto:${state.email}`}
                           className={`${scss.modal_notice__item_description} ${scss.modal_notice__item_description_link}`}
                           type="button"
                         >
-                          {data.owner.email}
-                        </a> */}
+                          {state.email}
+                        </a>
                       </li>
                       <li className={scss.modal_notice__item}>
                         <h4 className={scss.modal_notice__item_title}>
                           Phone:
                         </h4>
-                        {/* <a
-                          href={`tel:+${data.owner.phone}`}
+                        <a
+                          href={`tel:+${state.phone}`}
                           className={`${scss.modal_notice__item_description}`}
                           type="button"
                         >
-                          {`+${data.owner.phone}`}
-                        </a> */}
+                          {`+${state.phone}`}
+                        </a>
                       </li>
                       {data.category === 'sell' &&  (
                         <li className={scss.modal_notice__item}>
