@@ -5,6 +5,7 @@ import SvgH from 'images/icons/HeartIcon';
 import { selectLoading } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import useToggleModalWindow from '../../hooks/useToggleModalWindow';
+import Modal from 'components/Modal/Modal';
 
 const ModalNotice = (data, favorite, checkFavorite) => {
   const loading = useSelector(selectLoading);
@@ -22,7 +23,16 @@ const ModalNotice = (data, favorite, checkFavorite) => {
 
 
 
-  const { closeModal } = useToggleModalWindow();
+  const { isModalOpen, closeModal } = useToggleModalWindow();
+
+  const B = data.ownerNotice;
+  console.log(B);
+  
+  const handleDown = e => {
+    if (e.currentTarget === e.target) {
+      closeModal();
+    }
+  };
 
   const getCategoryNotice = category => {
     if (category === "for-free") {
@@ -43,10 +53,13 @@ const ModalNotice = (data, favorite, checkFavorite) => {
             <li key={data._id} className={scss.listItems}>
               <div className={scss.modal_notice__content}>
                 <div className={scss.modal_notice__content_info}>
-                  <div >
+                  <div onClick={handleDown}>
                   <button  onClick={closeModal} type="button"  >
-                    <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close } width="24" height="24"/>
+                    <CloseIcon color={'#54ADFF'} className={scss.modal_notice__close } width="24" height="24" />
                   </button>
+                  {isModalOpen && (
+          <Modal closeModal={closeModal}>
+                      </Modal>)}
                   </div>
                   <div >
                     <img
